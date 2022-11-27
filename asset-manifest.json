@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/scratchpad/static/css/main.e90baf55.css",
+    "main.js": "/scratchpad/static/js/main.8686e51d.js",
+    "static/js/496.bcdc9332.chunk.js": "/scratchpad/static/js/496.bcdc9332.chunk.js",
+    "static/media/JetBrainsMono-Regular.woff2": "/scratchpad/static/media/JetBrainsMono-Regular.1e66c47aca088de94ae7.woff2",
+    "index.html": "/scratchpad/index.html",
+    "main.e90baf55.css.map": "/scratchpad/static/css/main.e90baf55.css.map",
+    "main.8686e51d.js.map": "/scratchpad/static/js/main.8686e51d.js.map",
+    "496.bcdc9332.chunk.js.map": "/scratchpad/static/js/496.bcdc9332.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e90baf55.css",
+    "static/js/main.8686e51d.js"
+  ]
+}
