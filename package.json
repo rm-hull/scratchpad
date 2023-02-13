@@ -4,7 +4,7 @@
   "license": "MIT",
   "homepage": "https://destructuring-bind.org/scratchpad",
   "dependencies": {
-    "@chakra-ui/react": "^2.4.1",
+    "@chakra-ui/react": "^2.5.0",
     "@chakra-ui/styled-system": "^2.3.5",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
