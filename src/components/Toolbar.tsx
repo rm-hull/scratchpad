@@ -1,19 +1,59 @@
-import { HStack, IconButton, Select, Tooltip } from "@chakra-ui/react";
-import { type JSX } from "react";
-import { VscDebugContinue } from "react-icons/vsc";
+import { HStack, IconButton, Select, Tooltip, useDisclosure } from "@chakra-ui/react";
+import { type ChangeEvent, type JSX } from "react";
+import { FiTrash2, FiPlus } from "react-icons/fi";
+import { supportedTypes } from "../models/fileTypes";
+import { DeleteModal } from "./DeleteModal";
 
-export default function Toolbar(): JSX.Element {
+interface ToolbarProps {
+  language?: string;
+  onChangeLanguage: (language: string) => void;
+  onAddNew: () => void;
+  onDelete: () => void;
+}
+
+export default function Toolbar({ language, onChangeLanguage, onAddNew, onDelete }: ToolbarProps): JSX.Element {
+  const { isOpen: isDeleteModalOpen, onOpen: onOpenDeleteModal, onClose: onCloseDeleteModal } = useDisclosure();
+
+  const handleChangeLanguage = (event: ChangeEvent<HTMLSelectElement>): void => {
+    onChangeLanguage(event.target.value);
+  };
+
+  const handleDelete = (): void => {
+    onCloseDeleteModal();
+    onDelete();
+  };
+
   return (
-    <HStack spacing={1}>
-      <Select placeholder="Type">
-        <option value="json">Python</option>
-        <option value="json">JSON</option>
-        <option value="html">HTML</option>
-        <option value="text">Text</option>
+    <HStack m={1} spacing={1}>
+      <Select size="xs" onChange={handleChangeLanguage} value={language}>
+        {supportedTypes.map((fileType) => (
+          <option key={fileType.language} value={fileType.language}>
+            {fileType.descr}
+          </option>
+        ))}
       </Select>
-      <Tooltip label="Format">
-        <IconButton fontSize={16} variant="ghost" icon={<VscDebugContinue />} aria-label="Format" textColor="#86bcf9" />
+      <Tooltip label="New Block">
+        <IconButton
+          size="xs"
+          variant="ghost"
+          icon={<FiPlus />}
+          aria-label="Add new block"
+          textColor="green.400"
+          onClick={onAddNew}
+        />
       </Tooltip>
+      <Tooltip label="Delete">
+        <IconButton
+          size="xs"
+          variant="ghost"
+          icon={<FiTrash2 />}
+          aria-label="Delete"
+          textColor="red.400"
+          onClick={onOpenDeleteModal}
+        />
+      </Tooltip>
+
+      <DeleteModal isOpen={isDeleteModalOpen} onDelete={handleDelete} onCancel={onCloseDeleteModal} />
     </HStack>
   );
 }
