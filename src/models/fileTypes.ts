@@ -8,6 +8,7 @@ import "prismjs/components/prism-bash";
 import "prismjs/components/prism-regex";
 import "prismjs/components/prism-sql";
 import "prismjs/components/prism-properties";
+import "prismjs/components/prism-yaml";
 
 export interface FileType {
   language: string;
@@ -26,6 +27,7 @@ export const supportedTypes: readonly FileType[] = [
   { language: "sql", descr: "SQL", grammar: languages.sql },
   { language: "regex", descr: "Regex", grammar: languages.regex },
   { language: "text", descr: "Text", grammar: languages.text },
+  { language: "yaml", descr: "YAML", grammar: languages.yaml },
 ];
 
 export function fromLanguage(language: string = "text"): FileType {
