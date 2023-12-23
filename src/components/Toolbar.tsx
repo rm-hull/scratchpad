@@ -1,7 +1,8 @@
 import { HStack, IconButton, Select, Tooltip } from "@chakra-ui/react";
+import { type JSX } from "react";
 import { VscDebugContinue } from "react-icons/vsc";
 
-export default function Toolbar() {
+export default function Toolbar(): JSX.Element {
   return (
     <HStack spacing={1}>
       <Select placeholder="Type">

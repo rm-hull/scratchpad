@@ -3,5 +3,5 @@
 ## Building locally
 
 ```console
-$ yarn start
+$ yarn dev
 ```

@@ -5,10 +5,10 @@ import { ErrorBoundary } from "react-error-boundary";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import ErrorFallback from "./components/ErrorFallback";
-import "./index.css";
+import "./main.css";
 import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+const root = ReactDOM.createRoot(document.getElementById("root")!);
 const manager = createLocalStorageManager("scratchpad.color-mode");
 // const theme = extendTheme(withDefaultColorScheme({ colorScheme: "red" }));
 
