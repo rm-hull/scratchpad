@@ -1,10 +1,10 @@
 import { type Grammar, highlight } from "prismjs";
-import { useMemo, type JSX, useState } from "react";
+import { useMemo, type JSX } from "react";
 // import "prismjs/themes/prism-dark.css";
 import "prismjs/themes/prism.css";
 import Editor from "react-simple-code-editor";
 import "./TextEditor.styles.css";
-import { Box } from "@chakra-ui/react";
+import { Box, useClipboard } from "@chakra-ui/react";
 import Toolbar from "./Toolbar";
 import { fromLanguage } from "../models/fileTypes";
 import { newBlock, type Block } from "../models/block";
@@ -29,13 +29,13 @@ const hightlightWithLineNumbers = (input: string, grammar: Grammar, language: st
 
 export default function TextEditor({ block, onBlockChange, onBlockDelete }: TextEditorProps): JSX.Element {
   const fileType = useMemo(() => fromLanguage(block.language), [block.language]);
-  const [text, setText] = useState<string>(block.text);
+  const { onCopy, hasCopied, value, setValue } = useClipboard(block.text);
   useDebounce(
     () => {
-      onBlockChange({ ...block, text, updatedAt: Date.now() });
+      onBlockChange({ ...block, text: value, updatedAt: Date.now() });
     },
     1000,
-    [text]
+    [value]
   );
 
   const handleLanguageChange = (language: string): void => {
@@ -54,11 +54,13 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete }: Text
           onAddNew={() => {
             onBlockChange(newBlock());
           }}
+          hasCopied={hasCopied}
+          onCopy={onCopy}
         />
       </Box>
       <Editor
-        value={text}
-        onValueChange={setText}
+        value={value}
+        onValueChange={setValue}
         highlight={(text) => hightlightWithLineNumbers(text, fileType.grammar, block.language)}
         padding={5}
         textareaId="codeArea"

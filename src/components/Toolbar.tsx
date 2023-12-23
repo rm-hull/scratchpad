@@ -1,6 +1,6 @@
 import { HStack, IconButton, Select, Tooltip, useDisclosure } from "@chakra-ui/react";
 import { type ChangeEvent, type JSX } from "react";
-import { FiTrash2, FiPlus } from "react-icons/fi";
+import { FiTrash2, FiPlus, FiCheck, FiClipboard } from "react-icons/fi";
 import { supportedTypes } from "../models/fileTypes";
 import { DeleteModal } from "./DeleteModal";
 
@@ -9,9 +9,18 @@ interface ToolbarProps {
   onChangeLanguage: (language: string) => void;
   onAddNew: () => void;
   onDelete: () => void;
+  onCopy: () => void;
+  hasCopied: boolean;
 }
 
-export default function Toolbar({ language, onChangeLanguage, onAddNew, onDelete }: ToolbarProps): JSX.Element {
+export default function Toolbar({
+  language,
+  onChangeLanguage,
+  onAddNew,
+  onDelete,
+  onCopy,
+  hasCopied,
+}: ToolbarProps): JSX.Element {
   const { isOpen: isDeleteModalOpen, onOpen: onOpenDeleteModal, onClose: onCloseDeleteModal } = useDisclosure();
 
   const handleChangeLanguage = (event: ChangeEvent<HTMLSelectElement>): void => {
@@ -40,6 +49,16 @@ export default function Toolbar({ language, onChangeLanguage, onAddNew, onDelete
           aria-label="Add new block"
           textColor="green.400"
           onClick={onAddNew}
+        />
+      </Tooltip>
+      <Tooltip label="Copy to clipboard">
+        <IconButton
+          size="xs"
+          variant="ghost"
+          icon={hasCopied ? <FiCheck color="green" /> : <FiClipboard />}
+          aria-label="Copy to clipboard"
+          textColor="blue.400"
+          onClick={onCopy}
         />
       </Tooltip>
       <Tooltip label="Delete">
