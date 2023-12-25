@@ -4601,6 +4601,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chakra-ui-contextmenu@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "chakra-ui-contextmenu@npm:1.0.5"
+  peerDependencies:
+    "@chakra-ui/react": ">=1.6.7"
+    react: ">=16.8.6"
+  checksum: 8ba946513e348579183987a27fc54a0c9a8091d19436de79dad32a0bbfb1689fd0410281c65b696554dd2bb6bf95727d80b39ae5c2f38d63f4e8946396619259
+  languageName: node
+  linkType: hard
+
 "chalk@npm:^2.4.2":
   version: 2.4.2
   resolution: "chalk@npm:2.4.2"
@@ -8424,6 +8434,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^6.15.0"
     "@vitejs/plugin-react": "npm:^4.2.1"
     "@vitest/coverage-v8": "npm:^1.1.0"
+    chakra-ui-contextmenu: "npm:^1.0.5"
     clsx: "npm:^2.0.0"
     eslint: "npm:8.56.0"
     eslint-config-prettier: "npm:^9.1.0"

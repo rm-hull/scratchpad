@@ -6,11 +6,11 @@ export interface Block {
   language: string;
 }
 
-export function newBlock(): Block {
+export function newBlock(language = "text"): Block {
   return {
     id: crypto.randomUUID(),
     createdAt: Date.now(),
     text: "",
-    language: "text",
+    language,
   };
 }

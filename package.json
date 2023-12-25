@@ -16,6 +16,7 @@
     "@chakra-ui/styled-system": "^2.9.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "chakra-ui-contextmenu": "^1.0.5",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.16",
     "jotai": "^2.6.0",

@@ -7,7 +7,7 @@ import "./TextEditor.styles.css";
 import { Box, useClipboard } from "@chakra-ui/react";
 import Toolbar from "./Toolbar";
 import { fromLanguage } from "../models/fileTypes";
-import { newBlock, type Block } from "../models/block";
+import { type Block } from "../models/block";
 import { useDebounce } from "react-use";
 
 interface TextEditorProps {
@@ -51,19 +51,17 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete }: Text
           onDelete={() => {
             onBlockDelete(block.id);
           }}
-          onAddNew={() => {
-            onBlockChange(newBlock());
-          }}
           hasCopied={hasCopied}
           onCopy={onCopy}
         />
       </Box>
       <Editor
+        textareaId={block.id}
+        textareaClassName="codeArea"
         value={value}
         onValueChange={setValue}
         highlight={(text) => hightlightWithLineNumbers(text, fileType.grammar, block.language)}
         padding={5}
-        textareaId="codeArea"
         className="editor"
       />
     </Box>
