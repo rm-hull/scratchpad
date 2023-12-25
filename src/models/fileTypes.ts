@@ -9,6 +9,8 @@ import "prismjs/components/prism-regex";
 import "prismjs/components/prism-sql";
 import "prismjs/components/prism-properties";
 import "prismjs/components/prism-yaml";
+import "prismjs/components/prism-javascript";
+import "prismjs/components/prism-typescript";
 
 export interface FileType {
   language: string;
@@ -20,6 +22,7 @@ export const supportedTypes: readonly FileType[] = [
   { language: "bash", descr: "Bash", grammar: languages.bash },
   { language: "csv", descr: "CSV", grammar: languages.csv },
   { language: "html", descr: "HTML", grammar: languages.html },
+  { language: "javascript", descr: "Javascript", grammar: languages.javascript },
   { language: "json", descr: "JSON", grammar: languages.json },
   { language: "markdown", descr: "Markdown", grammar: languages.markdown },
   { language: "properties", descr: "Properties", grammar: languages.properties },
@@ -27,6 +30,7 @@ export const supportedTypes: readonly FileType[] = [
   { language: "sql", descr: "SQL", grammar: languages.sql },
   { language: "regex", descr: "Regex", grammar: languages.regex },
   { language: "text", descr: "Text", grammar: languages.text },
+  { language: "typescript", descr: "Typescript", grammar: languages.typescript },
   { language: "yaml", descr: "YAML", grammar: languages.yaml },
 ];
 
