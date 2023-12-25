@@ -1,5 +1,8 @@
 import {
   Button,
+  FormControl,
+  FormLabel,
+  HStack,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -7,10 +10,14 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Text,
+  Radio,
+  RadioGroup,
+  Switch,
   VStack,
 } from "@chakra-ui/react";
 import { type JSX } from "react";
+import useGeneralSettings from "../hooks/useGeneralSettings";
+import { type sortBy } from "../models/block";
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -18,15 +25,62 @@ interface SettingsModalProps {
 }
 
 export default function SettingsModal({ isOpen, onClose }: SettingsModalProps): JSX.Element | null {
+  const [settings, updateSettings] = useGeneralSettings();
+  const handleUpdateSortOrder = (sortOrder: keyof typeof sortBy): void => {
+    updateSettings({ ...settings, sortOrder });
+  };
+
+  const handleToggleShowZebraStripes = (): void => {
+    updateSettings({ ...settings, showZebraStripes: !(settings?.showZebraStripes ?? false) });
+  };
+
+  const handleToggleShowLineNumbers = (): void => {
+    updateSettings({ ...settings, showLineNumbers: !(settings?.showLineNumbers ?? false) });
+  };
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="3xl" scrollBehavior="inside">
+    <Modal isOpen={isOpen} onClose={onClose} size="2xl" scrollBehavior="inside">
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Settings</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <VStack align="left">
-            <Text>TODO</Text>
+            <FormControl display="flex" alignItems="center">
+              <FormLabel htmlFor="sort-order" mb={0}>
+                Sort blocks by:
+              </FormLabel>
+              <RadioGroup id="sort-order" onChange={handleUpdateSortOrder} value={settings?.sortOrder}>
+                <HStack gap={4}>
+                  <Radio value="none">none</Radio>
+                  <Radio value="language">language</Radio>
+                  <Radio value="lastUpdated">last updated</Radio>
+                  <Radio value="created">created</Radio>
+                </HStack>
+              </RadioGroup>
+            </FormControl>
+
+            <FormControl display="flex" alignItems="center">
+              <Switch
+                id="show-zebra-stripes"
+                isChecked={settings?.showZebraStripes}
+                onChange={handleToggleShowZebraStripes}
+              />
+              <FormLabel htmlFor="show-zebra-stripes" mb={0} ml={2}>
+                Show zebra stripes
+              </FormLabel>
+            </FormControl>
+
+            <FormControl display="flex" alignItems="center">
+              <Switch
+                id="show-line-numbers"
+                isChecked={settings?.showLineNumbers}
+                onChange={handleToggleShowLineNumbers}
+              />
+              <FormLabel htmlFor="show-line-numbers" mb={0} ml={2}>
+                Show line numbers
+              </FormLabel>
+            </FormControl>
           </VStack>
         </ModalBody>
 

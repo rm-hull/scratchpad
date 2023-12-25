@@ -9,6 +9,8 @@ import Toolbar from "./Toolbar";
 import { fromLanguage } from "../models/fileTypes";
 import { type Block } from "../models/block";
 import { useDebounce } from "react-use";
+import useGeneralSettings from "../hooks/useGeneralSettings";
+import clsx from "clsx";
 
 interface TextEditorProps {
   block: Block;
@@ -30,6 +32,8 @@ const hightlightWithLineNumbers = (input: string, grammar: Grammar, language: st
 export default function TextEditor({ block, onBlockChange, onBlockDelete }: TextEditorProps): JSX.Element {
   const fileType = useMemo(() => fromLanguage(block.language), [block.language]);
   const { onCopy, hasCopied, value, setValue } = useClipboard(block.text);
+  const [settings] = useGeneralSettings();
+
   useDebounce(
     () => {
       onBlockChange({ ...block, text: value, updatedAt: Date.now() });
@@ -41,6 +45,8 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete }: Text
   const handleLanguageChange = (language: string): void => {
     onBlockChange({ ...block, language, updatedAt: Date.now() });
   };
+
+  const hl = settings?.showLineNumbers ?? false ? hightlightWithLineNumbers : highlight;
 
   return (
     <Box>
@@ -60,9 +66,9 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete }: Text
         textareaClassName="codeArea"
         value={value}
         onValueChange={setValue}
-        highlight={(text) => hightlightWithLineNumbers(text, fileType.grammar, block.language)}
+        highlight={(text) => hl(text, fileType.grammar, block.language)}
         padding={5}
-        className="editor"
+        className={clsx("editor", (settings?.showLineNumbers ?? false) && "lineNumbers")}
       />
     </Box>
   );

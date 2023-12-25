@@ -3666,6 +3666,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/ramda@npm:^0":
+  version: 0.29.9
+  resolution: "@types/ramda@npm:0.29.9"
+  dependencies:
+    types-ramda: "npm:^0.29.6"
+  checksum: b4d3746f2770f05f276901e1490ed733cb8a2f2aea1bb8b651914cf89dee93832c1dc61914dad1b35054f0eb7597491963335d27cd98fe4f293a67529b66382d
+  languageName: node
+  linkType: hard
+
 "@types/react-dom@npm:^18.0.0, @types/react-dom@npm:^18.2.18":
   version: 18.2.18
   resolution: "@types/react-dom@npm:18.2.18"
@@ -7880,6 +7889,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ramda@npm:^0.29.1":
+  version: 0.29.1
+  resolution: "ramda@npm:0.29.1"
+  checksum: 5824249efa18f3c013ea0bae6cdcc167ef357fff5441586b7ad98759e902b1397297d92b50bdc317f49fe73fa6b0e17f806f4d0f7a95270f05c25afa733a8fc5
+  languageName: node
+  linkType: hard
+
 "react-clientside-effect@npm:^1.2.6":
   version: 1.2.6
   resolution: "react-clientside-effect@npm:1.2.6"
@@ -8428,6 +8444,7 @@ __metadata:
     "@testing-library/user-event": "npm:^14.5.1"
     "@types/node": "npm:^20.10.5"
     "@types/prismjs": "npm:^1.26.3"
+    "@types/ramda": "npm:^0"
     "@types/react": "npm:^18.2.45"
     "@types/react-dom": "npm:^18.2.18"
     "@typescript-eslint/eslint-plugin": "npm:^6.15.0"
@@ -8454,6 +8471,7 @@ __metadata:
     jotai: "npm:^2.6.0"
     prettier: "npm:^3.1.1"
     prismjs: "npm:^1.29.0"
+    ramda: "npm:^0.29.1"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-error-boundary: "npm:^4.0.12"
@@ -9001,6 +9019,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ts-toolbelt@npm:^9.6.0":
+  version: 9.6.0
+  resolution: "ts-toolbelt@npm:9.6.0"
+  checksum: 2c2dea2631dbd7372a79cccc6d09a377a6ca2f319f767fd239d2e312cd1d9165a90f8c1777a047227bfdcda6aeba3addbadce88fdfc7f43caf4534d385a43c82
+  languageName: node
+  linkType: hard
+
 "tsconfig-paths@npm:^3.15.0":
   version: 3.15.0
   resolution: "tsconfig-paths@npm:3.15.0"
@@ -9112,6 +9137,15 @@ __metadata:
     for-each: "npm:^0.3.3"
     is-typed-array: "npm:^1.1.9"
   checksum: 0444658acc110b233176cb0b7689dcb828b0cfa099ab1d377da430e8553b6fdcdce882360b7ffe9ae085b6330e1d39383d7b2c61574d6cd8eef651d3e4a87822
+  languageName: node
+  linkType: hard
+
+"types-ramda@npm:^0.29.6":
+  version: 0.29.6
+  resolution: "types-ramda@npm:0.29.6"
+  dependencies:
+    ts-toolbelt: "npm:^9.6.0"
+  checksum: bd878cc4321d555fcccedba53665682752b60ec8fe11c7418a109180313b0fd0736a0bf3658d40e5a2c7c62c96f5f83923669cec9295152a52bfd1f35f680677
   languageName: node
   linkType: hard
 

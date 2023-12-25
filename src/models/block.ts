@@ -1,3 +1,5 @@
+import * as R from "ramda";
+
 export interface Block {
   id: string;
   createdAt: number;
@@ -14,3 +16,10 @@ export function newBlock(language = "text"): Block {
     language,
   };
 }
+
+export const sortBy = {
+  none: R.identity<Block[]>,
+  language: R.sortBy<Block>((block) => block.language.toLowerCase()),
+  lastUpdated: R.sort<Block>(R.descend((block) => block.updatedAt ?? 0)),
+  created: R.sort<Block>(R.descend((block) => block.createdAt ?? 0)),
+};
