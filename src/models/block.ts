@@ -6,6 +6,7 @@ export interface Block {
   updatedAt?: number;
   text: string;
   language: string;
+  locked?: boolean;
 }
 
 export function newBlock(language = "text"): Block {
@@ -14,6 +15,7 @@ export function newBlock(language = "text"): Block {
     createdAt: Date.now(),
     text: "",
     language,
+    locked: false,
   };
 }
 

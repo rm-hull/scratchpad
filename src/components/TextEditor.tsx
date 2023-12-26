@@ -59,9 +59,11 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete }: Text
           }}
           hasCopied={hasCopied}
           onCopy={onCopy}
+          locked={block.locked}
         />
       </Box>
       <Editor
+        disabled={block.locked}
         textareaId={block.id}
         textareaClassName="codeArea"
         value={value}

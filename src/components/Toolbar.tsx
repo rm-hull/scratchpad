@@ -1,6 +1,6 @@
 import { HStack, IconButton, Select, Tooltip, useDisclosure } from "@chakra-ui/react";
 import { type ChangeEvent, type JSX } from "react";
-import { FiTrash2, FiCheck, FiClipboard } from "react-icons/fi";
+import { FiTrash2, FiCheck, FiClipboard, FiLock } from "react-icons/fi";
 import { supportedTypes } from "../models/fileTypes";
 import { DeleteModal } from "./DeleteModal";
 
@@ -10,6 +10,7 @@ interface ToolbarProps {
   onDelete: () => void;
   onCopy: () => void;
   hasCopied: boolean;
+  locked?: boolean;
 }
 
 export default function Toolbar({
@@ -18,6 +19,7 @@ export default function Toolbar({
   onDelete,
   onCopy,
   hasCopied,
+  locked = false,
 }: ToolbarProps): JSX.Element {
   const { isOpen: isDeleteModalOpen, onOpen: onOpenDeleteModal, onClose: onCloseDeleteModal } = useDisclosure();
 
@@ -32,7 +34,7 @@ export default function Toolbar({
 
   return (
     <HStack m={1} spacing={1}>
-      <Select size="xs" onChange={handleChangeLanguage} value={language}>
+      <Select name="language" isDisabled={locked ?? false} size="xs" onChange={handleChangeLanguage} value={language}>
         {supportedTypes.map((fileType) => (
           <option key={fileType.language} value={fileType.language}>
             {fileType.descr}
@@ -49,11 +51,12 @@ export default function Toolbar({
           onClick={onCopy}
         />
       </Tooltip>
-      <Tooltip label="Delete">
+      <Tooltip label={locked ? "Locked" : "Delete"}>
         <IconButton
+          isDisabled={locked}
           size="xs"
           variant="ghost"
-          icon={<FiTrash2 />}
+          icon={locked ? <FiLock /> : <FiTrash2 />}
           aria-label="Delete"
           textColor="red.400"
           onClick={onOpenDeleteModal}
