@@ -1,23 +1,18 @@
 import { Container, Divider } from "@chakra-ui/react";
-import { type JSX } from "react";
-import { useLocalStorage } from "react-use";
+import { useEffect, type JSX } from "react";
 import TextEditor from "../components/TextEditor";
-import { newBlock, type Block, sortBy } from "../models/block";
+import { type Block, sortBy, newBlock } from "../models/block";
 import RightContextMenu from "../components/RightContextMenu";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import * as R from "ramda";
-
-function newBlocks(): Record<string, Block> {
-  const block = newBlock();
-  return { [block.id]: block };
-}
+import useBlocks from "../hooks/useBlocks";
 
 export default function Scratch(): JSX.Element {
-  const [blocks = newBlocks(), setBlocks] = useLocalStorage<Record<string, Block>>(`scratchpad.blocks`);
+  const [blocks, updateBlocks] = useBlocks();
   const [settings] = useGeneralSettings();
 
   const handleBlockChange = (updatedBlock: Block): void => {
-    setBlocks({
+    updateBlocks({
       ...blocks,
       [updatedBlock.id]: updatedBlock,
     });
@@ -25,11 +20,17 @@ export default function Scratch(): JSX.Element {
 
   const handleBlockDelete = (id: Block["id"]): void => {
     const { [id]: _, ...rest } = blocks;
-    setBlocks(rest);
+    updateBlocks(rest);
   };
 
-  const sortOrder = settings?.sortOrder ?? "none";
-  const sortFn = sortBy[sortOrder];
+  useEffect((): void => {
+    if (R.isEmpty(blocks)) {
+      const block = newBlock();
+      updateBlocks({ [block.id]: block });
+    }
+  }, [blocks, updateBlocks]);
+
+  const sortFn = sortBy[settings?.sortOrder ?? "none"];
 
   return (
     <RightContextMenu onBlockAdd={handleBlockChange}>

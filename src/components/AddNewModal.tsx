@@ -36,7 +36,7 @@ export default function AddNewModal({ isOpen, onCancel, onCreate }: AddNewModalP
         <ModalHeader>Choose a file type:</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Select onChange={handleChangeLanguage} value={language}>
+          <Select name="language" onChange={handleChangeLanguage} value={language}>
             {supportedTypes.map((fileType) => (
               <option key={fileType.language} value={fileType.language}>
                 {fileType.descr}
@@ -50,7 +50,7 @@ export default function AddNewModal({ isOpen, onCancel, onCreate }: AddNewModalP
             Create
           </Button>
           <Button variant="ghost" onClick={onCancel}>
-            Close
+            Cancel
           </Button>
         </ModalFooter>
       </ModalContent>

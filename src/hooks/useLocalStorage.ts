@@ -3,16 +3,16 @@ import { useEffect } from "react";
 
 const localStorage = atom<Record<string, unknown> | undefined>(undefined);
 
-type UseLocalStorageReturnType<T> = [T | undefined, (value: T | undefined) => void];
+type UseLocalStorageReturnType<T> = [T, (value: T | undefined) => void];
 
-const useLocalStorage = <T>(key: string): UseLocalStorageReturnType<T> => {
+const useLocalStorage = <T>(key: string, initialValue: T): UseLocalStorageReturnType<T> => {
   const readValue = (): T | undefined => {
     if (typeof window === "undefined") {
       return undefined;
     }
 
     const item = window.localStorage.getItem(key);
-    return item === null || item === undefined ? undefined : (JSON.parse(item) as T);
+    return item === null || item === undefined ? initialValue : (JSON.parse(item) as T);
   };
 
   const [storedValue, setStoredValue] = useAtom(localStorage);

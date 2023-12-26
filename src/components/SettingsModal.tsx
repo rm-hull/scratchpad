@@ -31,11 +31,11 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps): 
   };
 
   const handleToggleShowZebraStripes = (): void => {
-    updateSettings({ ...settings, showZebraStripes: !(settings?.showZebraStripes ?? false) });
+    updateSettings({ ...settings, showZebraStripes: !settings.showZebraStripes });
   };
 
   const handleToggleShowLineNumbers = (): void => {
-    updateSettings({ ...settings, showLineNumbers: !(settings?.showLineNumbers ?? false) });
+    updateSettings({ ...settings, showLineNumbers: !settings.showLineNumbers });
   };
 
   return (
