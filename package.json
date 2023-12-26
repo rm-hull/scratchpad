@@ -4,8 +4,9 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "exchange-rates": "node tools/exchangeRates.mjs",
+    "dev": "yarn exchange-rates && vite",
+    "build": "yarn exchange-rates && tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "test": "vitest",
     "test:ci": "vitest run --coverage",
@@ -20,6 +21,7 @@
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.16",
     "jotai": "^2.6.0",
+    "mathjs": "^12.2.1",
     "prismjs": "^1.29.0",
     "ramda": "^0.29.1",
     "react": "^18.2.0",
@@ -41,10 +43,13 @@
     "@types/ramda": "^0.29.9",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
+    "@types/xml2js": "^0",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
     "@typescript-eslint/parser": "^6.16.0",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.1.0",
+    "axios": "^1.6.2",
+    "chalk": "^5.3.0",
     "eslint": "8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-react-app": "^7.0.1",
@@ -62,7 +67,8 @@
     "prettier": "^3.1.1",
     "typescript": "^5.3.3",
     "vite": "^5.0.10",
-    "vitest": "^1.1.0"
+    "vitest": "^1.1.0",
+    "xml2js": "^0.6.2"
   },
   "browserslist": {
     "production": [

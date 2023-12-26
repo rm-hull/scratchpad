@@ -1,5 +1,7 @@
 name: Build and Deploy
 on:
+  schedule:
+    - cron:  '30 17 * * *'
   push:
     branches: ["main"]
 

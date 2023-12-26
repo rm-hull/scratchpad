@@ -11,6 +11,7 @@ import { type Block } from "../models/block";
 import { useDebounce } from "react-use";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import clsx from "clsx";
+import { augmentResult } from "../models/math";
 
 interface TextEditorProps {
   block: Block;
@@ -18,8 +19,8 @@ interface TextEditorProps {
   onBlockDelete: (id: Block["id"]) => void;
 }
 
-const hightlightWithLineNumbers = (input: string, grammar: Grammar, language: string): JSX.Element[] =>
-  highlight(input, grammar, language)
+function hightlightWithLineNumbers(input: string, grammar: Grammar, language: string): JSX.Element[] {
+  return highlight(input, grammar, language)
     .split("\n")
     .map((line: string, i: number) => (
       <div key={i}>
@@ -28,6 +29,7 @@ const hightlightWithLineNumbers = (input: string, grammar: Grammar, language: st
         <br />
       </div>
     ));
+}
 
 export default function TextEditor({ block, onBlockChange, onBlockDelete }: TextEditorProps): JSX.Element {
   const fileType = useMemo(() => fromLanguage(block.language), [block.language]);
@@ -68,7 +70,10 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete }: Text
         textareaClassName="codeArea"
         value={value}
         onValueChange={setValue}
-        highlight={(text) => hl(text, fileType.grammar, block.language)}
+        highlight={(text: string) => {
+          const augmented = augmentResult(text, block.language);
+          return hl(augmented, fileType.grammar, block.language);
+        }}
         padding={5}
         className={clsx("editor", (settings?.showLineNumbers ?? false) && "lineNumbers")}
       />

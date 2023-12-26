@@ -11,6 +11,7 @@ import "prismjs/components/prism-properties";
 import "prismjs/components/prism-yaml";
 import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-typescript";
+import "./prism-mathjs";
 
 export interface FileType {
   language: string;
@@ -25,6 +26,7 @@ export const supportedTypes: readonly FileType[] = [
   { language: "javascript", descr: "Javascript", grammar: languages.javascript },
   { language: "json", descr: "JSON", grammar: languages.json },
   { language: "markdown", descr: "Markdown", grammar: languages.markdown },
+  { language: "math.js", descr: "Math.JS", grammar: languages.mathjs },
   { language: "properties", descr: "Properties", grammar: languages.properties },
   { language: "python", descr: "Python", grammar: languages.python },
   { language: "sql", descr: "SQL", grammar: languages.sql },

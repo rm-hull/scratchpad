@@ -15,6 +15,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { type JSX } from "react";
+import { data } from "../models/exchangeRates";
 
 interface AboutModalProps {
   isOpen: boolean;
@@ -42,6 +43,13 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps): JSX.El
               </Text>
               <Text>
                 Build info: <Code>{import.meta.env.VITE_GIT_COMMIT_HASH}</Code>, {import.meta.env.VITE_GIT_COMMIT_DATE}
+              </Text>
+              <Text>
+                FX data sourced from latest daily <strong>{data.sender}</strong>{" "}
+                <Link isExternal color="blue.400" href={data.url}>
+                  {data.subject}
+                </Link>{" "}
+                from {data.date}.
               </Text>
 
               {/* <Text>
