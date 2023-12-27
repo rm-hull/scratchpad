@@ -39,7 +39,7 @@ export default function Scratch(): JSX.Element {
           p={0}
           key={block.id}
           maxWidth="100%"
-          backgroundColor={(settings?.showZebraStripes ?? false) && index % 2 === 0 ? "white" : "gray.50"}
+          backgroundColor={(settings?.showZebraStripes ?? false) && index % 2 === 1 ? "gray.50" : "white"}
         >
           <TextEditor
             block={block}
