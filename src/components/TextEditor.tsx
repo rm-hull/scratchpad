@@ -15,23 +15,38 @@ import { augmentResult } from "../models/math";
 
 interface TextEditorProps {
   block: Block;
+  highlight?: string;
   onBlockChange: (block: Block) => void;
   onBlockDelete: (id: Block["id"]) => void;
 }
 
-function hightlightWithLineNumbers(input: string, grammar: Grammar, language: string): JSX.Element[] {
-  return highlight(input, grammar, language)
-    .split("\n")
-    .map((line: string, i: number) => (
-      <div key={i}>
-        <span className="editorLineNumber">{i + 1}</span>
-        <span dangerouslySetInnerHTML={{ __html: line }} />
-        <br />
-      </div>
-    ));
+function mark(text?: string): (input: string, grammar: Grammar, language: string) => string {
+  return (input: string, grammar: Grammar, language: string): string => {
+    const result: string = highlight(input, grammar, language);
+    if (text === undefined || text.trim() === "") {
+      return result;
+    }
+    return result.replace(RegExp(`(${text})`, "ig"), "<mark>$1</mark>");
+  };
 }
 
-export default function TextEditor({ block, onBlockChange, onBlockDelete }: TextEditorProps): JSX.Element {
+function hightlightWithLineNumbers(
+  text?: string
+): (input: string, grammar: Grammar, language: string) => JSX.Element[] {
+  return (input: string, grammar: Grammar, language: string): JSX.Element[] => {
+    return mark(text)(input, grammar, language)
+      .split("\n")
+      .map((line: string, index: number) => (
+        <div key={index}>
+          <span className="editorLineNumber">{index + 1}</span>
+          <span dangerouslySetInnerHTML={{ __html: line }} />
+          <br />
+        </div>
+      ));
+  };
+}
+
+export default function TextEditor({ block, onBlockChange, onBlockDelete, highlight }: TextEditorProps): JSX.Element {
   const fileType = useMemo(() => fromLanguage(block.language), [block.language]);
   const { onCopy, hasCopied, value, setValue } = useClipboard(block.text);
   const [settings] = useGeneralSettings();
@@ -48,7 +63,7 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete }: Text
     onBlockChange({ ...block, language, updatedAt: Date.now() });
   };
 
-  const hl = settings?.showLineNumbers ?? false ? hightlightWithLineNumbers : highlight;
+  const hl = (settings?.showLineNumbers ?? false ? hightlightWithLineNumbers : mark)(highlight);
 
   return (
     <Box>

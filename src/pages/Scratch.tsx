@@ -41,7 +41,12 @@ export default function Scratch(): JSX.Element {
           maxWidth="100%"
           backgroundColor={(settings?.showZebraStripes ?? false) && index % 2 === 0 ? "white" : "gray.50"}
         >
-          <TextEditor block={block} onBlockChange={handleBlockChange} onBlockDelete={handleBlockDelete} />
+          <TextEditor
+            block={block}
+            onBlockChange={handleBlockChange}
+            onBlockDelete={handleBlockDelete}
+            // highlight="fred"
+          />
           <Divider />
         </Container>
       ))}
