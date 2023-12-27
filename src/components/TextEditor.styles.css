@@ -24,3 +24,9 @@
   width: 45px;
   font-weight: 100;
 }
+
+.editor .mathResult {
+  position: absolute;
+  pointer-events: all;
+  z-index: 10;
+}

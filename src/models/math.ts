@@ -11,54 +11,41 @@ function init(config: ConfigOptions = {}): MathJsInstance {
   return math;
 }
 
-function getMaxLineLength(input: string): number {
-  const lines = input.split("\n");
-  const maxLineLength = Math.max(...lines.map((line) => line.length));
-  return maxLineLength;
-}
-
-function padString(input: string, length: number, paddingChar: string = " "): string {
-  const currentLength = input.length;
-
-  if (currentLength >= length) {
-    return input;
-  }
-
-  const paddingLength = length - currentLength;
-  const padding = paddingChar.repeat(paddingLength);
-
-  return input + padding;
-}
-
 const isStringEmpty = R.pipe(R.trim, R.isEmpty);
 
-export function augmentResult(input: string, language: string): string {
-  if (language === "math.js") {
-    const parser = math.parser();
-    const maxLineLength = getMaxLineLength(input);
+export type MathResults = Record<number, { message: string; error: boolean }>;
 
-    return input
-      .split("\n")
-      .map((line) => {
-        try {
-          if (isStringEmpty(line)) {
-            return line;
-          }
+export function evaluate(input: string): MathResults {
+  const parser = math.parser();
 
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-          const result = parser.evaluate(line);
-          if (result === undefined || typeof result === "function") {
-            return line;
-          }
-          return `${padString(line, maxLineLength)}   # ${result}`;
-        } catch (err) {
-          return `${padString(line, maxLineLength)}   # ${(err as Error).message}`;
-        }
-      })
-      .join("\n");
-  }
+  return input.split("\n").reduce((accum, line, index) => {
+    try {
+      if (isStringEmpty(line)) {
+        return accum;
+      }
 
-  return input;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const result = parser.evaluate(line);
+      if (result === undefined || typeof result === "function") {
+        return accum;
+      }
+      return {
+        ...accum,
+        [index]: {
+          message: `${result}`,
+          error: false,
+        },
+      };
+    } catch (err) {
+      return {
+        ...accum,
+        [index]: {
+          message: (err as Error).message,
+          error: true,
+        },
+      };
+    }
+  }, {});
 }
 
 export const math = init();
