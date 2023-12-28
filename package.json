@@ -20,7 +20,7 @@
     "chakra-ui-contextmenu": "^1.0.5",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.16",
-    "jotai": "^2.6.0",
+    "jotai": "^2.6.1",
     "mathjs": "^12.2.1",
     "prismjs": "^1.29.0",
     "ramda": "^0.29.1",
