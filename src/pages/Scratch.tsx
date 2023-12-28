@@ -45,7 +45,7 @@ export default function Scratch(): JSX.Element {
             block={block}
             onBlockChange={handleBlockChange}
             onBlockDelete={handleBlockDelete}
-            // highlight="fred"
+            // highlight={/(fred\w*|square)/gi}
           />
           <Divider />
         </Container>

@@ -16,29 +16,29 @@ import Toolbar from "./Toolbar";
 
 interface TextEditorProps {
   block: Block;
-  highlight?: string;
+  highlight?: RegExp;
   onBlockChange: (block: Block) => void;
   onBlockDelete: (id: Block["id"]) => void;
 }
 
-function mark(text: string | undefined, input: string, grammar: Grammar, language: string): string {
+function mark(regexp: RegExp | undefined, input: string, grammar: Grammar, language: string): string {
   const result: string = highlight(input, grammar, language);
-  if (text === undefined || text.trim() === "") {
+  if (regexp === undefined) {
     return result;
   }
-  return result.replace(RegExp(`(${text})`, "ig"), "<mark>$1</mark>");
+  return result.replace(regexp, "<mark>$1</mark>");
 }
 
 function hightlightWithLineNumbers(
   lineNumbers: boolean,
-  text: string | undefined,
+  regexp: RegExp | undefined,
   results: MathResults,
   input: string,
   grammar: Grammar,
   language: string
 ): JSX.Element[] {
   const xOffset = getMaxLineLength(input);
-  return mark(text, input, grammar, language)
+  return mark(regexp, input, grammar, language)
     .split("\n")
     .map((line: string, index: number) => (
       <div key={index}>
