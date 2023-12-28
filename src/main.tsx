@@ -8,9 +8,12 @@ import ErrorFallback from "./components/ErrorFallback";
 import "./main.css";
 import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById("root")!);
+const element = document.getElementById("root");
+if (element === null) {
+  throw Error("root element not found");
+}
+const root = ReactDOM.createRoot(element);
 const manager = createLocalStorageManager("scratchpad.color-mode");
-// const theme = extendTheme(withDefaultColorScheme({ colorScheme: "red" }));
 
 root.render(
   <React.StrictMode>
