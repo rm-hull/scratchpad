@@ -6980,9 +6980,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:^2.6.0":
-  version: 2.6.0
-  resolution: "jotai@npm:2.6.0"
+"jotai@npm:^2.6.1":
+  version: 2.6.1
+  resolution: "jotai@npm:2.6.1"
   peerDependencies:
     "@types/react": ">=17.0.0"
     react: ">=17.0.0"
@@ -6991,7 +6991,7 @@ __metadata:
       optional: true
     react:
       optional: true
-  checksum: 7e635f4f5052582095ed3949aa46f26213b10237bc4876db242c936f0f4d4272129727d7419e4fd5b1b83fa55b7ad737575453116a955dcc6b3a26cba14591f2
+  checksum: 0e15fb1ed315cad3c024af443023cdb8a968ade9c975c867c7c2f45c582aafbeef8c812e70112a1783b3b1d762b3bc8aa3bae72073b37eb7027e8ebd416c8801
   languageName: node
   linkType: hard
 
@@ -8627,7 +8627,7 @@ __metadata:
     eslint-plugin-react-refresh: "npm:^0.4.5"
     eslint-plugin-testing-library: "npm:^6.2.0"
     framer-motion: "npm:^10.16.16"
-    jotai: "npm:^2.6.0"
+    jotai: "npm:^2.6.1"
     mathjs: "npm:^12.2.1"
     prettier: "npm:^3.1.1"
     prismjs: "npm:^1.29.0"
