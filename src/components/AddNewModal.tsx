@@ -9,7 +9,8 @@ import {
   ModalOverlay,
   Select,
 } from "@chakra-ui/react";
-import { useState, type JSX, type ChangeEvent } from "react";
+import { useEffect, useState, type ChangeEvent, type FormEvent, type JSX } from "react";
+import useFocus from "../hooks/useFocus";
 import { supportedTypes } from "../models/fileTypes";
 
 interface AddNewModalProps {
@@ -19,8 +20,11 @@ interface AddNewModalProps {
 }
 
 export default function AddNewModal({ isOpen, onCancel, onCreate }: AddNewModalProps): JSX.Element | null {
+  const [inputRef, setInputFocus] = useFocus<HTMLSelectElement>();
   const [language, setLanguage] = useState<string>("text");
-  const handleCreate = (): void => {
+
+  const handleCreate = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
     onCreate(language);
     onCancel();
   };
@@ -29,30 +33,38 @@ export default function AddNewModal({ isOpen, onCancel, onCreate }: AddNewModalP
     setLanguage(event.target.value);
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(setInputFocus, 0);
+    }
+  }, [isOpen, setInputFocus]);
+
   return (
     <Modal isOpen={isOpen} onClose={onCancel} scrollBehavior="inside">
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Choose a file type:</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <Select name="language" onChange={handleChangeLanguage} value={language}>
-            {supportedTypes.map((fileType) => (
-              <option key={fileType.language} value={fileType.language}>
-                {fileType.descr}
-              </option>
-            ))}
-          </Select>
-        </ModalBody>
+        <form onSubmit={handleCreate}>
+          <ModalHeader>Choose a file type:</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Select ref={inputRef} name="language" onChange={handleChangeLanguage} value={language}>
+              {supportedTypes.map((fileType) => (
+                <option key={fileType.language} value={fileType.language}>
+                  {fileType.descr}
+                </option>
+              ))}
+            </Select>
+          </ModalBody>
 
-        <ModalFooter>
-          <Button onClick={handleCreate} mr={1}>
-            Create
-          </Button>
-          <Button variant="ghost" onClick={onCancel}>
-            Cancel
-          </Button>
-        </ModalFooter>
+          <ModalFooter>
+            <Button type="submit" mr={1}>
+              Create
+            </Button>
+            <Button variant="ghost" onClick={onCancel}>
+              Cancel
+            </Button>
+          </ModalFooter>
+        </form>
       </ModalContent>
     </Modal>
   );

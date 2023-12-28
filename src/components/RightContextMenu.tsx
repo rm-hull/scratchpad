@@ -1,14 +1,16 @@
 import { Box, Divider, MenuItem, MenuList, useDisclosure, useToast, useToken } from "@chakra-ui/react";
 import { ContextMenu } from "chakra-ui-contextmenu";
-import { type LegacyRef, type JSX, type PropsWithChildren } from "react";
-import { FiClipboard, FiMessageSquare, FiPlus, FiRefreshCw, FiSettings } from "react-icons/fi";
+import { type JSX, type LegacyRef, type PropsWithChildren } from "react";
+import { FiClipboard, FiMessageSquare, FiPlus, FiRefreshCw, FiSearch, FiSettings } from "react-icons/fi";
+import { useKey } from "react-use";
+import { newBlock, type Block } from "../models/block";
 import AboutModal from "./AboutModal";
-import SettingsModal from "./SettingsModal";
 import AddNewModal from "./AddNewModal";
-import { type Block, newBlock } from "../models/block";
+import SettingsModal from "./SettingsModal";
 
 interface RightContextMenuProps {
   onBlockAdd: (block: Block) => void;
+  onSearch: () => void;
 }
 
 function focus(block: Block): void {
@@ -21,6 +23,7 @@ function focus(block: Block): void {
 export default function RightContextMenu({
   children,
   onBlockAdd,
+  onSearch,
 }: PropsWithChildren<RightContextMenuProps>): JSX.Element {
   const toast = useToast();
   const [green400, blue400, purple400] = useToken("colors", ["green.400", "blue.400", "purple.400"]);
@@ -35,39 +38,60 @@ export default function RightContextMenu({
   };
 
   const handleFromClipboard = async (): Promise<void> => {
-    try {
-      const block = newBlock();
-      block.text = await navigator.clipboard.readText();
-      onBlockAdd(block);
-      focus(block);
-    } catch (err) {
-      toast({
-        title: "Could not paste clipboard contents",
-        description: (err as Error).message,
-        status: "error",
-      });
-    }
+    const block = newBlock();
+    block.text = await navigator.clipboard.readText();
+    onBlockAdd(block);
+    focus(block);
   };
+
+  const handleClipboardError = (err: Error): void => {
+    toast({
+      title: "Could not paste clipboard contents",
+      description: err.message,
+      status: "error",
+    });
+  };
+
+  useKey("/", (event) => {
+    if (event.metaKey || event.ctrlKey) {
+      onSearch();
+    }
+  });
+
+  useKey("Enter", (event) => {
+    if (event.metaKey || event.ctrlKey) {
+      onOpenAddNew();
+    }
+  });
 
   return (
     <>
       <ContextMenu
         renderMenu={() => (
           <MenuList zIndex={1000}>
-            <MenuItem onClick={onOpenAddNew} icon={<FiPlus color={green400} />}>
+            <MenuItem onClick={onOpenAddNew} command="⌘↵" icon={<FiPlus color={green400} />}>
               Add new...
             </MenuItem>
-            <MenuItem onClick={handleFromClipboard} icon={<FiClipboard color={blue400} />}>
-              From clipboard
+            <MenuItem
+              icon={<FiClipboard color={blue400} />}
+              onClick={() => {
+                handleFromClipboard().catch(handleClipboardError);
+              }}
+            >
+              Add from clipboard
             </MenuItem>
             <Divider />
+            <MenuItem command="⌘/" icon={<FiSearch color={purple400} />} onClick={onSearch}>
+              Search
+            </MenuItem>
             <MenuItem isDisabled icon={<FiRefreshCw color={purple400} />}>
               Sync
             </MenuItem>
-            <MenuItem onClick={onOpenSettings} icon={<FiSettings />}>
+            <Divider />
+            <MenuItem icon={<FiSettings />} onClick={onOpenSettings}>
               Settings
             </MenuItem>
-            <MenuItem onClick={onOpenAbout} icon={<FiMessageSquare />}>
+            <MenuItem icon={<FiMessageSquare />} onClick={onOpenAbout}>
               About
             </MenuItem>
           </MenuList>

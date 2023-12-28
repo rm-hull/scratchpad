@@ -13,6 +13,7 @@ import { type MathResults, evaluate } from "../models/math";
 import MathResult from "./MathResult";
 import "./TextEditor.styles.css";
 import Toolbar from "./Toolbar";
+import { replaceInXmlText } from "../models/replacer";
 
 interface TextEditorProps {
   block: Block;
@@ -26,7 +27,8 @@ function mark(regexp: RegExp | undefined, input: string, grammar: Grammar, langu
   if (regexp === undefined) {
     return result;
   }
-  return result.replace(regexp, "<mark>$1</mark>");
+
+  return replaceInXmlText(result, regexp, "<mark>$1</mark>");
 }
 
 function hightlightWithLineNumbers(

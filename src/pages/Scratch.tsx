@@ -1,13 +1,16 @@
-import { Container, Divider } from "@chakra-ui/react";
-import { useEffect, type JSX } from "react";
+import { Container, Divider, useDisclosure } from "@chakra-ui/react";
+import { useEffect, type JSX, useState } from "react";
 import TextEditor from "../components/TextEditor";
 import { type Block, sortBy, newBlock } from "../models/block";
 import RightContextMenu from "../components/RightContextMenu";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import * as R from "ramda";
 import useBlocks from "../hooks/useBlocks";
+import Search from "../components/Search";
 
 export default function Scratch(): JSX.Element {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [searchTerm, setSearchTerm] = useState<RegExp>();
   const [blocks, updateBlocks] = useBlocks();
   const [settings] = useGeneralSettings();
 
@@ -23,6 +26,18 @@ export default function Scratch(): JSX.Element {
     updateBlocks(rest);
   };
 
+  const handleSearchChange = (searchTerm: string): void => {
+    if (searchTerm.trim().length === 0) {
+      setSearchTerm(undefined);
+    } else {
+      const escaped = searchTerm
+        .trim()
+        .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+        .replace(/ +/g, "|");
+      setSearchTerm(RegExp(`(${escaped})`, "gim"));
+    }
+  };
+
   useEffect((): void => {
     if (R.isEmpty(blocks)) {
       const block = newBlock();
@@ -32,9 +47,14 @@ export default function Scratch(): JSX.Element {
 
   const sortFn = sortBy[settings?.sortOrder ?? "none"];
 
+  const filteredBlocks = R.values(blocks).filter(
+    (block) => searchTerm === undefined || block.text.match(searchTerm) !== null
+  );
+
   return (
-    <RightContextMenu onBlockAdd={handleBlockChange}>
-      {sortFn(R.values(blocks)).map((block, index) => (
+    <RightContextMenu onBlockAdd={handleBlockChange} onSearch={onOpen}>
+      <Search onChange={handleSearchChange} isOpen={isOpen} onClose={onClose} />
+      {sortFn(filteredBlocks).map((block, index) => (
         <Container
           p={0}
           key={block.id}
@@ -45,7 +65,7 @@ export default function Scratch(): JSX.Element {
             block={block}
             onBlockChange={handleBlockChange}
             onBlockDelete={handleBlockDelete}
-            // highlight={/(fred\w*|square)/gi}
+            highlight={searchTerm}
           />
           <Divider />
         </Container>
