@@ -4,6 +4,7 @@ import useLocalStorage from "./useLocalStorage";
 export interface GeneralSettings {
   showZebraStripes: boolean;
   showLineNumbers: boolean;
+  permanentlyShowSearchBar: boolean;
   sortOrder: keyof typeof sortBy;
 }
 
@@ -11,6 +12,7 @@ export default function useGeneralSettings(): [GeneralSettings, (value: GeneralS
   return useLocalStorage<GeneralSettings>("scratchpad.general-settings", {
     showLineNumbers: true,
     showZebraStripes: true,
+    permanentlyShowSearchBar: false,
     sortOrder: "none",
   });
 }

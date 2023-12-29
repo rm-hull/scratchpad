@@ -55,9 +55,9 @@ export default function Scratch(): JSX.Element {
     <RightContextMenu onBlockAdd={handleBlockChange} onSearch={onOpen}>
       <Search
         onChange={handleSearchChange}
-        isOpen={isOpen}
-        onClose={onClose}
         matches={searchTerm === undefined ? undefined : filteredBlocks.length}
+        isOpen={isOpen || settings?.permanentlyShowSearchBar}
+        onClose={onClose}
       />
       {sortFn(filteredBlocks).map((block, index) => (
         <Container

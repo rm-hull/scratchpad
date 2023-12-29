@@ -38,6 +38,10 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps): 
     updateSettings({ ...settings, showLineNumbers: !settings.showLineNumbers });
   };
 
+  const handleTogglePermanentlyShowSearchBar = (): void => {
+    updateSettings({ ...settings, permanentlyShowSearchBar: !settings.permanentlyShowSearchBar });
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="2xl" scrollBehavior="inside">
       <ModalOverlay />
@@ -79,6 +83,17 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps): 
               />
               <FormLabel htmlFor="show-line-numbers" mb={0} ml={2}>
                 Show line numbers
+              </FormLabel>
+            </FormControl>
+
+            <FormControl display="flex" alignItems="center">
+              <Switch
+                id="permanently=-show-search-bar"
+                isChecked={settings?.permanentlyShowSearchBar}
+                onChange={handleTogglePermanentlyShowSearchBar}
+              />
+              <FormLabel htmlFor="permanently=-show-search-bar" mb={0} ml={2}>
+                Permanently show search bar
               </FormLabel>
             </FormControl>
           </VStack>
