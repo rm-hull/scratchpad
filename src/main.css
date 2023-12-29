@@ -8,8 +8,3 @@ body {
   font-family: "JetBrainsMono";
   src: url("./fonts/JetBrainsMono-Regular.woff2") format("woff2");
 }
-
-mark {
-  color: inherit;
-  background-color: var(--chakra-colors-orange-100);
-}

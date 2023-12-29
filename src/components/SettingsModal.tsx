@@ -18,6 +18,7 @@ import {
 import { type JSX } from "react";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import { type sortBy } from "../models/block";
+import { ColorModeSwitcher } from "./ColorModeSwitcher";
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -50,6 +51,10 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps): 
         <ModalCloseButton />
         <ModalBody>
           <VStack align="left">
+            <FormControl display="flex" alignItems="baseline">
+              <FormLabel htmlFor="system-theme">Theme:</FormLabel>
+              <ColorModeSwitcher />
+            </FormControl>
             <FormControl display="flex" alignItems="center">
               <FormLabel htmlFor="sort-order" mb={0}>
                 Sort blocks by:

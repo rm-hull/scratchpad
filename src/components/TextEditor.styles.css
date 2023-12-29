@@ -30,3 +30,17 @@
   pointer-events: all;
   z-index: 10;
 }
+
+.token .operator {
+  background-color: inherit;
+}
+
+mark {
+  color: inherit;
+  background-color: var(--chakra-colors-orange-100);
+}
+
+.chakra-ui-dark mark {
+  color: black;
+  background-color: var(--chakra-colors-orange-500);
+}

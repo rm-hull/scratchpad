@@ -1,4 +1,4 @@
-import { Container, Divider, useDisclosure } from "@chakra-ui/react";
+import { Container, Divider, useColorModeValue, useDisclosure } from "@chakra-ui/react";
 import { useEffect, type JSX, useState } from "react";
 import TextEditor from "../components/TextEditor";
 import { type Block, sortBy, newBlock } from "../models/block";
@@ -13,6 +13,8 @@ export default function Scratch(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState<RegExp>();
   const [blocks, updateBlocks] = useBlocks();
   const [settings] = useGeneralSettings();
+
+  const [bgColor, zebraColor] = useColorModeValue(["white", "gray.50"], ["gray.900", undefined]);
 
   const handleBlockChange = (updatedBlock: Block): void => {
     updateBlocks({
@@ -64,7 +66,7 @@ export default function Scratch(): JSX.Element {
           p={0}
           key={block.id}
           maxWidth="100%"
-          backgroundColor={(settings?.showZebraStripes ?? false) && index % 2 === 1 ? "gray.50" : "white"}
+          backgroundColor={(settings?.showZebraStripes ?? false) && index % 2 === 1 ? zebraColor : bgColor}
         >
           <TextEditor
             block={block}

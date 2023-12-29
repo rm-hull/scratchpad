@@ -5,6 +5,7 @@ import {
   InputGroup,
   InputLeftAddon,
   InputRightAddon,
+  useColorModeValue,
   useControllableState,
 } from "@chakra-ui/react";
 import { useEffect, type ChangeEvent, type JSX } from "react";
@@ -23,9 +24,10 @@ interface SearchProps {
 export default function Search({ onChange, isOpen, onClose, matches }: SearchProps): JSX.Element {
   const [value, setValue] = useControllableState({ defaultValue: "" });
   const [inputRef, setInputFocus] = useFocus<HTMLInputElement>();
+  const bgColor = useColorModeValue("white", "gray.900");
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>): void => {
-    setValue(e.target.value);
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>): void => {
+    setValue(event.target.value);
   };
 
   useDebounce(
@@ -36,15 +38,13 @@ export default function Search({ onChange, isOpen, onClose, matches }: SearchPro
     [value]
   );
 
-  const handleCancel = (e: { preventDefault: () => void }): void => {
+  useKeyPressEvent("Escape", (event) => {
     if (isOpen) {
-      e.preventDefault();
+      event.preventDefault();
       setValue("");
       onClose();
     }
-  };
-
-  useKeyPressEvent("Escape", handleCancel);
+  });
 
   useEffect(() => {
     if (isOpen) {
@@ -53,7 +53,7 @@ export default function Search({ onChange, isOpen, onClose, matches }: SearchPro
   }, [isOpen, setInputFocus]);
 
   return (
-    <Box position="sticky" top={0} zIndex={100} backgroundColor="white">
+    <Box position="sticky" top={0} zIndex={100} backgroundColor={bgColor}>
       <Collapse in={isOpen} animateOpacity>
         <Box p={2} pb={1}>
           <InputGroup size="sm">
