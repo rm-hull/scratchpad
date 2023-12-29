@@ -1,16 +1,26 @@
-import { Box, Collapse, Input, InputGroup, InputLeftElement, useControllableState } from "@chakra-ui/react";
+import {
+  Box,
+  Collapse,
+  Input,
+  InputGroup,
+  InputLeftAddon,
+  InputRightAddon,
+  useControllableState,
+} from "@chakra-ui/react";
 import { useEffect, type ChangeEvent, type JSX } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useDebounce, useKeyPressEvent } from "react-use";
 import useFocus from "../hooks/useFocus";
+import pluralize from "pluralize";
 
 interface SearchProps {
+  matches?: number;
   isOpen: boolean;
   onClose: () => void;
   onChange: (value: string) => void;
 }
 
-export default function Search({ onChange, isOpen, onClose }: SearchProps): JSX.Element {
+export default function Search({ onChange, isOpen, onClose, matches }: SearchProps): JSX.Element {
   const [value, setValue] = useControllableState({ defaultValue: "" });
   const [inputRef, setInputFocus] = useFocus<HTMLInputElement>();
 
@@ -27,16 +37,13 @@ export default function Search({ onChange, isOpen, onClose }: SearchProps): JSX.
   );
 
   const handleCancel = (e: { preventDefault: () => void }): void => {
-    e.preventDefault();
-    setValue("");
-    onClose();
+    if (isOpen) {
+      e.preventDefault();
+      setValue("");
+      onClose();
+    }
   };
 
-  const handleBlur = (): void => {
-    setTimeout(onClose, 300);
-  };
-
-  useKeyPressEvent("Enter", onClose);
   useKeyPressEvent("Escape", handleCancel);
 
   useEffect(() => {
@@ -48,11 +55,16 @@ export default function Search({ onChange, isOpen, onClose }: SearchProps): JSX.
   return (
     <Collapse in={isOpen} animateOpacity>
       <Box p={2}>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none">
+        <InputGroup size="sm">
+          <InputLeftAddon pointerEvents="none">
             <FiSearch />
-          </InputLeftElement>
-          <Input ref={inputRef} placeholder="Search" value={value} onChange={handleSearch} onBlur={handleBlur} />
+          </InputLeftAddon>
+          <Input ref={inputRef} placeholder="Search" value={value} onChange={handleSearch} />
+          {matches !== undefined && (
+            <InputRightAddon color={matches === 0 ? "red.400" : undefined}>
+              {pluralize("matching block", matches, true)}
+            </InputRightAddon>
+          )}
         </InputGroup>
       </Box>
     </Collapse>
