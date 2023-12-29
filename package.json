@@ -37,7 +37,7 @@
     "@stylistic/eslint-plugin-ts": "^1.5.1",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/react": "^14.1.2",
-    "@testing-library/user-event": "^14.5.1",
+    "@testing-library/user-event": "^14.5.2",
     "@types/node": "^20.10.5",
     "@types/prismjs": "^1.26.3",
     "@types/ramda": "^0.29.9",
