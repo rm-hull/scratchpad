@@ -53,20 +53,22 @@ export default function Search({ onChange, isOpen, onClose, matches }: SearchPro
   }, [isOpen, setInputFocus]);
 
   return (
-    <Collapse in={isOpen} animateOpacity>
-      <Box p={2}>
-        <InputGroup size="sm">
-          <InputLeftAddon pointerEvents="none">
-            <FiSearch />
-          </InputLeftAddon>
-          <Input ref={inputRef} placeholder="Search" value={value} onChange={handleSearch} />
-          {matches !== undefined && (
-            <InputRightAddon color={matches === 0 ? "red.400" : undefined}>
-              {pluralize("matching block", matches, true)}
-            </InputRightAddon>
-          )}
-        </InputGroup>
-      </Box>
-    </Collapse>
+    <Box position="sticky" top={0} zIndex={100} backgroundColor="white">
+      <Collapse in={isOpen} animateOpacity>
+        <Box p={2} pb={1}>
+          <InputGroup size="sm">
+            <InputLeftAddon pointerEvents="none">
+              <FiSearch />
+            </InputLeftAddon>
+            <Input ref={inputRef} placeholder="Search" value={value} onChange={handleSearch} />
+            {matches !== undefined && (
+              <InputRightAddon color={matches === 0 ? "red.400" : undefined}>
+                {pluralize("matching block", matches, true)}
+              </InputRightAddon>
+            )}
+          </InputGroup>
+        </Box>
+      </Collapse>
+    </Box>
   );
 }
