@@ -19,6 +19,7 @@ import { type JSX } from "react";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import { type sortBy } from "../models/block";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import DangerZoneSettings from "./DangerZoneSettings";
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -101,6 +102,8 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps): 
                 Permanently show search bar
               </FormLabel>
             </FormControl>
+
+            <DangerZoneSettings />
           </VStack>
         </ModalBody>
 
