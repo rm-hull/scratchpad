@@ -1,0 +1,38 @@
+Privacy Policy
+
+scratchpad is committed to protecting the privacy of its users. This Privacy
+Policy is designed to help you understand how we collect, use, and safeguard 
+your personal information.
+
+1. Information We Do Not Collect
+
+We want to make it clear that scratchpad does not collect, process, or store
+any personal data from its users. We do not gather information such as names,
+addresses, email addresses, phone numbers, or any other personally 
+identifiable information. All data is stored soley in browser local storage, 
+or if you choose, can be synchronised to your Google Drive account.
+
+2. Third-Party Services
+
+scratchpad utilizes third-party services (e.g Google Drive) for syncing data to
+your Google account. These services are chosen carefully to ensure they align
+with our commitment to user privacy. However, it's essential to review and
+understand the privacy policies of these third-party services.
+
+3. Security Measures
+
+Although we do not collect personal data, we employ industry-standard security
+measures to protect any non-personal information gathered during app usage.
+
+4. Changes to the Privacy Policy
+
+scratchpad reserves the right to update or modify this Privacy Policy at any 
+time without prior notice. Any changes will be effective immediately upon 
+posting the updated policy on our app.
+
+5. Contact Us
+
+If you have any questions or concerns regarding this Privacy Policy, please 
+contact us at privacy.policy@destructuring-bind.org.
+
+Thank you for using scratchpad.

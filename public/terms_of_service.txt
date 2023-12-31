@@ -1,0 +1,66 @@
+Terms of Service
+
+Welcome to scratchpad!
+
+By accessing or using scratchpad, you agree to comply with and be bound by the
+following terms and conditions of use. Please read these terms carefully before
+using our web app.
+
+1. Acceptance of Terms
+
+By using scratchpad, you acknowledge that you have read, understood, and agree
+to be bound by these terms. If you do not agree to these terms, please do not
+use our web app.
+
+2. Use of the Web App
+
+You agree to use scratchpad for lawful purposes only and in a manner consistent
+with all applicable laws and regulations.
+
+3. User Accounts
+
+Some features of scratchpad may require you to link to a Google account to
+sync your data to Google Drive. You are responsible for maintaining the 
+confidentiality of your account information and for all activities that
+occur under your account.
+
+4. Intellectual Property
+
+All content and materials available on scratchpad, including but not limited
+to text, graphics, logos, button icons, images, audio clips, and software,
+are the property of destructuring-bind ltd or its licensors and are protected
+ by copyright and other intellectual property laws.
+
+5. User-Generated Content
+
+scratchpad allows users to submit content, you agree not to submit any content
+that is unlawful, defamatory, obscene, offensive, or otherwise objectionable. 
+
+6. Limitation of Liability
+
+destructuring-bind ltd is not liable for any direct, indirect, incidental, 
+consequential, or punitive damages arising out of your use of scratchpad. Your
+use of the web app is at your own risk.
+
+7. Termination
+
+destructuring-bind ltd reserves the right to terminate or suspend your access
+to scratchpad at any time, with or without cause, and with or without notice.
+
+8. Changes to Terms
+
+destructuring-bind ltd reserves the right to update or modify these terms at
+any time without prior notice. Any changes will be effective immediately upon
+posting the updated terms on our website.
+
+9. Governing Law
+
+These terms are governed by and construed in accordance with the laws of
+the United Kingdom.
+
+10. Contact Us
+
+If you have any questions or concerns about these terms, please contact us at 
+terms.of.service@destructuring-bind.org.
+
+Thank you for using scratchpad!

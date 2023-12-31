@@ -1,4 +1,5 @@
 import { ChakraProvider, ColorModeScript, createLocalStorageManager, theme } from "@chakra-ui/react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ErrorBoundary } from "react-error-boundary";
@@ -19,11 +20,13 @@ root.render(
   <React.StrictMode>
     <ColorModeScript initialColorMode="dark" storageKey="scratchpad.color-mode" />
     <ChakraProvider theme={theme} colorModeManager={manager}>
-      <Router basename="/scratchpad">
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <App />
-        </ErrorBoundary>
-      </Router>
+      <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_API_CLIENT_ID as string}>
+        <Router basename="/scratchpad">
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <App />
+          </ErrorBoundary>
+        </Router>
+      </GoogleOAuthProvider>
     </ChakraProvider>
   </React.StrictMode>
 );

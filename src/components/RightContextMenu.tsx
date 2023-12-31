@@ -1,4 +1,4 @@
-import { Box, Divider, MenuItem, MenuList, useDisclosure, useToast, useToken } from "@chakra-ui/react";
+import { Box, Divider, MenuItem, MenuList, useBoolean, useDisclosure, useToast, useToken } from "@chakra-ui/react";
 import { ContextMenu } from "chakra-ui-contextmenu";
 import { type JSX, type LegacyRef, type PropsWithChildren } from "react";
 import { FiClipboard, FiMessageSquare, FiPlus, FiRefreshCw, FiSearch, FiSettings } from "react-icons/fi";
@@ -7,6 +7,7 @@ import { newBlock, type Block } from "../models/block";
 import AboutModal from "./AboutModal";
 import AddNewModal from "./AddNewModal";
 import SettingsModal from "./SettingsModal";
+import Sync from "./Sync";
 
 interface RightContextMenuProps {
   onBlockAdd: (block: Block) => void;
@@ -30,6 +31,7 @@ export default function RightContextMenu({
   const { isOpen: isAddNewOpen, onOpen: onOpenAddNew, onClose: onCloseAddNew } = useDisclosure();
   const { isOpen: isAboutOpen, onOpen: onOpenAbout, onClose: onCloseAbout } = useDisclosure();
   const { isOpen: isSettingsOpen, onOpen: onOpenSettings, onClose: onCloseSettings } = useDisclosure();
+  const [isSyncing, { on: startSync, off: stopSync }] = useBoolean();
 
   const handleAddNew = (language: string): void => {
     const block = newBlock(language);
@@ -84,7 +86,7 @@ export default function RightContextMenu({
             <MenuItem command="⌘/" icon={<FiSearch color={purple400} />} onClick={onSearch}>
               Search
             </MenuItem>
-            <MenuItem isDisabled icon={<FiRefreshCw color={purple400} />}>
+            <MenuItem isDisabled={isSyncing} icon={<FiRefreshCw color={purple400} />} onClick={startSync}>
               Sync
             </MenuItem>
             <Divider />
@@ -102,6 +104,7 @@ export default function RightContextMenu({
       <AddNewModal isOpen={isAddNewOpen} onCreate={handleAddNew} onCancel={onCloseAddNew} />
       <SettingsModal isOpen={isSettingsOpen} onClose={onCloseSettings} />
       <AboutModal isOpen={isAboutOpen} onClose={onCloseAbout} />
+      {isSyncing && <Sync onError={stopSync} onFinished={stopSync} />}
     </>
   );
 }

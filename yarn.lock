@@ -3367,6 +3367,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-oauth/google@npm:^0.12.1":
+  version: 0.12.1
+  resolution: "@react-oauth/google@npm:0.12.1"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 89d9c2db5be484b9fdbc45e4ce534cb44b62d76b3a29da6f8f09f42b8fb154ab1e4e7c2a281a121b94a2b34a4c2857464e944e58fccc83804e1c2816a494f1eb
+  languageName: node
+  linkType: hard
+
 "@remix-run/router@npm:1.14.1":
   version: 1.14.1
   resolution: "@remix-run/router@npm:1.14.1"
@@ -6052,12 +6062,12 @@ __metadata:
   linkType: hard
 
 "follow-redirects@npm:^1.15.0":
-  version: 1.15.3
-  resolution: "follow-redirects@npm:1.15.3"
+  version: 1.15.4
+  resolution: "follow-redirects@npm:1.15.4"
   peerDependenciesMeta:
     debug:
       optional: true
-  checksum: 60d98693f4976892f8c654b16ef6d1803887a951898857ab0cdc009570b1c06314ad499505b7a040ac5b98144939f8597766e5e6a6859c0945d157b473aa6f5f
+  checksum: 2e8f5f259a6b02dfa8dc199e08431848a7c3beed32eb4c19945966164a52c89f07b86c3afcc32ebe4279cf0a960520e45a63013d6350309c5ec90133c5d9351a
   languageName: node
   linkType: hard
 
@@ -8620,6 +8630,7 @@ __metadata:
     "@chakra-ui/styled-system": "npm:^2.9.2"
     "@emotion/react": "npm:^11.11.3"
     "@emotion/styled": "npm:^11.11.0"
+    "@react-oauth/google": "npm:^0.12.1"
     "@stylistic/eslint-plugin-ts": "npm:^1.5.1"
     "@testing-library/dom": "npm:^9.3.3"
     "@testing-library/react": "npm:^14.1.2"

@@ -24,7 +24,7 @@ interface AboutModalProps {
 
 export default function AboutModal({ isOpen, onClose }: AboutModalProps): JSX.Element | null {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="3xl" scrollBehavior="inside">
+    <Modal isOpen={isOpen} onClose={onClose} size="4xl" scrollBehavior="inside">
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>About</ModalHeader>
@@ -43,6 +43,9 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps): JSX.El
               </Text>
               <Text>
                 Build info: <Code>{import.meta.env.VITE_GIT_COMMIT_HASH}</Code>, {import.meta.env.VITE_GIT_COMMIT_DATE}
+              </Text>
+              <Text>
+                Google API client ID: <Code>{import.meta.env.VITE_GOOGLE_API_CLIENT_ID}</Code>
               </Text>
               <Text>
                 FX data sourced from daily <strong>{data.sender}</strong>{" "}
