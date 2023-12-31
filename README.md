@@ -1,7 +1,7 @@
 # Scratchpad
 
-Scratchpad is a small web app that allows you to store snippets & snippets in "blocks" in your browser's local storage,
-and they never leave your machine (unless you want to sync them to your Google Drive). Many file formats are supported,
+Scratchpad is a small web app that allows you to store snippets & miscellaneous notes as "blocks" in your browser's 
+local storage. They never leave your machine (unless you want to sync them to your Google Drive). Many file formats are supported,
 and will do syntax coloring and formatting will be supported shortly.
 
 ![main](./doc/screenshots/main.webp)
