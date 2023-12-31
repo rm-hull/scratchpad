@@ -17,6 +17,8 @@ export default function MathResult({ result, xOffset, isError, lineNumbers }: Ma
   return (
     <Box
       as="span"
+      display="inline-flex"
+      alignItems="stretch"
       className="mathResult"
       left={left}
       color={isError ? "red.400" : undefined}
