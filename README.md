@@ -1,10 +1,22 @@
 # Scratchpad
 
 Scratchpad is a small web app that allows you to store snippets & miscellaneous notes as "blocks" in your browser's 
-local storage. They never leave your machine (unless you want to sync them to your Google Drive). Many file formats are supported,
-and will do syntax coloring and formatting will be supported shortly.
+local storage. They never leave your machine (unless you want to sync them to your Google Drive). Many file formats
+are supported, and it will do syntax coloring. Formatting will be supported shortly.
 
 ![main](./doc/screenshots/main.webp)
+
+[Math.JS](https://mathjs.org/docs/index.html) is integrated as a file type, giving a capable calculator functionality
+with currency conversion (FX rates provided by an ECB API).
+
+Each block has a toolbar of options, and you can right-click to get a context menu allowing you to alter settings
+and sync to Google.
+
+### Keyboard shortcuts
+
+<kbd>CMD</kbd> <kbd>/</kbd> - Search
+
+<kbd>CMD</kbd> <kbd>ENTER</kbd> - Add new block
 
 Go to https://www.destructuring-bind.org/scratchpad to see it in action.
 
