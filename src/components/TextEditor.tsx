@@ -3,6 +3,7 @@ import { useMemo, type JSX } from "react";
 // import "prismjs/themes/prism-dark.css";
 import { Box, useClipboard, useDisclosure } from "@chakra-ui/react";
 import clsx from "clsx";
+import * as prettier from "prettier";
 import "prismjs/themes/prism.css";
 import Editor from "react-simple-code-editor";
 import { useDebounce } from "react-use";
@@ -84,6 +85,14 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete, highli
     onBlockChange({ ...block, language, updatedAt: Date.now() });
   };
 
+  const handleFormat = async (): Promise<void> => {
+    const formatted = await prettier.format(value, {
+      parser: fileType.language,
+      filepath: `fred.${fileType.language}`,
+    });
+    setValue(formatted);
+  };
+
   return (
     <Box>
       <Box position="absolute" right={0} zIndex={99}>
@@ -97,6 +106,10 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete, highli
           onCopy={onCopy}
           onExport={onExportOpen}
           locked={block.locked}
+          canFormat={fileType.canFormat}
+          onFormat={() => {
+            handleFormat().catch(console.error);
+          }}
         />
       </Box>
       <Editor

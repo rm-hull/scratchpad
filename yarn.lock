@@ -8626,6 +8626,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "scratchpad@workspace:."
   dependencies:
+    "@babel/parser": "npm:^7.23.6"
     "@chakra-ui/react": "npm:^2.8.2"
     "@chakra-ui/styled-system": "npm:^2.9.2"
     "@emotion/react": "npm:^11.11.3"
