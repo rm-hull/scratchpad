@@ -1,19 +1,20 @@
 import { highlight, type Grammar } from "prismjs";
-import { useMemo, type JSX } from "react";
-// import "prismjs/themes/prism-dark.css";
-import { Box, useClipboard } from "@chakra-ui/react";
+import { useMemo, type JSX, useCallback } from "react";
+import { Box, useClipboard, useDisclosure, useToast } from "@chakra-ui/react";
 import clsx from "clsx";
+// import "prismjs/themes/prism-dark.css";
 import "prismjs/themes/prism.css";
 import Editor from "react-simple-code-editor";
 import { useDebounce } from "react-use";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import { type Block } from "../models/block";
 import { fromLanguage } from "../models/fileTypes";
-import { type MathResults, evaluate } from "../models/math";
+import { evaluate, type MathResults } from "../models/math";
+import { replaceInXmlText } from "../models/replacer";
+import { ExportModal } from "./ExportModal";
 import MathResult from "./MathResult";
 import "./TextEditor.styles.css";
 import Toolbar from "./Toolbar";
-import { replaceInXmlText } from "../models/replacer";
 
 interface TextEditorProps {
   block: Block;
@@ -66,9 +67,11 @@ function getMaxLineLength(input: string): number {
 }
 
 export default function TextEditor({ block, onBlockChange, onBlockDelete, highlight }: TextEditorProps): JSX.Element {
+  const toast = useToast();
+  const [settings] = useGeneralSettings();
   const fileType = useMemo(() => fromLanguage(block.language), [block.language]);
   const { onCopy, hasCopied, value, setValue } = useClipboard(block.text);
-  const [settings] = useGeneralSettings();
+  const { isOpen: isExportModalOpen, onOpen: onExportOpen, onClose: onExportClose } = useDisclosure();
 
   useDebounce(
     () => {
@@ -78,8 +81,35 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete, highli
     [value]
   );
 
+  const handleError = useCallback(
+    (error: Error) => {
+      console.log({ error });
+      toast.closeAll();
+      toast({
+        title: "Unable to format block",
+        description: error.message,
+        // <>
+        //   <Text>{error.cause.message}</Text>
+        //   <Code>
+        //     <pre>{error.codeFrame}</pre>
+        //   </Code>
+        // </>
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+    },
+    [toast]
+  );
+
   const handleLanguageChange = (language: string): void => {
     onBlockChange({ ...block, language, updatedAt: Date.now() });
+  };
+
+  const handleFormat = async (): Promise<void> => {
+    const { format } = await import("../models/format");
+    const text = await format(value, fileType.language);
+    setValue(text);
   };
 
   return (
@@ -93,7 +123,12 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete, highli
           }}
           hasCopied={hasCopied}
           onCopy={onCopy}
+          onExport={onExportOpen}
           locked={block.locked}
+          canFormat={fileType.canFormat}
+          onFormat={() => {
+            handleFormat().catch(handleError);
+          }}
         />
       </Box>
       <Editor
@@ -104,7 +139,7 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete, highli
         onValueChange={setValue}
         highlight={(text: string) =>
           hightlightWithLineNumbers(
-            settings.showLineNumbers,
+            settings?.showLineNumbers ?? false,
             highlight,
             block.language === "math.js" ? evaluate(text) : {},
             text,
@@ -115,6 +150,7 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete, highli
         padding={5}
         className={clsx("editor", (settings?.showLineNumbers ?? false) && "lineNumbers")}
       />
+      <ExportModal isOpen={isExportModalOpen} block={block} onClose={onExportClose} />
     </Box>
   );
 }
