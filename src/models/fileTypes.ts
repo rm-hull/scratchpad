@@ -33,7 +33,7 @@ export const supportedTypes: readonly FileType[] = [
   { language: "javascript", descr: "Javascript", grammar: languages.javascript, canFormat: true },
   { language: "json", descr: "JSON", grammar: languages.json, canFormat: true },
   { language: "log", descr: "Logs", grammar: languages.log, canFormat: false },
-  { language: "markdown", descr: "Markdown", grammar: languages.markdown, canFormat: false },
+  { language: "markdown", descr: "Markdown", grammar: languages.markdown, canFormat: true },
   { language: "math.js", descr: "Math.JS", grammar: languages.mathjs, canFormat: false },
   { language: "properties", descr: "Properties", grammar: languages.properties, canFormat: true },
   { language: "python", descr: "Python", grammar: languages.python, canFormat: false },

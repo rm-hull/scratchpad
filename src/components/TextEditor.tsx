@@ -1,9 +1,8 @@
 import { highlight, type Grammar } from "prismjs";
-import { useMemo, type JSX } from "react";
-// import "prismjs/themes/prism-dark.css";
-import { Box, useClipboard, useDisclosure } from "@chakra-ui/react";
+import { useMemo, type JSX, useCallback } from "react";
+import { Box, useClipboard, useDisclosure, useToast } from "@chakra-ui/react";
 import clsx from "clsx";
-import * as prettier from "prettier";
+// import "prismjs/themes/prism-dark.css";
 import "prismjs/themes/prism.css";
 import Editor from "react-simple-code-editor";
 import { useDebounce } from "react-use";
@@ -68,9 +67,10 @@ function getMaxLineLength(input: string): number {
 }
 
 export default function TextEditor({ block, onBlockChange, onBlockDelete, highlight }: TextEditorProps): JSX.Element {
+  const toast = useToast();
+  const [settings] = useGeneralSettings();
   const fileType = useMemo(() => fromLanguage(block.language), [block.language]);
   const { onCopy, hasCopied, value, setValue } = useClipboard(block.text);
-  const [settings] = useGeneralSettings();
   const { isOpen: isExportModalOpen, onOpen: onExportOpen, onClose: onExportClose } = useDisclosure();
 
   useDebounce(
@@ -81,16 +81,35 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete, highli
     [value]
   );
 
+  const handleError = useCallback(
+    (error: Error) => {
+      console.log({ error });
+      toast.closeAll();
+      toast({
+        title: "Unable to format block",
+        description: error.message,
+        // <>
+        //   <Text>{error.cause.message}</Text>
+        //   <Code>
+        //     <pre>{error.codeFrame}</pre>
+        //   </Code>
+        // </>
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+    },
+    [toast]
+  );
+
   const handleLanguageChange = (language: string): void => {
     onBlockChange({ ...block, language, updatedAt: Date.now() });
   };
 
   const handleFormat = async (): Promise<void> => {
-    const formatted = await prettier.format(value, {
-      parser: fileType.language,
-      filepath: `fred.${fileType.language}`,
-    });
-    setValue(formatted);
+    const { format } = await import("../models/format");
+    const text = await format(value, fileType.language);
+    setValue(text);
   };
 
   return (
@@ -108,7 +127,7 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete, highli
           locked={block.locked}
           canFormat={fileType.canFormat}
           onFormat={() => {
-            handleFormat().catch(console.error);
+            handleFormat().catch(handleError);
           }}
         />
       </Box>

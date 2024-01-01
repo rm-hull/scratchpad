@@ -32,7 +32,7 @@ export default function Import(): null {
       });
       navigate("/");
     }
-  }, [blocks, data, id, language, navigate, updateBlocks]);
+  }, [blocks, data, id, language, navigate, toast, updateBlocks]);
 
   return null;
 }
