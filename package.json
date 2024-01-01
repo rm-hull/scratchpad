@@ -13,6 +13,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@babel/parser": "^7.23.6",
     "@chakra-ui/react": "^2.8.2",
     "@chakra-ui/styled-system": "^2.9.2",
     "@emotion/react": "^11.11.3",
@@ -25,6 +26,7 @@
     "jotai": "^2.6.1",
     "mathjs": "^12.2.1",
     "pluralize": "^8.0.0",
+    "prettier": "^3.1.1",
     "prismjs": "^1.29.0",
     "ramda": "^0.29.1",
     "react": "^18.2.0",
@@ -67,7 +69,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "eslint-plugin-testing-library": "^6.2.0",
-    "prettier": "^3.1.1",
     "typescript": "^5.3.3",
     "vite": "^5.0.10",
     "vitest": "^1.1.0",
