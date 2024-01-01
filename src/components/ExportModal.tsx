@@ -24,7 +24,7 @@ interface ExportModalProps {
 }
 
 export function ExportModal({ isOpen, block, onClose }: ExportModalProps): JSX.Element {
-  const url = `${window.location.href}import/${block.id}/${block.language}/${btoa(block.text)}`;
+  const url = `${window.location.href}/import/${block.id}/${block.language}/${btoa(block.text)}`;
   const { hasCopied, onCopy } = useClipboard(url);
 
   return (
@@ -36,7 +36,7 @@ export function ExportModal({ isOpen, block, onClose }: ExportModalProps): JSX.E
         <ModalBody>
           Share this link:
           <HStack alignItems="flex-start">
-            <Code wordBreak="break-word" borderRadius={5} p={2} fontFamily="JetBrainsMono">
+            <Code wordBreak="break-word" borderRadius={5} p={2}>
               {url}
             </Code>
             <Tooltip label="Copy to clipboard">

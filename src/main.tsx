@@ -1,4 +1,4 @@
-import { ChakraProvider, ColorModeScript, createLocalStorageManager, theme } from "@chakra-ui/react";
+import { ChakraProvider, ColorModeScript, createLocalStorageManager, extendTheme } from "@chakra-ui/react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -15,6 +15,12 @@ if (element === null) {
 }
 const root = ReactDOM.createRoot(element);
 const manager = createLocalStorageManager("scratchpad.color-mode");
+
+const theme = extendTheme({
+  fonts: {
+    mono: `JetBrainsMono,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace`,
+  },
+});
 
 root.render(
   <React.StrictMode>
