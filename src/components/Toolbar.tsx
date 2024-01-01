@@ -69,7 +69,7 @@ export default function Toolbar({
       </Tooltip>
       <Tooltip label="Format">
         <IconButton
-          isDisabled={!canFormat}
+          isDisabled={!canFormat || locked}
           size="xs"
           variant="ghost"
           icon={<FiAlignLeft />}
