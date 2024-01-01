@@ -71,7 +71,7 @@
     "eslint-plugin-testing-library": "^6.2.0",
     "typescript": "^5.3.3",
     "vite": "^5.0.10",
-    "vitest": "^1.1.0",
+    "vitest": "^1.1.1",
     "xml2js": "^0.6.2"
   },
   "browserslist": {
