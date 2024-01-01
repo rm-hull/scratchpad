@@ -1,7 +1,7 @@
 import { highlight, type Grammar } from "prismjs";
 import { useMemo, type JSX } from "react";
 // import "prismjs/themes/prism-dark.css";
-import { Box, useClipboard } from "@chakra-ui/react";
+import { Box, useClipboard, useDisclosure } from "@chakra-ui/react";
 import clsx from "clsx";
 import "prismjs/themes/prism.css";
 import Editor from "react-simple-code-editor";
@@ -9,11 +9,12 @@ import { useDebounce } from "react-use";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import { type Block } from "../models/block";
 import { fromLanguage } from "../models/fileTypes";
-import { type MathResults, evaluate } from "../models/math";
+import { evaluate, type MathResults } from "../models/math";
+import { replaceInXmlText } from "../models/replacer";
+import { ExportModal } from "./ExportModal";
 import MathResult from "./MathResult";
 import "./TextEditor.styles.css";
 import Toolbar from "./Toolbar";
-import { replaceInXmlText } from "../models/replacer";
 
 interface TextEditorProps {
   block: Block;
@@ -69,6 +70,7 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete, highli
   const fileType = useMemo(() => fromLanguage(block.language), [block.language]);
   const { onCopy, hasCopied, value, setValue } = useClipboard(block.text);
   const [settings] = useGeneralSettings();
+  const { isOpen: isExportModalOpen, onOpen: onExportOpen, onClose: onExportClose } = useDisclosure();
 
   useDebounce(
     () => {
@@ -93,6 +95,7 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete, highli
           }}
           hasCopied={hasCopied}
           onCopy={onCopy}
+          onExport={onExportOpen}
           locked={block.locked}
         />
       </Box>
@@ -104,7 +107,7 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete, highli
         onValueChange={setValue}
         highlight={(text: string) =>
           hightlightWithLineNumbers(
-            settings.showLineNumbers,
+            settings?.showLineNumbers ?? false,
             highlight,
             block.language === "math.js" ? evaluate(text) : {},
             text,
@@ -115,6 +118,7 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete, highli
         padding={5}
         className={clsx("editor", (settings?.showLineNumbers ?? false) && "lineNumbers")}
       />
+      <ExportModal isOpen={isExportModalOpen} block={block} onClose={onExportClose} />
     </Box>
   );
 }

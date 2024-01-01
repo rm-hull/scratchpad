@@ -1,6 +1,6 @@
 import { HStack, IconButton, Select, Tooltip, useDisclosure } from "@chakra-ui/react";
 import { type ChangeEvent, type JSX } from "react";
-import { FiTrash2, FiCheck, FiClipboard, FiLock } from "react-icons/fi";
+import { FiCheck, FiClipboard, FiLock, FiLogOut, FiTrash2 } from "react-icons/fi";
 import { supportedTypes } from "../models/fileTypes";
 import { DeleteModal } from "./DeleteModal";
 
@@ -9,6 +9,7 @@ interface ToolbarProps {
   onChangeLanguage: (language: string) => void;
   onDelete: () => void;
   onCopy: () => void;
+  onExport: () => void;
   hasCopied: boolean;
   locked?: boolean;
 }
@@ -17,6 +18,7 @@ export default function Toolbar({
   language,
   onChangeLanguage,
   onDelete,
+  onExport,
   onCopy,
   hasCopied,
   locked = false,
@@ -41,6 +43,16 @@ export default function Toolbar({
           </option>
         ))}
       </Select>
+      <Tooltip label="Export">
+        <IconButton
+          size="xs"
+          variant="ghost"
+          icon={<FiLogOut />}
+          aria-label="Export"
+          textColor="purple.400"
+          onClick={onExport}
+        />
+      </Tooltip>
       <Tooltip label="Copy to clipboard">
         <IconButton
           size="xs"
