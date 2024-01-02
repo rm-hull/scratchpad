@@ -25,29 +25,28 @@ const mathFn = getAllFunctionNames(math).filter(
   (name) => !name.includes(".") && name.charAt(0) >= "a" && name.charAt(0) <= "z"
 );
 
-function createRegex(...operators: string[]): RegExp {
+function createRegex(nonAlpha: boolean, ...operators: string[]): RegExp {
   // Escape special characters in the operators and join them with '|'
   const escapedOperators = operators.map((operator) => operator.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|");
-  const regexPattern = `(${escapedOperators})`;
+  const regexPattern = nonAlpha ? `(?:${escapedOperators})` : `\\b(?:${escapedOperators})\\b`;
   return new RegExp(regexPattern);
 }
 
 Prism.languages.mathjs = {
   comment: /#.*/,
-  number: /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
+  number: /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?i?\b/i,
   hex: {
-    pattern: /-?0x[0-9a-fA-F]+\b/,
+    pattern: /-?\b0x[0-9a-fA-F]+\b/,
     alias: "number",
   },
   octal: {
-    pattern: /-?0o[0-7]+\b/,
+    pattern: /-?\b0o[0-7]+\b/,
     alias: "number",
   },
   binary: {
-    pattern: /-?0b[01]+\b/,
+    pattern: /-?\b0b[01]+\b/,
     alias: "number",
   },
-
   boolean: /\b(?:false|true)\b/,
   string: {
     pattern: /(^|[^\\])"(?:\\.|[^\\"\r\n])*"(?!\s*:)/,
@@ -58,8 +57,11 @@ Prism.languages.mathjs = {
     pattern: /\bnull\b/,
     alias: "keyword",
   },
-  keyword: createRegex(...mathFn),
+  keyword: {
+    pattern: createRegex(false, ...mathFn),
+  },
   operator: createRegex(
+    true,
     "+",
     "-",
     "/",
@@ -74,10 +76,9 @@ Prism.languages.mathjs = {
     "<",
     "<=",
     "^",
-    "and",
-    "or",
-    "not",
     "!",
-    "mod"
+    "%",
+    "&",
+    "|"
   ),
 };
