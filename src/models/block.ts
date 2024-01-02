@@ -17,6 +17,7 @@ export function newBlock(language = "text"): Block {
     text: "",
     language,
     locked: false,
+    archived: false,
   };
 }
 
