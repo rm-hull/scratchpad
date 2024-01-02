@@ -23,9 +23,13 @@ export default function Scratch(): JSX.Element {
     });
   };
 
-  const handleBlockDelete = (id: Block["id"]): void => {
-    const { [id]: _, ...rest } = blocks;
-    updateBlocks(rest);
+  const handleBlockDelete = (id: Block["id"], archive: boolean): void => {
+    const { [id]: block, ...rest } = blocks;
+    if (archive) {
+      handleBlockChange({ ...block, archived: true, updatedAt: Date.now() });
+    } else {
+      updateBlocks(rest);
+    }
   };
 
   const handleSearchChange = (searchTerm: string): void => {
@@ -50,7 +54,7 @@ export default function Scratch(): JSX.Element {
   const sortFn = sortBy[settings?.sortOrder ?? "none"];
 
   const filteredBlocks = R.values(blocks).filter(
-    (block) => searchTerm === undefined || block.text.match(searchTerm) !== null
+    (block) => block.archived !== true && (searchTerm === undefined || block.text.match(searchTerm) !== null)
   );
 
   return (

@@ -7,6 +7,7 @@ export interface Block {
   text: string;
   language: string;
   locked?: boolean;
+  archived?: boolean;
 }
 
 export function newBlock(language = "text"): Block {

@@ -7,7 +7,7 @@ import { DeleteModal } from "./DeleteModal";
 interface ToolbarProps {
   language?: string;
   onChangeLanguage: (language: string) => void;
-  onDelete: () => void;
+  onDelete: (archive: boolean) => void;
   onCopy: () => void;
   onExport: () => void;
   onFormat: () => void;
@@ -33,9 +33,9 @@ export default function Toolbar({
     onChangeLanguage(event.target.value);
   };
 
-  const handleDelete = (): void => {
+  const handleDelete = (archive: boolean) => (): void => {
     onCloseDeleteModal();
-    onDelete();
+    onDelete(archive);
   };
 
   return (
@@ -90,7 +90,12 @@ export default function Toolbar({
         />
       </Tooltip>
 
-      <DeleteModal isOpen={isDeleteModalOpen} onDelete={handleDelete} onCancel={onCloseDeleteModal} />
+      <DeleteModal
+        isOpen={isDeleteModalOpen}
+        onDelete={handleDelete(false)}
+        onArchive={handleDelete(true)}
+        onCancel={onCloseDeleteModal}
+      />
     </HStack>
   );
 }

@@ -20,7 +20,7 @@ interface TextEditorProps {
   block: Block;
   highlight?: RegExp;
   onBlockChange: (block: Block) => void;
-  onBlockDelete: (id: Block["id"]) => void;
+  onBlockDelete: (id: Block["id"], archive: boolean) => void;
 }
 
 function mark(regexp: RegExp | undefined, input: string, grammar: Grammar, language: string): string {
@@ -118,8 +118,8 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete, highli
         <Toolbar
           language={block.language}
           onChangeLanguage={handleLanguageChange}
-          onDelete={() => {
-            onBlockDelete(block.id);
+          onDelete={(archive: boolean) => {
+            onBlockDelete(block.id, archive);
           }}
           hasCopied={hasCopied}
           onCopy={onCopy}
