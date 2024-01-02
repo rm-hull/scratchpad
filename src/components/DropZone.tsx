@@ -3,10 +3,6 @@ import { useCallback, useEffect, type JSX, type PropsWithChildren } from "react"
 import { useDropzone, type Accept } from "react-dropzone";
 import { supportedTypes, type FileType } from "../models/fileTypes";
 
-interface DropzoneProps {
-  onFileDropped: (file: File, content: string) => void;
-}
-
 const accept: Accept = supportedTypes.reduce((accum: Accept, fileType: FileType) => {
   if (fileType.extensions === undefined || fileType.mimeType === undefined) {
     return accum;
@@ -17,7 +13,9 @@ const accept: Accept = supportedTypes.reduce((accum: Accept, fileType: FileType)
   };
 }, {});
 
-console.log({ accept });
+interface DropzoneProps {
+  onFileDropped: (file: File, content: string) => void;
+}
 
 export default function Dropzone({ children, onFileDropped }: PropsWithChildren<DropzoneProps>): JSX.Element {
   const toast = useToast();
