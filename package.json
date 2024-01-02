@@ -22,7 +22,7 @@
     "axios": "^1.6.3",
     "chakra-ui-contextmenu": "^1.0.5",
     "clsx": "^2.1.0",
-    "framer-motion": "^10.16.16",
+    "framer-motion": "^10.17.0",
     "jotai": "^2.6.1",
     "mathjs": "^12.2.1",
     "pluralize": "^8.0.0",

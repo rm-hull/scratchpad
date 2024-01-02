@@ -6117,9 +6117,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^10.16.16":
-  version: 10.16.16
-  resolution: "framer-motion@npm:10.16.16"
+"framer-motion@npm:^10.17.0":
+  version: 10.17.0
+  resolution: "framer-motion@npm:10.17.0"
   dependencies:
     "@emotion/is-prop-valid": "npm:^0.8.2"
     tslib: "npm:^2.4.0"
@@ -6134,7 +6134,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: d0623ca22e2e6d3450de28de76cb83916606e0fe9d8f15c84f086c8b517fc422b0706f543699e5f692136c8c1dbe6f843c32eae5999322a47a3cd3655b6ece2a
+  checksum: 9a6b8b00e5945d778e4f2a6608a135c19e1d2a7b4db77475233e1b53fbef84669c4af561bff32aa77865ba1ebc42ae881d2911fc19c792db3c26cc1131c821ed
   languageName: node
   linkType: hard
 
@@ -8674,7 +8674,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^4.6.0"
     eslint-plugin-react-refresh: "npm:^0.4.5"
     eslint-plugin-testing-library: "npm:^6.2.0"
-    framer-motion: "npm:^10.16.16"
+    framer-motion: "npm:^10.17.0"
     jotai: "npm:^2.6.1"
     mathjs: "npm:^12.2.1"
     pluralize: "npm:^8.0.0"
