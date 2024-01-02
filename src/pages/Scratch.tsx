@@ -7,6 +7,8 @@ import useGeneralSettings from "../hooks/useGeneralSettings";
 import * as R from "ramda";
 import useBlocks from "../hooks/useBlocks";
 import Search from "../components/Search";
+import Dropzone from "../components/DropZone";
+import { fromFilename } from "../models/fileTypes";
 
 export default function Scratch(): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -44,6 +46,15 @@ export default function Scratch(): JSX.Element {
     }
   };
 
+  const handleFileDropped = (file: File, content: string): void => {
+    const fileType = fromFilename(file.name);
+    handleBlockChange({
+      ...newBlock(fileType.language),
+      text: content,
+      updatedAt: file.lastModified,
+    });
+  };
+
   useEffect((): void => {
     if (R.isEmpty(blocks)) {
       const block = newBlock();
@@ -58,29 +69,31 @@ export default function Scratch(): JSX.Element {
   );
 
   return (
-    <RightContextMenu onBlockAdd={handleBlockChange} onSearch={onOpen}>
-      <Search
-        onChange={handleSearchChange}
-        matches={searchTerm === undefined ? undefined : filteredBlocks.length}
-        isOpen={isOpen || settings?.permanentlyShowSearchBar}
-        onClose={onClose}
-      />
-      {sortFn(filteredBlocks).map((block, index) => (
-        <Container
-          p={0}
-          key={block.id}
-          maxWidth="100%"
-          backgroundColor={(settings?.showZebraStripes ?? false) && index % 2 === 1 ? zebraColor : bgColor}
-        >
-          <TextEditor
-            block={block}
-            onBlockChange={handleBlockChange}
-            onBlockDelete={handleBlockDelete}
-            highlight={searchTerm}
-          />
-          <Divider />
-        </Container>
-      ))}
-    </RightContextMenu>
+    <Dropzone onFileDropped={handleFileDropped}>
+      <RightContextMenu onBlockAdd={handleBlockChange} onSearch={onOpen}>
+        <Search
+          onChange={handleSearchChange}
+          matches={searchTerm === undefined ? undefined : filteredBlocks.length}
+          isOpen={isOpen || settings?.permanentlyShowSearchBar}
+          onClose={onClose}
+        />
+        {sortFn(filteredBlocks).map((block, index) => (
+          <Container
+            p={0}
+            key={block.id}
+            maxWidth="100%"
+            backgroundColor={(settings?.showZebraStripes ?? false) && index % 2 === 1 ? zebraColor : bgColor}
+          >
+            <TextEditor
+              block={block}
+              onBlockChange={handleBlockChange}
+              onBlockDelete={handleBlockDelete}
+              highlight={searchTerm}
+            />
+            <Divider />
+          </Container>
+        ))}
+      </RightContextMenu>
+    </Dropzone>
   );
 }
