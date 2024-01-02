@@ -6,6 +6,10 @@ export interface GeneralSettings {
   showLineNumbers: boolean;
   permanentlyShowSearchBar: boolean;
   sortOrder: keyof typeof sortBy;
+  formatting?: {
+    printWidth?: number;
+    tabWidth?: number;
+  };
 }
 
 export default function useGeneralSettings(): [GeneralSettings, (value: GeneralSettings | undefined) => void] {

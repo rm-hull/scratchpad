@@ -10,6 +10,11 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
   Radio,
   RadioGroup,
   Switch,
@@ -42,6 +47,14 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps): 
 
   const handleTogglePermanentlyShowSearchBar = (): void => {
     updateSettings({ ...settings, permanentlyShowSearchBar: !settings.permanentlyShowSearchBar });
+  };
+
+  const handleFormattingPrintWidth = (_: string, printWidth: number): void => {
+    updateSettings({ ...settings, formatting: { ...settings.formatting, printWidth } });
+  };
+
+  const handleFormattingTabWidth = (_: string, tabWidth: number): void => {
+    updateSettings({ ...settings, formatting: { ...settings.formatting, tabWidth } });
   };
 
   return (
@@ -94,13 +107,54 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps): 
 
             <FormControl display="flex" alignItems="center">
               <Switch
-                id="permanently=-show-search-bar"
+                id="permanently-show-search-bar"
                 isChecked={settings?.permanentlyShowSearchBar}
                 onChange={handleTogglePermanentlyShowSearchBar}
               />
-              <FormLabel htmlFor="permanently=-show-search-bar" mb={0} ml={2}>
+              <FormLabel htmlFor="permanently-show-search-bar" mb={0} ml={2}>
                 Permanently show search bar
               </FormLabel>
+            </FormControl>
+
+            <FormControl display="flex" alignItems="center">
+              <FormLabel htmlFor="print-width" mb={0}>
+                Formatting: print width
+              </FormLabel>
+              <NumberInput
+                value={settings?.formatting?.printWidth}
+                defaultValue={80}
+                min={0}
+                max={200}
+                onChange={handleFormattingPrintWidth}
+                size="sm"
+                width={20}
+              >
+                <NumberInputField id="print-width" />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+
+              <FormLabel htmlFor="tab-width" mb={0} ml={4}>
+                tab width
+              </FormLabel>
+              <NumberInput
+                value={settings?.formatting?.tabWidth}
+                defaultValue={2}
+                min={2}
+                max={8}
+                step={2}
+                onChange={handleFormattingTabWidth}
+                size="sm"
+                width={20}
+              >
+                <NumberInputField id="tab-width" />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
             </FormControl>
 
             <DangerZoneSettings />

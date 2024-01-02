@@ -6,10 +6,12 @@ import typescript from "prettier/plugins/typescript";
 import yaml from "prettier/plugins/yaml";
 import * as prettier from "prettier/standalone";
 
-export async function format(text: string, language: string): Promise<string> {
+export async function format(text: string, language: string, printWidth?: number, tabWidth?: number): Promise<string> {
   return await prettier.format(text, {
     parser: language,
     filepath: language,
     plugins: [babel, estree, html, markdown, typescript, yaml],
+    printWidth,
+    tabWidth,
   });
 }

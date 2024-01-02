@@ -108,7 +108,12 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete, highli
 
   const handleFormat = async (): Promise<void> => {
     const { format } = await import("../models/format");
-    const text = await format(value, fileType.language);
+    const text = await format(
+      value,
+      fileType.language,
+      settings?.formatting?.printWidth,
+      settings?.formatting?.tabWidth
+    );
     setValue(text);
   };
 
