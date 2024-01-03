@@ -71,7 +71,7 @@ export default function RightContextMenu({
       <ContextMenu
         renderMenu={() => (
           <MenuList zIndex={1000}>
-            <MenuItem command="⌘↵" icon={<FiPlus color={green400} onClick={onOpenAddNew} />}>
+            <MenuItem command="⌘↵" icon={<FiPlus color={green400} />} onClick={onOpenAddNew}>
               Add new...
             </MenuItem>
             <MenuItem
