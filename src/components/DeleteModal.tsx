@@ -31,8 +31,8 @@ export function DeleteModal({ isOpen, onDelete, onArchive, onCancel }: DeleteMod
             <AlertIcon />
 
             <AlertDescription>
-              Note that this operation will remove the block from local storage entirely, and once the actioned, cannot
-              be reverted or recovered.
+              Note that this operation will remove the block from local storage entirely, and once deleted, cannot be
+              reverted or recovered.
             </AlertDescription>
           </Alert>
           Alternatively, you can archive the block instead, which will retain the data in local storage but hides it
