@@ -54,10 +54,6 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps): JSX.El
                 </Link>{" "}
                 from {data.date}.
               </Text>
-
-              {/* <Text>
-  Google API client ID: <Code>{import.meta.env.VITE_GOOGLE_API_CLIENT_ID}</Code>
-</Text> */}
             </VStack>
 
             <Divider mt={3} mb={3} />
