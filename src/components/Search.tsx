@@ -60,7 +60,7 @@ export default function Search({ onChange, isOpen, onClose, matches }: SearchPro
             <InputLeftAddon pointerEvents="none">
               <FiSearch />
             </InputLeftAddon>
-            <Input ref={inputRef} placeholder="Search" value={value} onChange={handleSearch} />
+            <Input ref={inputRef} placeholder="Search" name="search" value={value} onChange={handleSearch} />
             {matches !== undefined && (
               <InputRightAddon color={matches === 0 ? "red.400" : undefined}>
                 {pluralize("matching block", matches, true)}
