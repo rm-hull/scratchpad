@@ -3,7 +3,7 @@ import { ContextMenu } from "chakra-ui-contextmenu";
 import { type JSX, type LegacyRef, type PropsWithChildren } from "react";
 import { FiClipboard, FiMessageSquare, FiPlus, FiRefreshCw, FiSearch, FiSettings } from "react-icons/fi";
 import { useKey } from "react-use";
-import { newBlock, type Block } from "../models/block";
+import { newBlock, focus, type Block } from "../models/block";
 import AboutModal from "./AboutModal";
 import AddNewModal from "./AddNewModal";
 import SettingsModal from "./SettingsModal";
@@ -12,13 +12,6 @@ import Sync from "./Sync";
 interface RightContextMenuProps {
   onBlockAdd: (block: Block) => void;
   onSearch: () => void;
-}
-
-function focus(block: Block): void {
-  setTimeout(() => {
-    const element = document.getElementById(block.id);
-    element?.focus();
-  }, 200);
 }
 
 export default function RightContextMenu({

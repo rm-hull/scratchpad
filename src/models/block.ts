@@ -27,3 +27,10 @@ export const sortBy = {
   lastUpdated: R.sort<Block>(R.descend((block) => block.updatedAt ?? 0)),
   created: R.sort<Block>(R.descend((block) => block.createdAt ?? 0)),
 };
+
+export function focus(block: Block): void {
+  setTimeout(() => {
+    const element = document.getElementById(block.id);
+    element?.focus();
+  }, 200);
+}
