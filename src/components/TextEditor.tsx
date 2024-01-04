@@ -24,7 +24,7 @@ interface TextEditorProps {
 }
 
 function mark(regexp: RegExp | undefined, input: string, grammar: Grammar, language: string): string {
-  const result: string = highlight(input, grammar, language);
+  const result = highlight(input, grammar, language);
   if (regexp === undefined) {
     return result;
   }

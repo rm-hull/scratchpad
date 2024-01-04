@@ -1,6 +1,6 @@
 # Scratchpad
 
-Scratchpad is a small web app that allows you to store snippets & miscellaneous notes as "blocks" in your browser's 
+Scratchpad is a small web app that allows you to store snippets & miscellaneous notes as "blocks" in your browser's
 local storage. They never leave your machine (unless you want to sync them to your Google Drive). Many file formats
 are supported, and it will do syntax coloring and pretty-print formatting (especially useful for JSON).
 
@@ -17,6 +17,8 @@ and sync to Google.
 <kbd>CMD</kbd> <kbd>/</kbd> - Search
 
 <kbd>CMD</kbd> <kbd>ENTER</kbd> - Add new block
+
+<kbd>CMD</kbd> <kbd>.</kbd> - Base64-decode selected text
 
 Go to https://www.destructuring-bind.org/scratchpad to see it in action.
 

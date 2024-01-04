@@ -1,14 +1,20 @@
 import { Box, Divider, MenuItem, MenuList, useBoolean, useDisclosure, useToast, useToken } from "@chakra-ui/react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ContextMenu } from "chakra-ui-contextmenu";
 import { type JSX, type LegacyRef, type PropsWithChildren } from "react";
 import { FiClipboard, FiMessageSquare, FiPlus, FiRefreshCw, FiSearch, FiSettings } from "react-icons/fi";
+import { VscDebugConsole } from "react-icons/vsc";
 import { useKey } from "react-use";
-import { newBlock, focus, type Block } from "../models/block";
+import { focus, newBlock, type Block } from "../models/block";
 import AboutModal from "./AboutModal";
 import AddNewModal from "./AddNewModal";
+import DecodeSelectionModal from "./DecodeSelectionModal";
 import SettingsModal from "./SettingsModal";
 import Sync from "./Sync";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+
+function nothingSelected(): boolean {
+  return (window.getSelection()?.toString()?.trim()?.length ?? 0) === 0;
+}
 
 interface RightContextMenuProps {
   onBlockAdd: (block: Block) => void;
@@ -25,10 +31,15 @@ export default function RightContextMenu({
   const { isOpen: isAddNewOpen, onOpen: onOpenAddNew, onClose: onCloseAddNew } = useDisclosure();
   const { isOpen: isAboutOpen, onOpen: onOpenAbout, onClose: onCloseAbout } = useDisclosure();
   const { isOpen: isSettingsOpen, onOpen: onOpenSettings, onClose: onCloseSettings } = useDisclosure();
+  const {
+    isOpen: isDecodeSelectionOpen,
+    onOpen: onOpenDecodeSelection,
+    onClose: onCloseDecodeSelection,
+  } = useDisclosure();
   const [isSyncing, { on: startSync, off: stopSync }] = useBoolean();
 
-  const handleAddNew = (language: string): void => {
-    const block = newBlock(language);
+  const handleAddNew = (language: string, text: string = ""): void => {
+    const block = { ...newBlock(language), text };
     onBlockAdd(block);
     focus(block);
   };
@@ -60,6 +71,15 @@ export default function RightContextMenu({
     }
   });
 
+  useKey(".", (event) => {
+    if (event.metaKey || event.ctrlKey) {
+      if (nothingSelected()) {
+        return;
+      }
+      onOpenDecodeSelection();
+    }
+  });
+
   return (
     <>
       <ContextMenu
@@ -79,6 +99,14 @@ export default function RightContextMenu({
             <Divider />
             <MenuItem command="⌘/" icon={<FiSearch color={purple400} />} onClick={onSearch}>
               Search
+            </MenuItem>
+            <MenuItem
+              command="⌘."
+              isDisabled={nothingSelected()}
+              icon={<VscDebugConsole color={purple400} />}
+              onClick={onOpenDecodeSelection}
+            >
+              Decode selection
             </MenuItem>
             <MenuItem
               isDisabled={import.meta.env.VITE_GOOGLE_API_CLIENT_ID === undefined || isSyncing}
@@ -102,6 +130,14 @@ export default function RightContextMenu({
       <AddNewModal isOpen={isAddNewOpen} onCreate={handleAddNew} onCancel={onCloseAddNew} />
       <SettingsModal isOpen={isSettingsOpen} onClose={onCloseSettings} />
       <AboutModal isOpen={isAboutOpen} onClose={onCloseAbout} />
+      {isDecodeSelectionOpen && (
+        <DecodeSelectionModal
+          isOpen={isDecodeSelectionOpen}
+          onClose={onCloseDecodeSelection}
+          onBlockAdd={handleAddNew}
+          selectedText={window.getSelection()?.toString()}
+        />
+      )}
       {import.meta.env.VITE_GOOGLE_API_CLIENT_ID !== undefined && isSyncing && (
         <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_API_CLIENT_ID as string}>
           <Sync onError={stopSync} onFinished={stopSync} />
