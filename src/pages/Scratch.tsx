@@ -78,13 +78,9 @@ export default function Scratch(): JSX.Element {
           onClose={onClose}
         />
         {sortFn(filteredBlocks).map((block, index) => (
-          <Container
-            p={0}
-            key={block.id}
-            maxWidth="100%"
-            backgroundColor={(settings?.showZebraStripes ?? false) && index % 2 === 1 ? zebraColor : bgColor}
-          >
+          <Container p={0} key={block.id} maxWidth="100%">
             <TextEditor
+              backgroundColor={(settings?.showZebraStripes ?? false) && index % 2 === 1 ? zebraColor : bgColor}
               block={block}
               onBlockChange={handleBlockChange}
               onBlockDelete={handleBlockDelete}

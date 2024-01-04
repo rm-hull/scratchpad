@@ -19,6 +19,7 @@ import Toolbar from "./Toolbar";
 interface TextEditorProps {
   block: Block;
   highlight?: RegExp;
+  backgroundColor?: string;
   onBlockChange: (block: Block) => void;
   onBlockDelete: (id: Block["id"], archive: boolean) => void;
 }
@@ -66,7 +67,13 @@ function getMaxLineLength(input: string): number {
   return maxLineLength;
 }
 
-export default function TextEditor({ block, onBlockChange, onBlockDelete, highlight }: TextEditorProps): JSX.Element {
+export default function TextEditor({
+  block,
+  onBlockChange,
+  onBlockDelete,
+  highlight,
+  backgroundColor,
+}: TextEditorProps): JSX.Element {
   const toast = useToast();
   const [settings] = useGeneralSettings();
   const fileType = useMemo(() => fromLanguage(block.language), [block.language]);
@@ -118,8 +125,8 @@ export default function TextEditor({ block, onBlockChange, onBlockDelete, highli
   };
 
   return (
-    <Box>
-      <Box position="absolute" right={0} zIndex={99}>
+    <Box backgroundColor={backgroundColor}>
+      <Box position="absolute" right={0} zIndex={99} borderRadius={2} backgroundColor={backgroundColor}>
         <Toolbar
           language={block.language}
           onChangeLanguage={handleLanguageChange}
