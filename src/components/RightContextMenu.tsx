@@ -8,6 +8,7 @@ import AboutModal from "./AboutModal";
 import AddNewModal from "./AddNewModal";
 import SettingsModal from "./SettingsModal";
 import Sync from "./Sync";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 interface RightContextMenuProps {
   onBlockAdd: (block: Block) => void;
@@ -79,7 +80,11 @@ export default function RightContextMenu({
             <MenuItem command="⌘/" icon={<FiSearch color={purple400} />} onClick={onSearch}>
               Search
             </MenuItem>
-            <MenuItem isDisabled={isSyncing} icon={<FiRefreshCw color={purple400} />} onClick={startSync}>
+            <MenuItem
+              isDisabled={import.meta.env.VITE_GOOGLE_API_CLIENT_ID === undefined || isSyncing}
+              icon={<FiRefreshCw color={purple400} />}
+              onClick={startSync}
+            >
               Sync
             </MenuItem>
             <Divider />
@@ -97,7 +102,11 @@ export default function RightContextMenu({
       <AddNewModal isOpen={isAddNewOpen} onCreate={handleAddNew} onCancel={onCloseAddNew} />
       <SettingsModal isOpen={isSettingsOpen} onClose={onCloseSettings} />
       <AboutModal isOpen={isAboutOpen} onClose={onCloseAbout} />
-      {isSyncing && <Sync onError={stopSync} onFinished={stopSync} />}
+      {import.meta.env.VITE_GOOGLE_API_CLIENT_ID !== undefined && isSyncing && (
+        <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_API_CLIENT_ID as string}>
+          <Sync onError={stopSync} onFinished={stopSync} />
+        </GoogleOAuthProvider>
+      )}
     </>
   );
 }

@@ -45,7 +45,8 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps): JSX.El
                 Build info: <Code>{import.meta.env.VITE_GIT_COMMIT_HASH}</Code>, {import.meta.env.VITE_GIT_COMMIT_DATE}
               </Text>
               <Text>
-                Google API client ID: <Code wordBreak="break-all">{import.meta.env.VITE_GOOGLE_API_CLIENT_ID}</Code>
+                Google API client ID:{" "}
+                <Code wordBreak="break-all">{import.meta.env.VITE_GOOGLE_API_CLIENT_ID ?? "<not-set>"}</Code>
               </Text>
               <Text>
                 FX data sourced from daily <strong>{data.sender}</strong>{" "}

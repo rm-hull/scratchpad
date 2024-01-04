@@ -2,7 +2,7 @@
 
 Scratchpad is a small web app that allows you to store snippets & miscellaneous notes as "blocks" in your browser's 
 local storage. They never leave your machine (unless you want to sync them to your Google Drive). Many file formats
-are supported, and it will do syntax coloring. Formatting will be supported shortly.
+are supported, and it will do syntax coloring and pretty-print formatting (especially useful for JSON).
 
 ![main](./doc/screenshots/main.webp)
 
@@ -25,13 +25,16 @@ Go to https://www.destructuring-bind.org/scratchpad to see it in action.
 You must have Node 20 and Yarn installed. To begin:
 
 ```console
-export VITE_GOOGLE_API_CLIENT_ID=<your-google-api-client-id>
 yarn install
 yarn dev
 ```
 
-You will need to create a project in [Google Developer Console](https://console.cloud.google.com/apis/credentials) and
-create an OAuth 2.0 Client ID.
+If you want to test Sync behaviour, you will need to create a project in [Google Developer Console](https://console.cloud.google.com/apis/credentials) and create an OAuth 2.0 Client ID. Stop the server, and restart with:
+
+```console
+export VITE_GOOGLE_API_CLIENT_ID=<your-google-api-client-id>
+yarn dev
+```
 
 ## License
 
