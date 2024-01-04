@@ -16,7 +16,7 @@ export default function Scratch(): JSX.Element {
   const [blocks, updateBlocks] = useBlocks();
   const [settings] = useGeneralSettings();
 
-  const [bgColor, zebraColor] = useColorModeValue(["white", "gray.50"], ["gray.900", undefined]);
+  const [bgColor, zebraColor] = useColorModeValue(["white", "gray.50"], ["gray.900", "gray.800"]);
 
   const handleBlockChange = (updatedBlock: Block): void => {
     updateBlocks({
