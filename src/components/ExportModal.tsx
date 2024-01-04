@@ -36,7 +36,7 @@ export function ExportModal({ isOpen, block, onClose }: ExportModalProps): JSX.E
         <ModalBody>
           Share this link:
           <HStack alignItems="flex-start">
-            <Code wordBreak="break-word" borderRadius={5} p={2}>
+            <Code wordBreak="break-word" borderRadius={5} p={2} flex={1}>
               {url}
             </Code>
             <Tooltip label="Copy to clipboard">
