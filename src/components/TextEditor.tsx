@@ -1,9 +1,8 @@
-import { highlight, type Grammar } from "prismjs";
-import { useMemo, type JSX, useCallback } from "react";
 import { Box, useBoolean, useClipboard, useDisclosure, useToast } from "@chakra-ui/react";
 import clsx from "clsx";
-// import "prismjs/themes/prism-dark.css";
+import { highlight, type Grammar } from "prismjs";
 import "prismjs/themes/prism.css";
+import { useCallback, useMemo, type JSX } from "react";
 import Editor from "react-simple-code-editor";
 import { useDebounce } from "react-use";
 import useGeneralSettings from "../hooks/useGeneralSettings";

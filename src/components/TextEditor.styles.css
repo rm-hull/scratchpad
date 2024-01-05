@@ -1,7 +1,7 @@
 .editor {
   counter-reset: line;
   font-family: JetBrainsMono, source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .editor .codeArea {
@@ -9,14 +9,16 @@
 }
 
 .editor pre {
-  color: rgb(148 163 184);
+  color: #94a3b8;
 }
 
-.editor > textarea, .editor > pre {
-  word-break: break-all!important;
+.editor > pre,
+.editor > textarea {
+  word-break: break-all !important;
 }
 
-.lineNumbers > pre, .lineNumbers > textarea  {
+.lineNumbers > pre,
+.lineNumbers > textarea {
   padding-left: 60px !important;
 }
 
@@ -35,16 +37,43 @@
   z-index: 10;
 }
 
-.token.operator {
-  background-color: inherit;
-}
-
 mark {
   color: inherit;
   background-color: var(--chakra-colors-orange-100);
 }
 
-.chakra-ui-dark mark {
-  color: black;
-  background-color: var(--chakra-colors-orange-500);
+.chakra-ui-dark {
+  mark {
+    color: black;
+    background-color: var(--chakra-colors-orange-500);
+  }
+
+  .token {
+    background-color: inherit !important;
+  }
+
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: var(--chakra-colors-red-200);
+  }
+
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: var(--chakra-colors-green-100);
+  }
+
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword {
+    color: var(--chakra-colors-blue-300);
+  }
 }
