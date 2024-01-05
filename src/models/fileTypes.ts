@@ -154,7 +154,8 @@ export function fromLanguage(language: string = "text"): FileType {
   const fileType = supportedTypes.find((fileType) => fileType.language === language);
 
   if (fileType === undefined) {
-    throw Error(`Unsupported language: ${language}`);
+    console.error(`Unsupported language: ${language}`);
+    return fromLanguage("text");
   }
 
   return fileType;
@@ -166,6 +167,7 @@ export function fromFilename(filename: string): FileType {
   );
 
   if (fileType === undefined) {
+    console.error(`Unsupported file type: ${filename}`);
     return fromLanguage("text");
   }
 
