@@ -51,7 +51,7 @@ export function ExportModal({ isOpen, block, onClose }: ExportModalProps): JSX.E
         </ModalBody>
         <ModalFooter>
           <Button type="submit" onClick={onClose}>
-            Ok
+            Close
           </Button>
         </ModalFooter>
       </ModalContent>
