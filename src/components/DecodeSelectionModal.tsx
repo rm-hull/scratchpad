@@ -21,12 +21,14 @@ import {
   Select,
   Tooltip,
   VStack,
+  useBoolean,
   useClipboard,
 } from "@chakra-ui/react";
+import { hexy } from "hexy";
 import { Base64 } from "js-base64";
 import { highlight } from "prismjs";
 import { useEffect, useMemo, useState, type ChangeEvent, type JSX } from "react";
-import { FiAlignLeft, FiCheck, FiClipboard } from "react-icons/fi";
+import { FiAlignLeft, FiCheck, FiClipboard, FiCpu, FiFileText } from "react-icons/fi";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import { fromLanguage, supportedTypes } from "../models/fileTypes";
 
@@ -56,16 +58,17 @@ export default function DecodeSelectionModal({
   onClose,
   onBlockAdd,
 }: DecodeSelectionModalProps): JSX.Element {
+  const [hexView, { toggle: toggleHexView }] = useBoolean(false);
   const [error, setError] = useState<Error>();
   const [language, setLanguage] = useState<string>("text");
-  const decoded = useMemo(() => base64Decode(selectedText), [selectedText]);
+  const decoded = useMemo(() => base64Decode(selectedText) ?? "", [selectedText]);
   const fileType = useMemo(() => fromLanguage(language), [language]);
   const { onCopy, hasCopied, value, setValue } = useClipboard(decoded ?? "");
   const [settings] = useGeneralSettings();
 
   useEffect(() => {
-    setValue(decoded ?? "");
-  }, [decoded, selectedText, setValue]);
+    setValue(hexView ? hexy(decoded) : decoded);
+  }, [decoded, selectedText, setValue, hexView]);
 
   const handleChangeLanguage = (event: ChangeEvent<HTMLSelectElement>): void => {
     setLanguage(event.target.value);
@@ -123,12 +126,16 @@ export default function DecodeSelectionModal({
           <HStack alignItems="flex-start">
             <FormControl isInvalid>
               <Code borderRadius={5} p={2} flex={1} minHeight={200} width={672}>
-                <Box
-                  as="pre"
-                  wordBreak="break-all"
-                  sx={{ textWrap: "wrap" }}
-                  dangerouslySetInnerHTML={{ __html: highlight(value, fileType.grammar, language) }}
-                />
+                {hexView ? (
+                  <Box as="pre">{value}</Box>
+                ) : (
+                  <Box
+                    as="pre"
+                    wordBreak="break-all"
+                    sx={{ textWrap: "wrap" }}
+                    dangerouslySetInnerHTML={{ __html: highlight(value, fileType.grammar, language) }}
+                  />
+                )}
               </Code>
               {error !== undefined && (
                 <FormErrorMessage>
@@ -137,7 +144,7 @@ export default function DecodeSelectionModal({
                 </FormErrorMessage>
               )}
             </FormControl>
-            <VStack>
+            <VStack mt={0} position="sticky" top={0}>
               <Tooltip label="Copy to clipboard">
                 <IconButton
                   icon={hasCopied ? <FiCheck color="green" /> : <FiClipboard />}
@@ -155,6 +162,14 @@ export default function DecodeSelectionModal({
                   onClick={() => {
                     handleFormat().catch(setError);
                   }}
+                />
+              </Tooltip>
+              <Tooltip label={hexView ? "Switch to text view" : "Switch to hex view"}>
+                <IconButton
+                  icon={hexView ? <FiFileText /> : <FiCpu />}
+                  aria-label="View"
+                  textColor="blue.400"
+                  onClick={toggleHexView}
                 />
               </Tooltip>
             </VStack>

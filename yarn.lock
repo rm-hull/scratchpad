@@ -6543,6 +6543,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hexy@npm:^0.3.5":
+  version: 0.3.5
+  resolution: "hexy@npm:0.3.5"
+  bin:
+    hexy: bin/hexy_cmd.js
+  checksum: cc82027589140f106efbe319cf69c82798d676ac475bfa0cb451304ae2e6c368aabebb4e43112c8694c37dcebfbad4fcb81e6849773102122d43e28a00860317
+  languageName: node
+  linkType: hard
+
 "hoist-non-react-statics@npm:^3.3.1":
   version: 3.3.2
   resolution: "hoist-non-react-statics@npm:3.3.2"
@@ -8784,6 +8793,7 @@ __metadata:
     eslint-plugin-react-refresh: "npm:^0.4.5"
     eslint-plugin-testing-library: "npm:^6.2.0"
     framer-motion: "npm:^10.17.6"
+    hexy: "npm:^0.3.5"
     jotai: "npm:^2.6.1"
     js-base64: "npm:^3.7.5"
     mathjs: "npm:^12.2.1"

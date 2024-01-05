@@ -11,6 +11,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Tooltip,
+  VStack,
   useClipboard,
 } from "@chakra-ui/react";
 import { Base64 } from "js-base64";
@@ -42,14 +43,16 @@ export function ExportModal({ isOpen, block, onClose }: ExportModalProps): JSX.E
             <Code wordBreak="break-all" borderRadius={5} p={2} flex={1}>
               {url}
             </Code>
-            <Tooltip label="Copy to clipboard">
-              <IconButton
-                icon={hasCopied ? <FiCheck color="green" /> : <FiClipboard />}
-                aria-label="Copy to clipboard"
-                textColor="blue.400"
-                onClick={onCopy}
-              />
-            </Tooltip>
+            <VStack position="sticky" top={0}>
+              <Tooltip label="Copy to clipboard">
+                <IconButton
+                  icon={hasCopied ? <FiCheck color="green" /> : <FiClipboard />}
+                  aria-label="Copy to clipboard"
+                  textColor="blue.400"
+                  onClick={onCopy}
+                />
+              </Tooltip>
+            </VStack>
           </HStack>
         </ModalBody>
         <ModalFooter>
