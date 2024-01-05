@@ -24,6 +24,7 @@
     "clsx": "^2.1.0",
     "framer-motion": "^10.17.6",
     "jotai": "^2.6.1",
+    "js-base64": "^3.7.5",
     "mathjs": "^12.2.1",
     "pluralize": "^8.0.0",
     "prettier": "^3.1.1",

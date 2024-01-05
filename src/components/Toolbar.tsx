@@ -1,9 +1,9 @@
 import { HStack, IconButton, Select, Tooltip, useBoolean, useDisclosure } from "@chakra-ui/react";
 import { type ChangeEvent, type JSX } from "react";
-import { FiCheck, FiClipboard, FiLock, FiLogOut, FiTrash2, FiAlignLeft, FiChevronsLeft } from "react-icons/fi";
+import { FiAlignLeft, FiCheck, FiChevronsLeft, FiClipboard, FiLock, FiLogOut, FiTrash2 } from "react-icons/fi";
+import useGeneralSettings from "../hooks/useGeneralSettings";
 import { supportedTypes } from "../models/fileTypes";
 import { DeleteModal } from "./DeleteModal";
-import useGeneralSettings from "../hooks/useGeneralSettings";
 
 interface ToolbarProps {
   isActive: boolean;
@@ -107,12 +107,14 @@ export default function Toolbar({
         />
       </Tooltip>
 
-      <DeleteModal
-        isOpen={isDeleteModalOpen}
-        onDelete={handleDelete(false)}
-        onArchive={handleDelete(true)}
-        onCancel={onCloseDeleteModal}
-      />
+      {isDeleteModalOpen && (
+        <DeleteModal
+          isOpen={isDeleteModalOpen}
+          onDelete={handleDelete(false)}
+          onArchive={handleDelete(true)}
+          onCancel={onCloseDeleteModal}
+        />
+      )}
     </HStack>
   );
 }

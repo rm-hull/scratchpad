@@ -127,9 +127,9 @@ export default function RightContextMenu({
       >
         {(ref: LegacyRef<HTMLDivElement>) => <Box ref={ref}>{children}</Box>}
       </ContextMenu>
-      <AddNewModal isOpen={isAddNewOpen} onCreate={handleAddNew} onCancel={onCloseAddNew} />
-      <SettingsModal isOpen={isSettingsOpen} onClose={onCloseSettings} />
-      <AboutModal isOpen={isAboutOpen} onClose={onCloseAbout} />
+      {isAddNewOpen && <AddNewModal isOpen={isAddNewOpen} onCreate={handleAddNew} onCancel={onCloseAddNew} />}
+      {isSettingsOpen && <SettingsModal isOpen={isSettingsOpen} onClose={onCloseSettings} />}
+      {isAboutOpen && <AboutModal isOpen={isAboutOpen} onClose={onCloseAbout} />}
       {isDecodeSelectionOpen && (
         <DecodeSelectionModal
           isOpen={isDecodeSelectionOpen}

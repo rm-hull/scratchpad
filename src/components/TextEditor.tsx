@@ -163,7 +163,7 @@ export default function TextEditor({
         padding={5}
         className={clsx("editor", (settings?.showLineNumbers ?? false) && "lineNumbers")}
       />
-      <ExportModal isOpen={isExportModalOpen} block={block} onClose={onExportClose} />
+      {isExportModalOpen && <ExportModal isOpen={isExportModalOpen} block={block} onClose={onExportClose} />}
     </Box>
   );
 }
