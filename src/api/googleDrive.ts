@@ -56,6 +56,8 @@ export class GoogleDrive {
           showLineNumbers: true,
           showZebraStripes: true,
           permanentlyShowSearchBar: false,
+          showToolbarForEveryBlock: false,
+          minimiseEditorToolbar: false,
         },
       };
     }

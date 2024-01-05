@@ -1,10 +1,12 @@
-import { HStack, IconButton, Select, Tooltip, useDisclosure } from "@chakra-ui/react";
+import { HStack, IconButton, Select, Tooltip, useBoolean, useDisclosure } from "@chakra-ui/react";
 import { type ChangeEvent, type JSX } from "react";
-import { FiCheck, FiClipboard, FiLock, FiLogOut, FiTrash2, FiAlignLeft } from "react-icons/fi";
+import { FiCheck, FiClipboard, FiLock, FiLogOut, FiTrash2, FiAlignLeft, FiChevronsLeft } from "react-icons/fi";
 import { supportedTypes } from "../models/fileTypes";
 import { DeleteModal } from "./DeleteModal";
+import useGeneralSettings from "../hooks/useGeneralSettings";
 
 interface ToolbarProps {
+  isActive: boolean;
   language?: string;
   onChangeLanguage: (language: string) => void;
   onDelete: (archive: boolean) => void;
@@ -17,6 +19,7 @@ interface ToolbarProps {
 }
 
 export default function Toolbar({
+  isActive,
   language,
   onChangeLanguage,
   onDelete,
@@ -26,8 +29,14 @@ export default function Toolbar({
   hasCopied,
   locked = false,
   canFormat,
-}: ToolbarProps): JSX.Element {
+}: ToolbarProps): JSX.Element | null {
+  const [visible, { on: showToolbar, off: hideToolbar }] = useBoolean(false);
   const { isOpen: isDeleteModalOpen, onOpen: onOpenDeleteModal, onClose: onCloseDeleteModal } = useDisclosure();
+  const [settings] = useGeneralSettings();
+
+  if (!isActive) {
+    return null;
+  }
 
   const handleChangeLanguage = (event: ChangeEvent<HTMLSelectElement>): void => {
     onChangeLanguage(event.target.value);
@@ -38,8 +47,16 @@ export default function Toolbar({
     onDelete(archive);
   };
 
+  if (settings.minimiseEditorToolbar && !visible) {
+    return (
+      <HStack m={1} spacing={1} onMouseEnter={showToolbar}>
+        <FiChevronsLeft />
+      </HStack>
+    );
+  }
+
   return (
-    <HStack m={1} spacing={1}>
+    <HStack m={1} spacing={1} onMouseLeave={hideToolbar}>
       <Select name="language" isDisabled={locked ?? false} size="xs" onChange={handleChangeLanguage} value={language}>
         {supportedTypes.map((fileType) => (
           <option key={fileType.language} value={fileType.language}>

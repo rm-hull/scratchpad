@@ -1,6 +1,6 @@
 import { highlight, type Grammar } from "prismjs";
 import { useMemo, type JSX, useCallback } from "react";
-import { Box, useClipboard, useDisclosure, useToast } from "@chakra-ui/react";
+import { Box, useBoolean, useClipboard, useDisclosure, useToast } from "@chakra-ui/react";
 import clsx from "clsx";
 // import "prismjs/themes/prism-dark.css";
 import "prismjs/themes/prism.css";
@@ -75,6 +75,7 @@ export default function TextEditor({
   backgroundColor,
 }: TextEditorProps): JSX.Element {
   const toast = useToast();
+  const [isToolbarActive, { on: activateToolbar, off: deactivateToolbar }] = useBoolean(false);
   const [settings] = useGeneralSettings();
   const fileType = useMemo(() => fromLanguage(block.language), [block.language]);
   const { onCopy, hasCopied, value, setValue } = useClipboard(block.text);
@@ -125,9 +126,10 @@ export default function TextEditor({
   };
 
   return (
-    <Box backgroundColor={backgroundColor}>
+    <Box backgroundColor={backgroundColor} onMouseEnter={activateToolbar} onMouseLeave={deactivateToolbar}>
       <Box position="absolute" right={0} zIndex={99} borderRadius={2} backgroundColor={backgroundColor}>
         <Toolbar
+          isActive={isToolbarActive || settings?.showToolbarForEveryBlock}
           language={block.language}
           onChangeLanguage={handleLanguageChange}
           onDelete={(archive: boolean) => {

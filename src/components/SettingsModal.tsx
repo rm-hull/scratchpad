@@ -21,7 +21,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { type JSX } from "react";
-import useGeneralSettings from "../hooks/useGeneralSettings";
+import useGeneralSettings, { type BooleanSettingsKeys } from "../hooks/useGeneralSettings";
 import { type sortBy } from "../models/block";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import DangerZoneSettings from "./DangerZoneSettings";
@@ -37,16 +37,8 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps): 
     updateSettings({ ...settings, sortOrder });
   };
 
-  const handleToggleShowZebraStripes = (): void => {
-    updateSettings({ ...settings, showZebraStripes: !settings.showZebraStripes });
-  };
-
-  const handleToggleShowLineNumbers = (): void => {
-    updateSettings({ ...settings, showLineNumbers: !settings.showLineNumbers });
-  };
-
-  const handleTogglePermanentlyShowSearchBar = (): void => {
-    updateSettings({ ...settings, permanentlyShowSearchBar: !settings.permanentlyShowSearchBar });
+  const handleToggle = (key: BooleanSettingsKeys) => () => {
+    updateSettings({ ...settings, [key]: !settings[key] as boolean });
   };
 
   const handleFormattingPrintWidth = (_: string, printWidth: number): void => {
@@ -87,7 +79,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps): 
               <Switch
                 id="show-zebra-stripes"
                 isChecked={settings?.showZebraStripes}
-                onChange={handleToggleShowZebraStripes}
+                onChange={handleToggle("showZebraStripes")}
               />
               <FormLabel htmlFor="show-zebra-stripes" mb={0} ml={2}>
                 Show zebra stripes
@@ -98,7 +90,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps): 
               <Switch
                 id="show-line-numbers"
                 isChecked={settings?.showLineNumbers}
-                onChange={handleToggleShowLineNumbers}
+                onChange={handleToggle("showLineNumbers")}
               />
               <FormLabel htmlFor="show-line-numbers" mb={0} ml={2}>
                 Show line numbers
@@ -109,10 +101,32 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps): 
               <Switch
                 id="permanently-show-search-bar"
                 isChecked={settings?.permanentlyShowSearchBar}
-                onChange={handleTogglePermanentlyShowSearchBar}
+                onChange={handleToggle("permanentlyShowSearchBar")}
               />
               <FormLabel htmlFor="permanently-show-search-bar" mb={0} ml={2}>
                 Permanently show search bar
+              </FormLabel>
+            </FormControl>
+
+            <FormControl display="flex" alignItems="center">
+              <Switch
+                id="show-toolbar-for-every-block"
+                isChecked={settings?.showToolbarForEveryBlock}
+                onChange={handleToggle("showToolbarForEveryBlock")}
+              />
+              <FormLabel htmlFor="show-toolbar-for-every-block" mb={0} ml={2}>
+                Show toolbar for every block
+              </FormLabel>
+            </FormControl>
+
+            <FormControl display="flex" alignItems="center">
+              <Switch
+                id="minimise-editor-toolbar"
+                isChecked={settings?.minimiseEditorToolbar}
+                onChange={handleToggle("minimiseEditorToolbar")}
+              />
+              <FormLabel htmlFor="minimise-editor-toolbar" mb={0} ml={2}>
+                Minimise editor toolbar
               </FormLabel>
             </FormControl>
 
