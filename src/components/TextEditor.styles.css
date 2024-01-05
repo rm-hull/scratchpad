@@ -12,6 +12,10 @@
   color: rgb(148 163 184);
 }
 
+.editor > textarea, .editor > pre {
+  word-break: break-all!important;
+}
+
 .lineNumbers > pre, .lineNumbers > textarea  {
   padding-left: 60px !important;
 }
