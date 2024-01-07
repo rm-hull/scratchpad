@@ -125,18 +125,24 @@ export default function DecodeSelectionModal({
           The selected text was Base64-decoded into the following:
           <HStack alignItems="flex-start">
             <FormControl isInvalid>
-              <Code borderRadius={5} p={2} flex={1} minHeight={200} width={672}>
+              <Box as="pre">
                 {hexView ? (
-                  <Box as="pre">{value}</Box>
+                  <Code borderRadius={5} p={2} flex={1} minHeight={200} width={672}>
+                    {value}
+                  </Code>
                 ) : (
-                  <Box
-                    as="pre"
+                  <Code
+                    borderRadius={5}
+                    p={2}
+                    flex={1}
+                    minHeight={200}
+                    width={672}
                     wordBreak="break-all"
                     sx={{ textWrap: "wrap" }}
                     dangerouslySetInnerHTML={{ __html: highlight(value, fileType.grammar, language) }}
                   />
                 )}
-              </Code>
+              </Box>
               {error !== undefined && (
                 <FormErrorMessage>
                   <FormErrorIcon />
