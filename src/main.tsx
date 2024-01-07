@@ -2,11 +2,14 @@ import { ChakraProvider, ColorModeScript, createLocalStorageManager, extendTheme
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ErrorBoundary } from "react-error-boundary";
+import ReactGA from "react-ga4";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import ErrorFallback from "./components/ErrorFallback";
 import "./main.css";
 import reportWebVitals from "./reportWebVitals";
+
+ReactGA.initialize(import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID as string);
 
 const element = document.getElementById("root");
 if (element === null) {

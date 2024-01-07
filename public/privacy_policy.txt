@@ -14,10 +14,11 @@ or if you choose, can be synchronised to your Google Drive account.
 
 2. Third-Party Services
 
-scratchpad utilizes third-party services (e.g Google Drive) for syncing data to
-your Google account. These services are chosen carefully to ensure they align
-with our commitment to user privacy. However, it's essential to review and
-understand the privacy policies of these third-party services.
+scratchpad utilizes third-party services (e.g Google Drive, Google Analytics) 
+for syncing data to your Google account and measuring user engagement. These
+services are chosen carefully to ensure they align with our commitment to user
+privacy. However, it's essential to review and understand the privacy policies
+of these third-party services.
 
 3. Security Measures
 

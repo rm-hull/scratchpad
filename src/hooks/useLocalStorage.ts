@@ -1,14 +1,14 @@
 import { atom, useAtom } from "jotai";
 import { useEffect } from "react";
 
-const localStorage = atom<Record<string, unknown> | undefined>(undefined);
+const localStorage = atom<Record<string, unknown>>({});
 
 type UseLocalStorageReturnType<T> = [T, (value: T | undefined) => void];
 
 const useLocalStorage = <T>(key: string, initialValue: T): UseLocalStorageReturnType<T> => {
-  const readValue = (): T | undefined => {
+  const readValue = (): T => {
     if (typeof window === "undefined") {
-      return undefined;
+      return initialValue;
     }
 
     const item = window.localStorage.getItem(key);

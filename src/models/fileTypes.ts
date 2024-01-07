@@ -16,6 +16,7 @@ import "prismjs/components/prism-sql";
 import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-yaml";
 import "./prism-mathjs";
+import "./prism-jwt";
 
 export interface FileType {
   language: string;
@@ -75,6 +76,12 @@ export const supportedTypes: readonly FileType[] = [
     canFormat: true,
     mimeType: "application/json",
     extensions: [".json"],
+  },
+  {
+    language: "jwt",
+    descr: "JWT",
+    grammar: languages.jwt,
+    canFormat: false,
   },
   {
     language: "log",
