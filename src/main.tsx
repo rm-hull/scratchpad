@@ -9,7 +9,9 @@ import ErrorFallback from "./components/ErrorFallback";
 import "./main.css";
 import reportWebVitals from "./reportWebVitals";
 
-ReactGA.initialize(import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID as string);
+if (import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID !== undefined) {
+  ReactGA.initialize(import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID as string);
+}
 
 const element = document.getElementById("root");
 if (element === null) {
