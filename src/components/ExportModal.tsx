@@ -46,9 +46,9 @@ export function ExportModal({ isOpen, block, onClose }: ExportModalProps): JSX.E
             <VStack position="sticky" top={0}>
               <Tooltip label="Copy to clipboard">
                 <IconButton
-                  icon={hasCopied ? <FiCheck color="green" /> : <FiClipboard />}
                   aria-label="Copy to clipboard"
-                  textColor="blue.400"
+                  icon={hasCopied ? <FiCheck /> : <FiClipboard />}
+                  textColor={hasCopied ? "green.400" : "blue.400"}
                   onClick={onCopy}
                 />
               </Tooltip>

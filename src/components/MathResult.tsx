@@ -31,9 +31,9 @@ export default function MathResult({ result, xOffset, isError, lineNumbers }: Ma
           size="4"
           ml={1}
           variant="none"
-          icon={hasCopied ? <FiCheck color="green" /> : <FiClipboard />}
           aria-label="Copy to clipboard"
-          textColor="blue.400"
+          icon={hasCopied ? <FiCheck /> : <FiClipboard />}
+          textColor={hasCopied ? "green.400" : "blue.400"}
           onClick={onCopy}
         />
       )}
