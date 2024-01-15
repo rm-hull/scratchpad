@@ -56,7 +56,7 @@ export default function Toolbar({
   }
 
   return (
-    <HStack m={1} spacing={1} onMouseLeave={hideToolbar}>
+    <HStack mr="2px" mt="1px" spacing={1} onMouseLeave={hideToolbar}>
       <Select name="language" isDisabled={locked ?? false} size="xs" onChange={handleChangeLanguage} value={language}>
         {supportedTypes.map((fileType) => (
           <option key={fileType.language} value={fileType.language}>
