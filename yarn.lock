@@ -3687,12 +3687,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.11.1":
-  version: 20.11.1
-  resolution: "@types/node@npm:20.11.1"
+"@types/node@npm:^20.11.2":
+  version: 20.11.2
+  resolution: "@types/node@npm:20.11.2"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 0b633e9f707167b4b61e472ddb93caca390714ef4f579d528eb5a8e4c621a5d267cc427dc5e01adc9a3ba87ec1e161a51d1bba716ae762c7a01648cbebab6bb5
+  checksum: 029d603b56f7277b109a14e29e97d8e7269960cedafd8761cd0e65a0bcd9e7a554c192708becf3248a22f42681f476320af6a06c64a692a52414d1c167d9f50a
   languageName: node
   linkType: hard
 
@@ -8875,7 +8875,7 @@ __metadata:
     "@testing-library/dom": "npm:^9.3.4"
     "@testing-library/react": "npm:^14.1.2"
     "@testing-library/user-event": "npm:^14.5.2"
-    "@types/node": "npm:^20.11.1"
+    "@types/node": "npm:^20.11.2"
     "@types/pluralize": "npm:^0.0.33"
     "@types/prismjs": "npm:^1.26.3"
     "@types/ramda": "npm:^0.29.9"
