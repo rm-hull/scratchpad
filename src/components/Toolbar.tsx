@@ -1,6 +1,15 @@
 import { HStack, IconButton, Select, Tooltip, useBoolean, useDisclosure } from "@chakra-ui/react";
 import { type ChangeEvent, type JSX } from "react";
-import { FiAlignLeft, FiCheck, FiChevronsLeft, FiClipboard, FiLock, FiLogOut, FiTrash2 } from "react-icons/fi";
+import {
+  FiAlignLeft,
+  FiCheck,
+  FiChevronsLeft,
+  FiClipboard,
+  FiLock,
+  FiLogOut,
+  FiTrash2,
+  FiUnlock,
+} from "react-icons/fi";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import { supportedTypes } from "../models/fileTypes";
 import { DeleteModal } from "./DeleteModal";
@@ -13,6 +22,7 @@ interface ToolbarProps {
   onCopy: () => void;
   onExport: () => void;
   onFormat: () => void;
+  onToggleLock: () => void;
   hasCopied: boolean;
   locked?: boolean;
   canFormat: boolean;
@@ -26,6 +36,7 @@ export default function Toolbar({
   onExport,
   onCopy,
   onFormat,
+  onToggleLock,
   hasCopied,
   locked = false,
   canFormat,
@@ -78,10 +89,20 @@ export default function Toolbar({
         <IconButton
           size="xs"
           variant="ghost"
-          icon={hasCopied ? <FiCheck color="green" /> : <FiClipboard />}
           aria-label="Copy to clipboard"
-          textColor="blue.400"
+          icon={hasCopied ? <FiCheck /> : <FiClipboard />}
+          textColor={hasCopied ? "green.400" : "blue.400"}
           onClick={onCopy}
+        />
+      </Tooltip>
+      <Tooltip label={locked ? "Unlock" : "Make read-only"}>
+        <IconButton
+          size="xs"
+          variant="ghost"
+          aria-label="Unlock"
+          icon={locked ? <FiUnlock /> : <FiLock />}
+          textColor={locked ? "green.400" : "blue.400"}
+          onClick={onToggleLock}
         />
       </Tooltip>
       <Tooltip label="Format">
@@ -89,19 +110,19 @@ export default function Toolbar({
           isDisabled={!canFormat || locked}
           size="xs"
           variant="ghost"
-          icon={<FiAlignLeft />}
           aria-label="Format"
+          icon={<FiAlignLeft />}
           textColor="blue.400"
           onClick={onFormat}
         />
       </Tooltip>
-      <Tooltip label={locked ? "Locked" : "Delete"}>
+      <Tooltip label="Delete">
         <IconButton
           isDisabled={locked}
           size="xs"
           variant="ghost"
-          icon={locked ? <FiLock /> : <FiTrash2 />}
           aria-label="Delete"
+          icon={<FiTrash2 />}
           textColor="red.400"
           onClick={onOpenDeleteModal}
         />

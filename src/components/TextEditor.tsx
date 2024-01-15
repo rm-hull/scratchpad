@@ -113,6 +113,10 @@ export default function TextEditor({
     onBlockChange({ ...block, language, updatedAt: Date.now() });
   };
 
+  const handleToggleLock = (): void => {
+    onBlockChange({ ...block, locked: !(block.locked ?? false) });
+  };
+
   const handleFormat = async (): Promise<void> => {
     const { format } = await import("../models/format");
     const text = await format(
@@ -137,6 +141,7 @@ export default function TextEditor({
           hasCopied={hasCopied}
           onCopy={onCopy}
           onExport={onExportOpen}
+          onToggleLock={handleToggleLock}
           locked={block.locked}
           canFormat={fileType.canFormat}
           onFormat={() => {
