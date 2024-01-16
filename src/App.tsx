@@ -1,9 +1,9 @@
 import { type JSX } from "react";
 import { Route, Routes } from "react-router-dom";
-import Scratch from "./pages/Scratch";
-import Import from "./pages/Import";
+import { Scratch } from "./pages/Scratch";
+import { Import } from "./pages/Import";
 
-export default function App(): JSX.Element {
+export function App(): JSX.Element {
   return (
     <Routes>
       <Route path="/" element={<Scratch />} />

@@ -8,11 +8,11 @@ import {
   useColorModeValue,
   useControllableState,
 } from "@chakra-ui/react";
+import pluralize from "pluralize";
 import { useEffect, type ChangeEvent, type JSX } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useDebounce, useKeyPressEvent } from "react-use";
-import useFocus from "../hooks/useFocus";
-import pluralize from "pluralize";
+import { useFocus } from "../hooks/useFocus";
 
 interface SearchProps {
   matches?: number;
@@ -21,7 +21,7 @@ interface SearchProps {
   onChange: (value: string) => void;
 }
 
-export default function Search({ onChange, isOpen, onClose, matches }: SearchProps): JSX.Element {
+export function Search({ onChange, isOpen, onClose, matches }: SearchProps): JSX.Element {
   const [value, setValue] = useControllableState({ defaultValue: "" });
   const [inputRef, setInputFocus] = useFocus<HTMLInputElement>();
   const bgColor = useColorModeValue("white", "gray.900");

@@ -1,6 +1,6 @@
 import { Box, useBoolean, useClipboard } from "@chakra-ui/react";
 import { type JSX } from "react";
-import CopyToClipboardButton from "./CopyToClipboardButton";
+import { CopyToClipboardButton } from "./CopyToClipboardButton";
 
 interface MathResultProps {
   result: string;
@@ -9,7 +9,7 @@ interface MathResultProps {
   lineNumbers: boolean;
 }
 
-export default function MathResult({ result, xOffset, isError, lineNumbers }: MathResultProps): JSX.Element | null {
+export function MathResult({ result, xOffset, isError, lineNumbers }: MathResultProps): JSX.Element | null {
   const [isActive, { on, off }] = useBoolean();
   const { hasCopied, onCopy } = useClipboard(result);
   const left = (lineNumbers ? 80 : 45) + xOffset * 7.2;

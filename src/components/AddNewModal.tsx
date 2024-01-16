@@ -10,7 +10,7 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { useEffect, useState, type ChangeEvent, type FormEvent, type JSX } from "react";
-import useFocus from "../hooks/useFocus";
+import { useFocus } from "../hooks/useFocus";
 import { supportedTypes } from "../models/fileTypes";
 
 interface AddNewModalProps {
@@ -19,7 +19,7 @@ interface AddNewModalProps {
   onCreate: (language: string) => void;
 }
 
-export default function AddNewModal({ isOpen, onCancel, onCreate }: AddNewModalProps): JSX.Element | null {
+export function AddNewModal({ isOpen, onCancel, onCreate }: AddNewModalProps): JSX.Element | null {
   const [inputRef, setInputFocus] = useFocus<HTMLSelectElement>();
   const [language, setLanguage] = useState<string>("text");
 

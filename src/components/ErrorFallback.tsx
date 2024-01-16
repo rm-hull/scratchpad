@@ -5,7 +5,7 @@ interface ErrorFallbackProps {
   error: Error;
 }
 
-export default function ErrorFallback({ error }: ErrorFallbackProps): JSX.Element {
+export function ErrorFallback({ error }: ErrorFallbackProps): JSX.Element {
   return (
     <Container maxWidth="container.lg">
       <Alert status="error">

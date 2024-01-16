@@ -23,7 +23,7 @@ export interface GeneralSettings {
 
 export type BooleanSettingsKeys = BooleanKeys<GeneralSettings>;
 
-export default function useGeneralSettings(): [GeneralSettings, (value: GeneralSettings | undefined) => void] {
+export function useGeneralSettings(): [GeneralSettings, (value: GeneralSettings | undefined) => void] {
   return useLocalStorage<GeneralSettings>("scratchpad.general-settings", {
     showLineNumbers: true,
     showZebraStripes: true,

@@ -2,10 +2,10 @@ import { useToast } from "@chakra-ui/react";
 import { Base64 } from "js-base64";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useBlocks from "../hooks/useBlocks";
+import { useBlocks } from "../hooks/useBlocks";
 import { newBlock, type Block } from "../models/block";
 
-export default function Import(): null {
+export function Import(): null {
   const { id, language, data } = useParams();
   const [blocks, updateBlocks] = useBlocks();
   const navigate = useNavigate();

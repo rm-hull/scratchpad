@@ -29,9 +29,9 @@ import { Base64 } from "js-base64";
 import { highlight } from "prismjs";
 import { useEffect, useMemo, useState, type ChangeEvent, type JSX } from "react";
 import { FiAlignLeft, FiCpu, FiFileText } from "react-icons/fi";
-import useGeneralSettings from "../hooks/useGeneralSettings";
+import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { fromLanguage, supportedTypes } from "../models/fileTypes";
-import CopyToClipboardButton from "./CopyToClipboardButton";
+import { CopyToClipboardButton } from "./CopyToClipboardButton";
 
 function base64Decode(text: string): string | undefined {
   const stripped = text.replace(/[\n\t\r ]/g, "");
@@ -53,7 +53,7 @@ interface DecodeSelectionModalProps {
   onBlockAdd: (language: string, text: string) => void;
 }
 
-export default function DecodeSelectionModal({
+export function DecodeSelectionModal({
   isOpen,
   selectedText = "",
   onClose,

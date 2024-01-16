@@ -1,8 +1,8 @@
 import { useToast } from "@chakra-ui/react";
 import { useCallback, useEffect } from "react";
-import useBlocks from "../hooks/useBlocks";
-import useGeneralSettings from "../hooks/useGeneralSettings";
-import useGoogleDrive from "../hooks/useGoogleDrive";
+import { useBlocks } from "../hooks/useBlocks";
+import { useGeneralSettings } from "../hooks/useGeneralSettings";
+import { useGoogleDrive } from "../hooks/useGoogleDrive";
 import { type Block } from "../models/block";
 
 interface SyncProps {
@@ -29,7 +29,7 @@ function merge(a: Record<string, Block>, b: Record<string, Block>): Record<strin
   return result;
 }
 
-export default function Sync({ onFinished, onError }: SyncProps): null {
+export function Sync({ onFinished, onError }: SyncProps): null {
   const toast = useToast();
   const { drive, login, error } = useGoogleDrive("scratchpad_sync.json");
   const [settings, updateSettings] = useGeneralSettings();

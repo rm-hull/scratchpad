@@ -21,17 +21,17 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { type JSX } from "react";
-import useGeneralSettings, { type BooleanSettingsKeys } from "../hooks/useGeneralSettings";
+import { useGeneralSettings, type BooleanSettingsKeys } from "../hooks/useGeneralSettings";
 import { type sortBy } from "../models/block";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
-import DangerZoneSettings from "./DangerZoneSettings";
+import { DangerZoneSettings } from "./DangerZoneSettings";
 
 interface SettingsModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function SettingsModal({ isOpen, onClose }: SettingsModalProps): JSX.Element | null {
+export function SettingsModal({ isOpen, onClose }: SettingsModalProps): JSX.Element | null {
   const [settings, updateSettings] = useGeneralSettings();
   const handleUpdateSortOrder = (sortOrder: keyof typeof sortBy): void => {
     updateSettings({ ...settings, sortOrder });

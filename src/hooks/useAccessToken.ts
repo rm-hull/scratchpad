@@ -8,7 +8,7 @@ interface UseAccessTokenReturnType {
 }
 type TokenInfo = Omit<TokenResponse, "error" | "error_description" | "error_uri">;
 
-export default function useAccessToken(scope: string): UseAccessTokenReturnType {
+export function useAccessToken(scope: string): UseAccessTokenReturnType {
   const [accessToken, setAccessToken] = useState<TokenInfo>();
   const [error, setError] = useState<unknown>();
 

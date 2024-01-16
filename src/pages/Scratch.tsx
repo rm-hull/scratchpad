@@ -1,16 +1,16 @@
 import { Container, Divider, useColorModeValue, useDisclosure } from "@chakra-ui/react";
-import { useEffect, type JSX, useState } from "react";
-import TextEditor from "../components/TextEditor";
-import { type Block, sortBy, newBlock } from "../models/block";
-import RightContextMenu from "../components/RightContextMenu";
-import useGeneralSettings from "../hooks/useGeneralSettings";
 import * as R from "ramda";
-import useBlocks from "../hooks/useBlocks";
-import Search from "../components/Search";
-import Dropzone from "../components/DropZone";
+import { useEffect, useState, type JSX } from "react";
+import { Dropzone } from "../components/DropZone";
+import { RightContextMenu } from "../components/RightContextMenu";
+import { Search } from "../components/Search";
+import { TextEditor } from "../components/TextEditor";
+import { useBlocks } from "../hooks/useBlocks";
+import { useGeneralSettings } from "../hooks/useGeneralSettings";
+import { newBlock, sortBy, type Block } from "../models/block";
 import { fromFilename } from "../models/fileTypes";
 
-export default function Scratch(): JSX.Element {
+export function Scratch(): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [searchTerm, setSearchTerm] = useState<RegExp>();
   const [blocks, updateBlocks] = useBlocks();

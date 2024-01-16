@@ -22,7 +22,7 @@ interface AboutModalProps {
   onClose: () => void;
 }
 
-export default function AboutModal({ isOpen, onClose }: AboutModalProps): JSX.Element | null {
+export function AboutModal({ isOpen, onClose }: AboutModalProps): JSX.Element | null {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="4xl" scrollBehavior="inside">
       <ModalOverlay />

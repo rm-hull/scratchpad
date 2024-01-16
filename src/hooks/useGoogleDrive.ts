@@ -1,6 +1,6 @@
 import { GoogleDrive } from "../api/googleDrive";
 import { useState, useEffect } from "react";
-import useAccessToken from "./useAccessToken";
+import { useAccessToken } from "./useAccessToken";
 
 export interface UseGoogleDriveReturnType {
   drive?: GoogleDrive;
@@ -8,7 +8,7 @@ export interface UseGoogleDriveReturnType {
   error: unknown;
 }
 
-export default function useGoogleDrive(filename: string): UseGoogleDriveReturnType {
+export function useGoogleDrive(filename: string): UseGoogleDriveReturnType {
   const [drive, setDrive] = useState<GoogleDrive>();
   const { accessToken, login, error } = useAccessToken("https://www.googleapis.com/auth/drive.file");
 

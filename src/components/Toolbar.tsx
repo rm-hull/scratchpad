@@ -1,10 +1,10 @@
 import { HStack, IconButton, Select, Tooltip, useBoolean, useDisclosure } from "@chakra-ui/react";
 import { type ChangeEvent, type JSX } from "react";
 import { FiAlignLeft, FiChevronsLeft, FiLock, FiLogOut, FiTrash2, FiUnlock } from "react-icons/fi";
-import useGeneralSettings from "../hooks/useGeneralSettings";
+import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { supportedTypes } from "../models/fileTypes";
+import { CopyToClipboardButton } from "./CopyToClipboardButton";
 import { DeleteModal } from "./DeleteModal";
-import CopyToClipboardButton from "./CopyToClipboardButton";
 
 interface ToolbarProps {
   isActive: boolean;
@@ -20,7 +20,7 @@ interface ToolbarProps {
   canFormat: boolean;
 }
 
-export default function Toolbar({
+export function Toolbar({
   isActive,
   language,
   onChangeLanguage,

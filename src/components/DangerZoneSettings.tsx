@@ -1,10 +1,10 @@
 import { Alert, AlertDescription, AlertTitle } from "@chakra-ui/react";
 import { type JSX } from "react";
-import useGeneralSettings from "../hooks/useGeneralSettings";
-import ResetDataButton from "./ResetDataButton";
-import useBlocks from "../hooks/useBlocks";
+import { useBlocks } from "../hooks/useBlocks";
+import { useGeneralSettings } from "../hooks/useGeneralSettings";
+import { ResetDataButton } from "./ResetDataButton";
 
-export default function GeneralSettings(): JSX.Element {
+export function DangerZoneSettings(): JSX.Element {
   const [, updateBlocks] = useBlocks();
   const [, updateSettings] = useGeneralSettings();
 

@@ -17,7 +17,7 @@ interface DropzoneProps {
   onFileDropped: (file: File, content: string) => void;
 }
 
-export default function Dropzone({ children, onFileDropped }: PropsWithChildren<DropzoneProps>): JSX.Element {
+export function Dropzone({ children, onFileDropped }: PropsWithChildren<DropzoneProps>): JSX.Element {
   const toast = useToast();
   const onDrop = useCallback(
     (acceptedFiles: Blob[]) => {

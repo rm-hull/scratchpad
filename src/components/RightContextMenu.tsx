@@ -6,11 +6,11 @@ import { FiClipboard, FiMessageSquare, FiPlus, FiRefreshCw, FiSearch, FiSettings
 import { VscDebugConsole } from "react-icons/vsc";
 import { useKey } from "react-use";
 import { focus, newBlock, type Block } from "../models/block";
-import AboutModal from "./AboutModal";
-import AddNewModal from "./AddNewModal";
-import DecodeSelectionModal from "./DecodeSelectionModal";
-import SettingsModal from "./SettingsModal";
-import Sync from "./Sync";
+import { AboutModal } from "./AboutModal";
+import { AddNewModal } from "./AddNewModal";
+import { DecodeSelectionModal } from "./DecodeSelectionModal";
+import { SettingsModal } from "./SettingsModal";
+import { Sync } from "./Sync";
 
 function nothingSelected(): boolean {
   return (window.getSelection()?.toString()?.trim()?.length ?? 0) === 0;
@@ -21,7 +21,7 @@ interface RightContextMenuProps {
   onSearch: () => void;
 }
 
-export default function RightContextMenu({
+export function RightContextMenu({
   children,
   onBlockAdd,
   onSearch,

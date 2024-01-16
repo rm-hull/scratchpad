@@ -5,15 +5,15 @@ import "prismjs/themes/prism.css";
 import { useCallback, useMemo, type JSX } from "react";
 import Editor from "react-simple-code-editor";
 import { useDebounce } from "react-use";
-import useGeneralSettings from "../hooks/useGeneralSettings";
+import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { type Block } from "../models/block";
 import { fromLanguage } from "../models/fileTypes";
 import { evaluate, type MathResults } from "../models/math";
 import { replaceInXmlText } from "../models/replacer";
 import { ExportModal } from "./ExportModal";
-import MathResult from "./MathResult";
+import { MathResult } from "./MathResult";
 import "./TextEditor.styles.css";
-import Toolbar from "./Toolbar";
+import { Toolbar } from "./Toolbar";
 
 interface TextEditorProps {
   block: Block;
@@ -66,7 +66,7 @@ function getMaxLineLength(input: string): number {
   return maxLineLength;
 }
 
-export default function TextEditor({
+export function TextEditor({
   block,
   onBlockChange,
   onBlockDelete,

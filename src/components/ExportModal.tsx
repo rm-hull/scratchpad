@@ -15,7 +15,7 @@ import {
 import { Base64 } from "js-base64";
 import { type JSX } from "react";
 import { type Block } from "../models/block";
-import CopyToClipboardButton from "./CopyToClipboardButton";
+import { CopyToClipboardButton } from "./CopyToClipboardButton";
 
 interface ExportModalProps {
   isOpen: boolean;

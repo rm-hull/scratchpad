@@ -6,6 +6,6 @@ function newBlocks(): Record<string, Block> {
   return { [block.id]: block };
 }
 
-export default function useBlocks(): [Record<string, Block>, (value: Record<string, Block> | undefined) => void] {
+export function useBlocks(): [Record<string, Block>, (value: Record<string, Block> | undefined) => void] {
   return useLocalStorage<Record<string, Block>>("scratchpad.blocks", newBlocks());
 }

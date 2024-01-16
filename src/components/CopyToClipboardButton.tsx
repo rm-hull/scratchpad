@@ -19,7 +19,7 @@ function wrapTooltip(showTooltip: boolean, element: JSX.Element): JSX.Element {
   return element;
 }
 
-export default function CopyToClipboardButton({
+export function CopyToClipboardButton({
   hasCopied,
   onCopy,
   size,

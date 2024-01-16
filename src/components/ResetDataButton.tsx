@@ -6,7 +6,7 @@ interface ResetDataButtonProps {
   onResetRequested: () => void;
 }
 
-export default function ResetDataButton({ onResetRequested }: ResetDataButtonProps): JSX.Element {
+export function ResetDataButton({ onResetRequested }: ResetDataButtonProps): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleConfirmReset = (): void => {
