@@ -12,6 +12,9 @@ import { DecodeSelectionModal } from "./DecodeSelectionModal";
 import { SettingsModal } from "./SettingsModal";
 import { Sync } from "./Sync";
 
+const isMac = navigator.platform.toLowerCase().includes("mac");
+const commandPrefix = isMac ? "⌘" : "CTRL";
+
 function nothingSelected(): boolean {
   return (window.getSelection()?.toString()?.trim()?.length ?? 0) === 0;
 }
@@ -85,7 +88,7 @@ export function RightContextMenu({
       <ContextMenu
         renderMenu={() => (
           <MenuList zIndex={1000}>
-            <MenuItem command="⌘↵" icon={<FiPlus color={green400} />} onClick={onOpenAddNew}>
+            <MenuItem command={commandPrefix + "↵"} icon={<FiPlus color={green400} />} onClick={onOpenAddNew}>
               Add new...
             </MenuItem>
             <MenuItem
@@ -97,11 +100,11 @@ export function RightContextMenu({
               Add from clipboard
             </MenuItem>
             <Divider />
-            <MenuItem command="⌘/" icon={<FiSearch color={purple400} />} onClick={onSearch}>
+            <MenuItem command={commandPrefix + "/"} icon={<FiSearch color={purple400} />} onClick={onSearch}>
               Search
             </MenuItem>
             <MenuItem
-              command="⌘."
+              command={commandPrefix + "."}
               isDisabled={nothingSelected()}
               icon={<VscDebugConsole color={purple400} />}
               onClick={onOpenDecodeSelection}
