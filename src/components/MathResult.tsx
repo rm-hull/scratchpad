@@ -1,6 +1,6 @@
-import { Box, IconButton, useBoolean, useClipboard } from "@chakra-ui/react";
+import { Box, useBoolean, useClipboard } from "@chakra-ui/react";
 import { type JSX } from "react";
-import { FiCheck, FiClipboard } from "react-icons/fi";
+import CopyToClipboardButton from "./CopyToClipboardButton";
 
 interface MathResultProps {
   result: string;
@@ -27,15 +27,7 @@ export default function MathResult({ result, xOffset, isError, lineNumbers }: Ma
     >
       # {result}
       {isActive && !isError && (
-        <IconButton
-          size="4"
-          ml={1}
-          variant="none"
-          aria-label="Copy to clipboard"
-          icon={hasCopied ? <FiCheck /> : <FiClipboard />}
-          textColor={hasCopied ? "green.400" : "blue.400"}
-          onClick={onCopy}
-        />
+        <CopyToClipboardButton hasCopied={hasCopied} onCopy={onCopy} size="4" variant="none" ml={1} />
       )}
     </Box>
   );

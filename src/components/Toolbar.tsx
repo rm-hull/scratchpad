@@ -1,18 +1,10 @@
 import { HStack, IconButton, Select, Tooltip, useBoolean, useDisclosure } from "@chakra-ui/react";
 import { type ChangeEvent, type JSX } from "react";
-import {
-  FiAlignLeft,
-  FiCheck,
-  FiChevronsLeft,
-  FiClipboard,
-  FiLock,
-  FiLogOut,
-  FiTrash2,
-  FiUnlock,
-} from "react-icons/fi";
+import { FiAlignLeft, FiChevronsLeft, FiLock, FiLogOut, FiTrash2, FiUnlock } from "react-icons/fi";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import { supportedTypes } from "../models/fileTypes";
 import { DeleteModal } from "./DeleteModal";
+import CopyToClipboardButton from "./CopyToClipboardButton";
 
 interface ToolbarProps {
   isActive: boolean;
@@ -85,16 +77,7 @@ export default function Toolbar({
           onClick={onExport}
         />
       </Tooltip>
-      <Tooltip label="Copy to clipboard">
-        <IconButton
-          size="xs"
-          variant="ghost"
-          aria-label="Copy to clipboard"
-          icon={hasCopied ? <FiCheck /> : <FiClipboard />}
-          textColor={hasCopied ? "green.400" : "blue.400"}
-          onClick={onCopy}
-        />
-      </Tooltip>
+      <CopyToClipboardButton hasCopied={hasCopied} onCopy={onCopy} size="xs" variant="ghost" showTooltip />
       <Tooltip label={locked ? "Unlock" : "Make read-only"}>
         <IconButton
           size="xs"

@@ -28,9 +28,10 @@ import { hexy } from "hexy";
 import { Base64 } from "js-base64";
 import { highlight } from "prismjs";
 import { useEffect, useMemo, useState, type ChangeEvent, type JSX } from "react";
-import { FiAlignLeft, FiCheck, FiClipboard, FiCpu, FiFileText } from "react-icons/fi";
+import { FiAlignLeft, FiCpu, FiFileText } from "react-icons/fi";
 import useGeneralSettings from "../hooks/useGeneralSettings";
 import { fromLanguage, supportedTypes } from "../models/fileTypes";
+import CopyToClipboardButton from "./CopyToClipboardButton";
 
 function base64Decode(text: string): string | undefined {
   const stripped = text.replace(/[\n\t\r ]/g, "");
@@ -151,14 +152,7 @@ export default function DecodeSelectionModal({
               )}
             </FormControl>
             <VStack mt={0} position="sticky" top={0}>
-              <Tooltip label="Copy to clipboard">
-                <IconButton
-                  aria-label="Copy to clipboard"
-                  icon={hasCopied ? <FiCheck /> : <FiClipboard />}
-                  textColor={hasCopied ? "green.400" : "blue.400"}
-                  onClick={onCopy}
-                />
-              </Tooltip>
+              <CopyToClipboardButton hasCopied={hasCopied} onCopy={onCopy} showTooltip />
               <Tooltip label="Format">
                 <IconButton
                   isDisabled={!fileType.canFormat}
