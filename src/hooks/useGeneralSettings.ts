@@ -1,5 +1,6 @@
 import { type sortBy } from "../models/block";
 import useLocalStorage from "./useLocalStorage";
+import { useNamespace } from "./useNamespace";
 
 type BooleanKeys<T> = Exclude<
   {
@@ -23,13 +24,17 @@ export interface GeneralSettings {
 
 export type BooleanSettingsKeys = BooleanKeys<GeneralSettings>;
 
+const defaultSettings: GeneralSettings = {
+  showLineNumbers: true,
+  showZebraStripes: true,
+  permanentlyShowSearchBar: false,
+  showToolbarForEveryBlock: false,
+  minimiseEditorToolbar: false,
+  sortOrder: "none",
+};
+
 export function useGeneralSettings(): [GeneralSettings, (value: GeneralSettings | undefined) => void] {
-  return useLocalStorage<GeneralSettings>("scratchpad.general-settings", {
-    showLineNumbers: true,
-    showZebraStripes: true,
-    permanentlyShowSearchBar: false,
-    showToolbarForEveryBlock: false,
-    minimiseEditorToolbar: false,
-    sortOrder: "none",
-  });
+  const namespace = useNamespace();
+  const key = namespace === undefined ? "scratchpad.general-settings" : `scratchpad.general-settings.${namespace}`;
+  return useLocalStorage<GeneralSettings>(key, defaultSettings);
 }

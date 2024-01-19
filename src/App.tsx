@@ -6,8 +6,8 @@ import { Import } from "./pages/Import";
 export function App(): JSX.Element {
   return (
     <Routes>
-      <Route path="/" element={<Scratch />} />
       <Route path="/import/:id/:language/:data" element={<Import />} />
+      <Route path="/*" element={<Scratch />} />
     </Routes>
   );
 }

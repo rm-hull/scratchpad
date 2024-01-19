@@ -16,6 +16,7 @@ import { Base64 } from "js-base64";
 import { type JSX } from "react";
 import { type Block } from "../models/block";
 import { CopyToClipboardButton } from "./CopyToClipboardButton";
+import { useNamespace } from "../hooks/useNamespace";
 
 interface ExportModalProps {
   isOpen: boolean;
@@ -24,9 +25,9 @@ interface ExportModalProps {
 }
 
 export function ExportModal({ isOpen, block, onClose }: ExportModalProps): JSX.Element {
-  const url = `${window.location.href.replace(/\/$/, "")}/import/${block.id}/${block.language}/${Base64.encode(
-    block.text
-  )}`;
+  const namespace = useNamespace();
+  const href = window.location.href.replace(namespace ?? "", "");
+  const url = `${href.replace(/\/+$/, "")}/import/${block.id}/${block.language}/${Base64.encode(block.text)}`;
   const { hasCopied, onCopy } = useClipboard(url);
 
   return (

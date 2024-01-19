@@ -4,6 +4,7 @@ import { useBlocks } from "../hooks/useBlocks";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { useGoogleDrive } from "../hooks/useGoogleDrive";
 import { type Block } from "../models/block";
+import { useNamespace } from "../hooks/useNamespace";
 
 interface SyncProps {
   onFinished: () => void;
@@ -31,7 +32,10 @@ function merge(a: Record<string, Block>, b: Record<string, Block>): Record<strin
 
 export function Sync({ onFinished, onError }: SyncProps): null {
   const toast = useToast();
-  const { drive, login, error } = useGoogleDrive("scratchpad_sync.json");
+  const namespace = useNamespace();
+  const syncFilename =
+    namespace === undefined ? "scratchpad_sync.json" : `scratchpad_sync_${namespace.replace("-", "_")}.json`;
+  const { drive, login, error } = useGoogleDrive(syncFilename);
   const [settings, updateSettings] = useGeneralSettings();
   const [blocks, updateBlocks] = useBlocks();
 

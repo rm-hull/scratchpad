@@ -1,5 +1,6 @@
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react";
 import { type JSX } from "react";
+import { useNamespace } from "../hooks/useNamespace";
 
 interface ResetDataModalProps {
   isOpen: boolean;
@@ -8,14 +9,16 @@ interface ResetDataModalProps {
 }
 
 export function ResetDataModal({ isOpen, onResetData, onCancel }: ResetDataModalProps): JSX.Element {
+  const namespace = useNamespace();
   return (
     <Modal isOpen={isOpen} onClose={onCancel}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Confirm remove all data?</ModalHeader>
         <ModalBody>
-          This will remove all blocks and any custom settings. Please ensure you have a back-up as it will not be
-          possible to recover the data once the operation completes.
+          This will remove all blocks and any custom settings in the <strong>{namespace ?? "default"}</strong> namespace
+          only. Please ensure you have a backup as it will not be possible to recover the data once the operation
+          completes.
         </ModalBody>
 
         <ModalFooter>

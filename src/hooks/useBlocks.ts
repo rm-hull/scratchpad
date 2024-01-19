@@ -1,5 +1,6 @@
 import { newBlock, type Block } from "../models/block";
 import useLocalStorage from "./useLocalStorage";
+import { useNamespace } from "./useNamespace";
 
 function newBlocks(): Record<string, Block> {
   const block = newBlock();
@@ -7,5 +8,7 @@ function newBlocks(): Record<string, Block> {
 }
 
 export function useBlocks(): [Record<string, Block>, (value: Record<string, Block> | undefined) => void] {
-  return useLocalStorage<Record<string, Block>>("scratchpad.blocks", newBlocks());
+  const namespace = useNamespace();
+  const key = namespace === undefined ? "scratchpad.blocks" : `scratchpad.blocks.${namespace}`;
+  return useLocalStorage<Record<string, Block>>(key, newBlocks());
 }

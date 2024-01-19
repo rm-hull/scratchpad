@@ -25,6 +25,7 @@ import { useGeneralSettings, type BooleanSettingsKeys } from "../hooks/useGenera
 import { type sortBy } from "../models/block";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import { DangerZoneSettings } from "./DangerZoneSettings";
+import { useNamespace } from "../hooks/useNamespace";
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -33,6 +34,7 @@ interface SettingsModalProps {
 
 export function SettingsModal({ isOpen, onClose }: SettingsModalProps): JSX.Element | null {
   const [settings, updateSettings] = useGeneralSettings();
+  const namespace = useNamespace();
   const handleUpdateSortOrder = (sortOrder: keyof typeof sortBy): void => {
     updateSettings({ ...settings, sortOrder });
   };
@@ -53,7 +55,7 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps): JSX.Elem
     <Modal isOpen={isOpen} onClose={onClose} size="2xl" scrollBehavior="inside">
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Settings</ModalHeader>
+        <ModalHeader>Settings: {namespace ?? "default namespace"}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <VStack align="left">
@@ -74,7 +76,6 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps): JSX.Elem
                 </HStack>
               </RadioGroup>
             </FormControl>
-
             <FormControl display="flex" alignItems="center">
               <Switch
                 id="show-zebra-stripes"
@@ -85,7 +86,6 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps): JSX.Elem
                 Show zebra stripes
               </FormLabel>
             </FormControl>
-
             <FormControl display="flex" alignItems="center">
               <Switch
                 id="show-line-numbers"
@@ -96,7 +96,6 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps): JSX.Elem
                 Show line numbers
               </FormLabel>
             </FormControl>
-
             <FormControl display="flex" alignItems="center">
               <Switch
                 id="permanently-show-search-bar"
@@ -107,7 +106,6 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps): JSX.Elem
                 Permanently show search bar
               </FormLabel>
             </FormControl>
-
             <FormControl display="flex" alignItems="center">
               <Switch
                 id="show-toolbar-for-every-block"
@@ -118,7 +116,6 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps): JSX.Elem
                 Show toolbar for every block
               </FormLabel>
             </FormControl>
-
             <FormControl display="flex" alignItems="center">
               <Switch
                 id="minimise-editor-toolbar"
@@ -129,7 +126,6 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps): JSX.Elem
                 Minimise editor toolbar
               </FormLabel>
             </FormControl>
-
             <FormControl display="flex" alignItems="center">
               <FormLabel htmlFor="print-width" mb={0}>
                 Formatting: print width
@@ -170,7 +166,6 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps): JSX.Elem
                 </NumberInputStepper>
               </NumberInput>
             </FormControl>
-
             <DangerZoneSettings />
           </VStack>
         </ModalBody>
