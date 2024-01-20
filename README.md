@@ -26,6 +26,23 @@ For Windows/Linux, use <kbd>CTRL</kbd> rather than <kbd>⌘</kbd>.
 
 Go to https://www.destructuring-bind.org/scratchpad to see it in action.
 
+### Namespaces
+
+The "default" namespace is hosted at https://www.destructuring-bind.org/scratchpad, but you can add anything after 
+the main URL to organise scratchpad blocks into separate namespaces, so you could have the following URLs, all which
+are isolated (both the blocks, their own settings configuration and Google Drive synchronisation):
+
+  * https://www.destructuring-bind.org/scratchpad/diary/2024
+  * https://www.destructuring-bind.org/scratchpad/recipies
+  * https://www.destructuring-bind.org/scratchpad/work-stuff
+
+There is no practical limit to the number of namespaces, however note that:
+  
+  * non-alphabetical characters are treated the same so https://www.destructuring-bind.org/scratchpad/diary/2024 and
+    https://www.destructuring-bind.org/scratchpad/diary-2024 resolve to the same namespace.
+  * namespaces are case-insensitive, so  https://www.destructuring-bind.org/scratchpad/recipies and
+    https://www.destructuring-bind.org/scratchpad/Recipies would resolve the the same namespace.
+
 ## Running locally
 
 You must have Node 20 and Yarn installed. To begin:
@@ -35,12 +52,15 @@ yarn install
 yarn dev
 ```
 
-If you want to test Sync behaviour, you will need to create a project in [Google Developer Console](https://console.cloud.google.com/apis/credentials) and create an OAuth 2.0 Client ID. Stop the server, and restart with:
+If you want to test Sync behaviour, you will need to create a project in [Google Developer Console](https://console.cloud.google.com/apis/credentials)
+and create an OAuth 2.0 Client ID. Stop the server, and restart with:
 
 ```console
 export VITE_GOOGLE_API_CLIENT_ID=<your-google-api-client-id>
 yarn dev
 ```
+
+This is not mandatory however, and if omitted, the sync capability will be marked as disabled in the context menu.
 
 ## License
 
