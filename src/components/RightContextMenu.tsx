@@ -58,7 +58,7 @@ export function RightContextMenu({
     } else {
       handleCreate(settings.defaultLanguage);
     }
-  }, [handleCreate, onOpenAddNew, settings.defaultLanguage]);
+  }, [handleCreate, onOpenAddNew, settings?.defaultLanguage]);
 
   const handleFromClipboard = async (): Promise<void> => {
     const block = newBlock();
