@@ -1,10 +1,11 @@
 import { Box, Divider, MenuItem, MenuList, useBoolean, useDisclosure, useToast, useToken } from "@chakra-ui/react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ContextMenu } from "chakra-ui-contextmenu";
-import { type JSX, type LegacyRef, type PropsWithChildren } from "react";
+import { useCallback, type JSX, type LegacyRef, type PropsWithChildren } from "react";
 import { FiClipboard, FiMessageSquare, FiPlus, FiRefreshCw, FiSearch, FiSettings } from "react-icons/fi";
 import { VscDebugConsole } from "react-icons/vsc";
 import { useKey } from "react-use";
+import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { focus, newBlock, type Block } from "../models/block";
 import { AboutModal } from "./AboutModal";
 import { AddNewModal } from "./AddNewModal";
@@ -30,6 +31,7 @@ export function RightContextMenu({
   onSearch,
 }: PropsWithChildren<RightContextMenuProps>): JSX.Element {
   const toast = useToast();
+  const [settings] = useGeneralSettings();
   const [green400, blue400, purple400] = useToken("colors", ["green.400", "blue.400", "purple.400"]);
   const { isOpen: isAddNewOpen, onOpen: onOpenAddNew, onClose: onCloseAddNew } = useDisclosure();
   const { isOpen: isAboutOpen, onOpen: onOpenAbout, onClose: onCloseAbout } = useDisclosure();
@@ -41,11 +43,22 @@ export function RightContextMenu({
   } = useDisclosure();
   const [isSyncing, { on: startSync, off: stopSync }] = useBoolean();
 
-  const handleAddNew = (language: string, text: string = ""): void => {
-    const block = { ...newBlock(language), text };
-    onBlockAdd(block);
-    focus(block);
-  };
+  const handleCreate = useCallback(
+    (language: string, text: string = "") => {
+      const block = { ...newBlock(language), text };
+      onBlockAdd(block);
+      focus(block);
+    },
+    [onBlockAdd]
+  );
+
+  const handleAddNew = useCallback(() => {
+    if (settings.defaultLanguage === undefined || settings.defaultLanguage === "none") {
+      onOpenAddNew();
+    } else {
+      handleCreate(settings.defaultLanguage);
+    }
+  }, [handleCreate, onOpenAddNew, settings.defaultLanguage]);
 
   const handleFromClipboard = async (): Promise<void> => {
     const block = newBlock();
@@ -70,7 +83,7 @@ export function RightContextMenu({
 
   useKey("Enter", (event) => {
     if (event.metaKey || event.ctrlKey) {
-      onOpenAddNew();
+      handleAddNew();
     }
   });
 
@@ -88,7 +101,7 @@ export function RightContextMenu({
       <ContextMenu
         renderMenu={() => (
           <MenuList zIndex={1000}>
-            <MenuItem command={commandPrefix + "↵"} icon={<FiPlus color={green400} />} onClick={onOpenAddNew}>
+            <MenuItem command={commandPrefix + "↵"} icon={<FiPlus color={green400} />} onClick={handleAddNew}>
               Add new...
             </MenuItem>
             <MenuItem
@@ -130,14 +143,14 @@ export function RightContextMenu({
       >
         {(ref: LegacyRef<HTMLDivElement>) => <Box ref={ref}>{children}</Box>}
       </ContextMenu>
-      {isAddNewOpen && <AddNewModal isOpen={isAddNewOpen} onCreate={handleAddNew} onCancel={onCloseAddNew} />}
+      {isAddNewOpen && <AddNewModal isOpen={isAddNewOpen} onCreate={handleCreate} onCancel={onCloseAddNew} />}
       {isSettingsOpen && <SettingsModal isOpen={isSettingsOpen} onClose={onCloseSettings} />}
       {isAboutOpen && <AboutModal isOpen={isAboutOpen} onClose={onCloseAbout} />}
       {isDecodeSelectionOpen && (
         <DecodeSelectionModal
           isOpen={isDecodeSelectionOpen}
           onClose={onCloseDecodeSelection}
-          onBlockAdd={handleAddNew}
+          onBlockAdd={handleCreate}
           selectedText={window.getSelection()?.toString()}
         />
       )}

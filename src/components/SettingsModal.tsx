@@ -17,15 +17,17 @@ import {
   NumberInputStepper,
   Radio,
   RadioGroup,
+  Select,
   Switch,
   VStack,
 } from "@chakra-ui/react";
-import { type JSX } from "react";
+import { type ChangeEvent, type JSX } from "react";
 import { useGeneralSettings, type BooleanSettingsKeys } from "../hooks/useGeneralSettings";
+import { useNamespace } from "../hooks/useNamespace";
 import { type sortBy } from "../models/block";
+import { supportedTypes } from "../models/fileTypes";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import { DangerZoneSettings } from "./DangerZoneSettings";
-import { useNamespace } from "../hooks/useNamespace";
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -51,6 +53,10 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps): JSX.Elem
     updateSettings({ ...settings, formatting: { ...settings.formatting, tabWidth } });
   };
 
+  const handleChangeLanguage = (event: ChangeEvent<HTMLSelectElement>): void => {
+    updateSettings({ ...settings, defaultLanguage: event.target.value });
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="2xl" scrollBehavior="inside">
       <ModalOverlay />
@@ -62,6 +68,27 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps): JSX.Elem
             <FormControl display="flex" alignItems="baseline">
               <FormLabel htmlFor="system-theme">Theme:</FormLabel>
               <ColorModeSwitcher />
+            </FormControl>
+            <FormControl display="flex" alignItems="center">
+              <FormLabel htmlFor="default-language" mb={0}>
+                Default language:
+              </FormLabel>
+              <Select
+                id="default-language"
+                width={200}
+                value={settings?.defaultLanguage ?? "none"}
+                onChange={handleChangeLanguage}
+                size="sm"
+              >
+                <option value="none">None</option>
+                <optgroup label="Specific language">
+                  {supportedTypes.map((fileType) => (
+                    <option key={fileType.language} value={fileType.language}>
+                      {fileType.descr}
+                    </option>
+                  ))}
+                </optgroup>
+              </Select>
             </FormControl>
             <FormControl display="flex" alignItems="center">
               <FormLabel htmlFor="sort-order" mb={0}>

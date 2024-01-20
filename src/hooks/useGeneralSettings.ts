@@ -20,6 +20,7 @@ export interface GeneralSettings {
     printWidth?: number;
     tabWidth?: number;
   };
+  defaultLanguage?: string;
 }
 
 export type BooleanSettingsKeys = BooleanKeys<GeneralSettings>;
@@ -31,6 +32,7 @@ const defaultSettings: GeneralSettings = {
   showToolbarForEveryBlock: false,
   minimiseEditorToolbar: false,
   sortOrder: "none",
+  defaultLanguage: "none",
 };
 
 export function useGeneralSettings(): [GeneralSettings, (value: GeneralSettings | undefined) => void] {
