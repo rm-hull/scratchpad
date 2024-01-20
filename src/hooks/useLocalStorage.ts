@@ -28,7 +28,7 @@ const useLocalStorage = <T>(key: string, initialValue: T): UseLocalStorageReturn
       setStoredValue((prev) => ({ ...prev, [key]: value }));
       window.dispatchEvent(new Event("local-storage"));
     } catch (error) {
-      console.error(`Error setting localStorage key “${key}”:`, error);
+      console.error("Error setting localStorage key “%s”:", key, error);
     }
   };
 
