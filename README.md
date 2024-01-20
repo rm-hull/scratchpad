@@ -14,11 +14,15 @@ and sync to Google.
 
 ### Keyboard shortcuts
 
-<kbd>CMD</kbd> <kbd>/</kbd> - Search
+On MacOS,
 
-<kbd>CMD</kbd> <kbd>ENTER</kbd> - Add new block
+&nbsp;&nbsp;<kbd>⌘</kbd> <kbd>/</kbd> - Search
 
-<kbd>CMD</kbd> <kbd>.</kbd> - Base64-decode selected text
+&nbsp;&nbsp;<kbd>⌘</kbd> <kbd>ENTER</kbd> - Add new block
+
+&nbsp;&nbsp;<kbd>⌘</kbd> <kbd>.</kbd> - Base64-decode selected text
+
+For Windows/Linux, use <kbd>CTRL</kbd> rather than <kbd>⌘</kbd>.
 
 Go to https://www.destructuring-bind.org/scratchpad to see it in action.
 
