@@ -36,9 +36,6 @@ jobs:
         run: |
           yarn install
 
-      - name: Lint
-        run: yarn lint || exit 0
-
       - name: Test
         run: yarn test:ci
 
@@ -52,6 +49,9 @@ jobs:
           VITE_GOOGLE_API_CLIENT_ID: ${{ secrets.VITE_GOOGLE_API_CLIENT_ID }}
           VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID: ${{ secrets.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID }}
         run: yarn build && cp ./dist/index.html ./dist/404.html
+
+      - name: Lint
+        run: yarn lint || exit 0
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
