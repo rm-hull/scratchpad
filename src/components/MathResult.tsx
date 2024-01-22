@@ -12,7 +12,7 @@ interface MathResultProps {
 export function MathResult({ result, xOffset, isError, lineNumbers }: MathResultProps): JSX.Element | null {
   const [isActive, { on, off }] = useBoolean();
   const { hasCopied, onCopy } = useClipboard(result);
-  const left = (lineNumbers ? 80 : 45) + xOffset * 7.2;
+  const left = (lineNumbers ? 80 : 45) + xOffset * 7.8;
 
   return (
     <Box
