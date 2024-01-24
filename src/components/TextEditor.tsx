@@ -82,7 +82,9 @@ export function TextEditor({
 
   useDebounce(
     () => {
-      onBlockChange({ ...block, text: value, updatedAt: Date.now() });
+      if (value !== block.text) {
+        onBlockChange({ ...block, text: value, updatedAt: Date.now() });
+      }
     },
     1000,
     [value]
