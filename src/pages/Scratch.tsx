@@ -2,6 +2,7 @@ import { Container, Divider, useColorModeValue, useDisclosure } from "@chakra-ui
 import * as R from "ramda";
 import { useEffect, useState, type JSX } from "react";
 import { Dropzone } from "../components/DropZone";
+import { GettingStartedModal } from "../components/GettingStartedModal";
 import { RightContextMenu } from "../components/RightContextMenu";
 import { Search } from "../components/Search";
 import { TextEditor } from "../components/TextEditor";
@@ -11,7 +12,12 @@ import { newBlock, sortBy, type Block } from "../models/block";
 import { fromFilename } from "../models/fileTypes";
 
 export function Scratch(): JSX.Element {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: isSearchOpen, onOpen: onOpenSearch, onClose: onCloseSearch } = useDisclosure();
+  const {
+    isOpen: isGettingStartedOpen,
+    onOpen: onOpenGettingStarted,
+    onClose: onCloseGettingStarted,
+  } = useDisclosure();
   const [searchTerm, setSearchTerm] = useState<RegExp>();
   const [blocks, updateBlocks] = useBlocks();
   const [settings] = useGeneralSettings();
@@ -56,27 +62,30 @@ export function Scratch(): JSX.Element {
   };
 
   useEffect((): void => {
-    if (R.isEmpty(blocks)) {
-      const block = newBlock();
-      updateBlocks({ [block.id]: block });
+    // debugger;
+    if (blocks !== undefined && Object.values(blocks).length === 1) {
+      const block = Object.values(blocks)[0];
+      if (R.isEmpty(block.text) && block.updatedAt === undefined) {
+        onOpenGettingStarted();
+      }
     }
-  }, [blocks, updateBlocks]);
+  }, [blocks, onOpenGettingStarted]);
 
   const sortFn = sortBy[settings?.sortOrder ?? "none"];
-
   const filteredBlocks = R.values(blocks).filter(
     (block) => block.archived !== true && (searchTerm === undefined || block.text.match(searchTerm) !== null)
   );
 
   return (
     <Dropzone onFileDropped={handleFileDropped}>
-      <RightContextMenu onBlockAdd={handleBlockChange} onSearch={onOpen}>
+      <RightContextMenu onBlockAdd={handleBlockChange} onSearch={onOpenSearch}>
         <Search
           onChange={handleSearchChange}
           matches={searchTerm === undefined ? undefined : filteredBlocks.length}
-          isOpen={isOpen || settings?.permanentlyShowSearchBar}
-          onClose={onClose}
+          isOpen={isSearchOpen || settings?.permanentlyShowSearchBar}
+          onClose={onCloseSearch}
         />
+        {isGettingStartedOpen && <GettingStartedModal isOpen={isGettingStartedOpen} onClose={onCloseGettingStarted} />}
         {sortFn(filteredBlocks).map((block, index) => (
           <Container p={0} key={block.id} maxWidth="100%">
             <TextEditor
