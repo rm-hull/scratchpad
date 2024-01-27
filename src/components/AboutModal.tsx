@@ -33,6 +33,15 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps): JSX.Element | 
           <VStack align="left">
             <Text>
               Scratchpad is a small web-app where you can store notes in local storage, and sync with your Google Drive.
+              Please read the{" "}
+              <Link isExternal color="blue.400" href="/scratchpad/privacy_policy.txt">
+                privacy policy
+              </Link>{" "}
+              and the{" "}
+              <Link isExternal color="blue.400" href="/scratchpad/terms_of_service.txt">
+                Terms of Service
+              </Link>
+              .
             </Text>
 
             <VStack gap={0} align="left">
