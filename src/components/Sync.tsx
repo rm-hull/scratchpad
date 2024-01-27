@@ -30,6 +30,19 @@ function merge(a: Record<string, Block>, b: Record<string, Block>): Record<strin
   return result;
 }
 
+function removeEmpty(blocks: Record<string, Block>): Record<string, Block> {
+  return Object.values(blocks).reduce((accum: Record<string, Block>, curr: Block) => {
+    if (curr.text.trim.length === 0) {
+      return accum;
+    } else {
+      return {
+        ...accum,
+        [curr.id]: curr,
+      };
+    }
+  }, {});
+}
+
 export function Sync({ onFinished, onError }: SyncProps): null {
   const toast = useToast();
   const namespace = useNamespace();
@@ -75,7 +88,7 @@ export function Sync({ onFinished, onError }: SyncProps): null {
 
     const downloaded = await drive.download();
     const newSettings = { ...downloaded.settings, ...settings };
-    const merged = merge(downloaded.blocks, blocks);
+    const merged = removeEmpty(merge(downloaded.blocks, blocks));
 
     await drive.upload({
       settings: newSettings,
