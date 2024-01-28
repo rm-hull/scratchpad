@@ -5,14 +5,24 @@ const localStorage = atom<Record<string, unknown>>({});
 
 type UseLocalStorageReturnType<T> = [T, (value: T | undefined) => void];
 
-const useLocalStorage = <T>(key: string, initialValue: T): UseLocalStorageReturnType<T> => {
+const useLocalStorage = <T extends object>(key: string, initialValue: T): UseLocalStorageReturnType<T> => {
   const readValue = (): T => {
     if (typeof window === "undefined") {
       return initialValue;
     }
 
     const item = window.localStorage.getItem(key);
-    return item === null || item === undefined ? initialValue : (JSON.parse(item) as T);
+    if (item === null || item === undefined) {
+      return initialValue;
+    }
+
+    const parsedValue = JSON.parse(item) as T;
+
+    if (Object.keys(parsedValue).length === 0) {
+      return initialValue;
+    }
+
+    return parsedValue;
   };
 
   const [storedValue, setStoredValue] = useAtom(localStorage);

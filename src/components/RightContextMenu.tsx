@@ -53,7 +53,7 @@ export function RightContextMenu({
   );
 
   const handleAddNew = useCallback(() => {
-    if (settings.defaultLanguage === undefined || settings.defaultLanguage === "none") {
+    if (settings?.defaultLanguage === undefined || settings.defaultLanguage === "none") {
       onOpenAddNew();
     } else {
       handleCreate(settings.defaultLanguage);
