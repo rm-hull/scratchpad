@@ -32,7 +32,7 @@ function merge(a: Record<string, Block>, b: Record<string, Block>): Record<strin
 
 function removeEmpty(blocks: Record<string, Block>): Record<string, Block> {
   return Object.values(blocks).reduce((accum: Record<string, Block>, curr: Block) => {
-    if (curr.text.trim.length === 0) {
+    if (curr.text.trim().length === 0) {
       return accum;
     } else {
       return {
