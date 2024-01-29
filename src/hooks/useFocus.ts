@@ -1,12 +1,12 @@
-import { type RefObject, useRef } from "react";
+import { type RefObject, useRef, useCallback } from "react";
 
 export function useFocus<T extends HTMLElement>(): [RefObject<T>, () => void] {
   const htmlElRef = useRef<T>(null);
-  const setFocus = (): void => {
+  const setFocus = useCallback(() => {
     if (htmlElRef.current !== null) {
       htmlElRef.current.focus();
     }
-  };
+  }, [htmlElRef]);
 
   return [htmlElRef, setFocus];
 }
