@@ -1589,12 +1589,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.23.8":
-  version: 7.23.8
-  resolution: "@babel/runtime@npm:7.23.8"
+"@babel/runtime@npm:^7.23.9":
+  version: 7.23.9
+  resolution: "@babel/runtime@npm:7.23.9"
   dependencies:
     regenerator-runtime: "npm:^0.14.0"
-  checksum: ec8f1967a36164da6cac868533ffdff97badd76d23d7d820cc84f0818864accef972f22f9c6a710185db1e3810e353fc18c3da721e5bb3ee8bc61bdbabce03ff
+  checksum: 9a520fe1bf72249f7dd60ff726434251858de15cccfca7aa831bd19d0d3fb17702e116ead82724659b8da3844977e5e13de2bae01eb8a798f2823a669f122be6
   languageName: node
   linkType: hard
 
@@ -7553,11 +7553,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mathjs@npm:^12.3.0":
-  version: 12.3.0
-  resolution: "mathjs@npm:12.3.0"
+"mathjs@npm:^12.3.1":
+  version: 12.3.1
+  resolution: "mathjs@npm:12.3.1"
   dependencies:
-    "@babel/runtime": "npm:^7.23.8"
+    "@babel/runtime": "npm:^7.23.9"
     complex.js: "npm:^2.1.1"
     decimal.js: "npm:^10.4.3"
     escape-latex: "npm:^1.2.0"
@@ -7568,7 +7568,7 @@ __metadata:
     typed-function: "npm:^4.1.1"
   bin:
     mathjs: bin/cli.js
-  checksum: bdfdf688b56709d2397fa8af12fa97ffce3028628650d8b314173e000a76d737fcc5acb2db033234d1e6e7a1377a5ce8b9f6a60e56f2f52bcf346146d7ff977a
+  checksum: e52dfdaea663c41e36d715c0842fbaf7cced12b2a853fb98d5cfe219e722e1f09594b20f8a065f783e2f6289346c23d6f426cfdc7758454f40ef5291df278af6
   languageName: node
   linkType: hard
 
@@ -8917,7 +8917,7 @@ __metadata:
     hexy: "npm:^0.3.5"
     jotai: "npm:^2.6.4"
     js-base64: "npm:^3.7.6"
-    mathjs: "npm:^12.3.0"
+    mathjs: "npm:^12.3.1"
     pluralize: "npm:^8.0.0"
     prettier: "npm:^3.2.4"
     prismjs: "npm:^1.29.0"
