@@ -8,7 +8,7 @@ import { useDebounce } from "react-use";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { type Block } from "../models/block";
 import { fromLanguage } from "../models/fileTypes";
-import { evaluate, type MathResults } from "../models/math";
+import { Evaluator, type MathResults } from "../models/math";
 import { replaceInXmlText } from "../models/replacer";
 import { ExportModal } from "./ExportModal";
 import { MathResult } from "./MathResult";
@@ -130,6 +130,17 @@ export function TextEditor({
     setValue(text);
   };
 
+  const mathEvaluator = useCallback(
+    (text: string): MathResults => {
+      if (block.language !== "math.js") {
+        return {};
+      }
+
+      return new Evaluator().evaluate(text);
+    },
+    [block.language]
+  );
+
   return (
     <Box backgroundColor={backgroundColor} onMouseEnter={activateToolbar} onMouseLeave={deactivateToolbar}>
       <Box position="absolute" right={0} zIndex={99} borderRadius={2} backgroundColor={backgroundColor}>
@@ -161,7 +172,7 @@ export function TextEditor({
           hightlightWithLineNumbers(
             settings?.showLineNumbers ?? false,
             highlight,
-            block.language === "math.js" ? evaluate(text) : {},
+            mathEvaluator(text),
             text,
             fileType.grammar,
             block.language
