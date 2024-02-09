@@ -7,6 +7,7 @@ import Editor from "react-simple-code-editor";
 import { useDebounce } from "react-use";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { type Block } from "../models/block";
+import { useCursorPosition } from "../hooks/useCursorPosition";
 import { fromLanguage } from "../models/fileTypes";
 import { Evaluator, type MathResults } from "../models/math";
 import { replaceInXmlText } from "../models/replacer";
@@ -19,6 +20,7 @@ interface TextEditorProps {
   block: Block;
   highlight?: RegExp;
   backgroundColor?: string;
+  onBlockActive?: (block: Block) => void;
   onBlockChange: (block: Block) => void;
   onBlockDelete: (id: Block["id"], archive: boolean) => void;
 }
@@ -68,6 +70,7 @@ function getMaxLineLength(input: string): number {
 
 export function TextEditor({
   block,
+  onBlockActive,
   onBlockChange,
   onBlockDelete,
   highlight,
@@ -79,6 +82,7 @@ export function TextEditor({
   const fileType = useMemo(() => fromLanguage(block.language), [block.language]);
   const { onCopy, hasCopied, value, setValue } = useClipboard(block.text);
   const { isOpen: isExportModalOpen, onOpen: onExportOpen, onClose: onExportClose } = useDisclosure();
+  // const textarea = useMemo(() => document.getElementById(block.id) as HTMLTextAreaElement, [block?.id]);
 
   useDebounce(
     () => {
@@ -89,6 +93,8 @@ export function TextEditor({
     1000,
     [value]
   );
+
+  const { setCursorPosition } = useCursorPosition();
 
   const handleError = useCallback(
     (error: Error) => {
@@ -168,6 +174,19 @@ export function TextEditor({
         textareaClassName="codeArea"
         value={value}
         onValueChange={setValue}
+        onKeyUp={() => {
+          const textarea = document.getElementById(block.id) as HTMLTextAreaElement;
+          setCursorPosition(textarea, value);
+        }}
+        onMouseUp={() => {
+          const textarea = document.getElementById(block.id) as HTMLTextAreaElement;
+          setCursorPosition(textarea, value);
+        }}
+        onFocus={() => {
+          const textarea = document.getElementById(block.id) as HTMLTextAreaElement;
+          setCursorPosition(textarea, value);
+          onBlockActive?.(block);
+        }}
         highlight={(text: string) =>
           hightlightWithLineNumbers(
             settings?.showLineNumbers ?? false,
