@@ -1,9 +1,6 @@
 import { Box, useBoolean, useClipboard, useDisclosure, useToast } from "@chakra-ui/react";
 import clsx from "clsx";
-import { highlight, type Grammar } from "prismjs";
-import "prismjs/themes/prism.css";
 import { useCallback, useMemo, type JSX } from "react";
-import Editor from "react-simple-code-editor";
 import { useDebounce } from "react-use";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { type Block } from "../models/block";
@@ -14,6 +11,9 @@ import { ExportModal } from "./ExportModal";
 import { MathResult } from "./MathResult";
 import "./TextEditor.styles.css";
 import { Toolbar } from "./Toolbar";
+// import CodeMirror from "@uiw/react-codemirror";
+// import MonacoEditor from "@uiw/react-monacoeditor";
+import MonacoEditor from "react-monaco-editor";
 
 interface TextEditorProps {
   block: Block;
@@ -23,48 +23,48 @@ interface TextEditorProps {
   onBlockDelete: (id: Block["id"], archive: boolean) => void;
 }
 
-function mark(regexp: RegExp | undefined, input: string, grammar: Grammar, language: string): string {
-  const result = highlight(input, grammar, language);
-  if (regexp === undefined) {
-    return result;
-  }
+// function mark(regexp: RegExp | undefined, input: string, grammar: Grammar, language: string): string {
+//   const result = highlight(input, grammar, language);
+//   if (regexp === undefined) {
+//     return result;
+//   }
 
-  return replaceInXmlText(result, regexp, "<mark>$1</mark>");
-}
+//   return replaceInXmlText(result, regexp, "<mark>$1</mark>");
+// }
 
-function hightlightWithLineNumbers(
-  lineNumbers: boolean,
-  regexp: RegExp | undefined,
-  results: MathResults,
-  input: string,
-  grammar: Grammar,
-  language: string
-): JSX.Element[] {
-  const xOffset = getMaxLineLength(input);
-  return mark(regexp, input, grammar, language)
-    .split("\n")
-    .map((line: string, index: number) => (
-      <div key={index}>
-        {lineNumbers && <span className="editorLineNumber">{index + 1}</span>}
-        <span dangerouslySetInnerHTML={{ __html: line }} />
-        {results[index] !== undefined && (
-          <MathResult
-            xOffset={xOffset}
-            result={results[index].message}
-            isError={results[index].error}
-            lineNumbers={lineNumbers}
-          />
-        )}
-        <br />
-      </div>
-    ));
-}
+// function hightlightWithLineNumbers(
+//   lineNumbers: boolean,
+//   regexp: RegExp | undefined,
+//   results: MathResults,
+//   input: string,
+//   grammar: Grammar,
+//   language: string
+// ): JSX.Element[] {
+//   const xOffset = getMaxLineLength(input);
+//   return mark(regexp, input, grammar, language)
+//     .split("\n")
+//     .map((line: string, index: number) => (
+//       <div key={index}>
+//         {lineNumbers && <span className="editorLineNumber">{index + 1}</span>}
+//         <span dangerouslySetInnerHTML={{ __html: line }} />
+//         {results[index] !== undefined && (
+//           <MathResult
+//             xOffset={xOffset}
+//             result={results[index].message}
+//             isError={results[index].error}
+//             lineNumbers={lineNumbers}
+//           />
+//         )}
+//         <br />
+//       </div>
+//     ));
+// }
 
-function getMaxLineLength(input: string): number {
-  const lines = input.split("\n");
-  const maxLineLength = Math.max(...lines.map((line) => line.length));
-  return maxLineLength;
-}
+// function getMaxLineLength(input: string): number {
+//   const lines = input.split("\n");
+//   const maxLineLength = Math.max(...lines.map((line) => line.length));
+//   return maxLineLength;
+// }
 
 export function TextEditor({
   block,
@@ -130,16 +130,16 @@ export function TextEditor({
     setValue(text);
   };
 
-  const mathEvaluator = useCallback(
-    (text: string): MathResults => {
-      if (block.language !== "math.js") {
-        return {};
-      }
+  // const mathEvaluator = useCallback(
+  //   (text: string): MathResults => {
+  //     if (block.language !== "math.js") {
+  //       return {};
+  //     }
 
-      return new Evaluator().evaluate(text);
-    },
-    [block.language]
-  );
+  //     return new Evaluator().evaluate(text);
+  //   },
+  //   [block.language]
+  // );
 
   return (
     <Box backgroundColor={backgroundColor} onMouseEnter={activateToolbar} onMouseLeave={deactivateToolbar}>
@@ -162,24 +162,37 @@ export function TextEditor({
           }}
         />
       </Box>
-      <Editor
-        disabled={block.locked}
-        textareaId={block.id}
-        textareaClassName="codeArea"
+      <MonacoEditor
+        language="html"
+        // value="<h1>I ♥ react-monacoeditor</h1>"
+        height="fit-content"
+        width="100%"
+        // height="300px"
+        // disabled={block.locked}
+        // textareaId={block.id}
+        // textareaClassName="codeArea"
         value={value}
-        onValueChange={setValue}
-        highlight={(text: string) =>
-          hightlightWithLineNumbers(
-            settings?.showLineNumbers ?? false,
-            highlight,
-            mathEvaluator(text),
-            text,
-            fileType.grammar,
-            block.language
-          )
-        }
-        padding={5}
-        className={clsx("editor", (settings?.showLineNumbers ?? false) && "lineNumbers")}
+        // language={block.language}
+        // onChange={setValue}
+        // highlight= {(text: string) =>
+        // hightlightWithLineNumbers(
+        // settings?.showLineNumbers ?? false,
+        // highlight,
+        // mathEvaluator(text),
+        // text,
+        // fileType.grammar,
+        // block.language
+        // )
+        // }
+        // wrapperProps={{ padding: 5, height: "100%" }}
+        // options={{
+        //   inlineSuggest: true,
+        //   fontSize: "16px",
+        //   formatOnType: true,
+        //   autoClosingBrackets: true,
+        //   minimap: { scale: 10 },
+        // }}
+        // className={clsx("editor", (settings?.showLineNumbers ?? false) && "lineNumbers")}
       />
       {isExportModalOpen && <ExportModal isOpen={isExportModalOpen} block={block} onClose={onExportClose} />}
     </Box>

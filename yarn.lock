@@ -3719,7 +3719,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prismjs@npm:^1.26.3":
+"@types/prismjs@npm:^1":
   version: 1.26.3
   resolution: "@types/prismjs@npm:1.26.3"
   checksum: 4bd55230ffc0b2b16f4008be3a7f1d7c6b32dd3bed8006e64d24fb22c44fc7e300dac77b856f732803ccdc9a3472b2c0ee7776cad048843c47d608c41a89b6a6
@@ -7763,6 +7763,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"monaco-editor@npm:^0.46.0":
+  version: 0.46.0
+  resolution: "monaco-editor@npm:0.46.0"
+  checksum: 827b8e8e73a2032c14c4f5c7f112e6a42467c1f43ae3b9d63eec68539345156ccef91fd2efcb65b063c960692efe44b8b482832e5d078a781cdff2b0fe5c906c
+  languageName: node
+  linkType: hard
+
 "ms@npm:2.1.2":
   version: 2.1.2
   resolution: "ms@npm:2.1.2"
@@ -8420,6 +8427,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-monaco-editor@npm:^0.55.0":
+  version: 0.55.0
+  resolution: "react-monaco-editor@npm:0.55.0"
+  dependencies:
+    prop-types: "npm:^15.8.1"
+  peerDependencies:
+    "@types/react": ">=16 <= 18"
+    monaco-editor: ^0.44.0
+    react: ">=16 <= 18"
+  checksum: 3c4ee8cf43c5df02e24a0f8d761923b60bdd35a60946274c22024b66beb66dc3dc4ae2052ee16e83048436be7f8ca91d0aee86010095fb195e5acbb1a2aad828
+  languageName: node
+  linkType: hard
+
 "react-refresh@npm:^0.14.0":
   version: 0.14.0
   resolution: "react-refresh@npm:0.14.0"
@@ -8483,16 +8503,6 @@ __metadata:
   peerDependencies:
     react: ">=16.8"
   checksum: 627c25533667da0c8008587208e0d5633409173969fd579de706cde355465f6d1245e2b1a7ca2adeb96201f2858932b59ce3402482786cd20c4bf278562976dd
-  languageName: node
-  linkType: hard
-
-"react-simple-code-editor@npm:^0.13.1":
-  version: 0.13.1
-  resolution: "react-simple-code-editor@npm:0.13.1"
-  peerDependencies:
-    react: "*"
-    react-dom: "*"
-  checksum: 6374b164b4d0f30d7a5c7ad424539cfea2f367e6f1ce78a52d207058835e3628645a88439af22012b5b00d72867f84d17173b49ec37df1145a5994e367937dcf
   languageName: node
   linkType: hard
 
@@ -8886,7 +8896,7 @@ __metadata:
     "@testing-library/user-event": "npm:^14.5.2"
     "@types/node": "npm:^20.11.16"
     "@types/pluralize": "npm:^0.0.33"
-    "@types/prismjs": "npm:^1.26.3"
+    "@types/prismjs": "npm:^1"
     "@types/ramda": "npm:^0.29.10"
     "@types/react": "npm:^18.2.52"
     "@types/react-dom": "npm:^18.2.18"
@@ -8918,6 +8928,7 @@ __metadata:
     jotai: "npm:^2.6.4"
     js-base64: "npm:^3.7.6"
     mathjs: "npm:^12.3.1"
+    monaco-editor: "npm:^0.46.0"
     pluralize: "npm:^8.0.0"
     prettier: "npm:^3.2.4"
     prismjs: "npm:^1.29.0"
@@ -8928,8 +8939,8 @@ __metadata:
     react-error-boundary: "npm:^4.0.12"
     react-ga4: "npm:^2.1.0"
     react-icons: "npm:^5.0.1"
+    react-monaco-editor: "npm:^0.55.0"
     react-router-dom: "npm:^6.22.0"
-    react-simple-code-editor: "npm:^0.13.1"
     react-use: "npm:^17.5.0"
     typescript: "npm:^5.3.3"
     vite: "npm:^5.0.12"

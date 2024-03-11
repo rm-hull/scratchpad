@@ -1,0 +1,59 @@
+{
+  "fe0daa02-89ca-4c1e-9c53-fa063b2b6904": {
+    "id": "fe0daa02-89ca-4c1e-9c53-fa063b2b6904",
+    "createdAt": 1703361061007,
+    "text": "{ \n  \"fred\": [1, 2, 3], \n  \"bob\": \"jones\"\n} ",
+    "language": "json",
+    "updatedAt": 1703548895532
+  },
+  "3e45c463-6dbb-4bf5-99fa-34f6cdbfc4b5": {
+    "id": "3e45c463-6dbb-4bf5-99fa-34f6cdbfc4b5",
+    "createdAt": 1703363167418,
+    "text": "# scratchpad\n\n## Building locally\n\n```console\n$ yarn dev\n```",
+    "language": "markdown",
+    "updatedAt": 1703547344331
+  },
+  "03e5b04b-8ae5-4f2a-aafd-eaddd61fe22f": {
+    "id": "03e5b04b-8ae5-4f2a-aafd-eaddd61fe22f",
+    "createdAt": 1703363195413,
+    "text": "def hello(name: str): \n  print(f\"Hello {name}\")\n  ",
+    "language": "python",
+    "updatedAt": 1703547683603
+  },
+  "440946bc-ae93-4156-90da-59b0c1dabd4f": {
+    "id": "440946bc-ae93-4156-90da-59b0c1dabd4f",
+    "createdAt": 1703363762861,
+    "text": "<html>\n  <head>\n    <meta name=\"fsdfs\">\n    <meta name=\"dfdsfs\">\n  </head>\n</html>",
+    "language": "html",
+    "updatedAt": 1703547202429
+  },
+  "7ff9efef-041b-4e02-a4ca-33adffb54344": {
+    "id": "7ff9efef-041b-4e02-a4ca-33adffb54344",
+    "createdAt": 1703364322618,
+    "text": "fixed=3\nfreddy.jones=\"Hello\"\n",
+    "language": "properties",
+    "updatedAt": 1703547998837
+  },
+  "ef8e64b8-0a00-4ef8-a0a3-18ba5873ccf1": {
+    "id": "ef8e64b8-0a00-4ef8-a0a3-18ba5873ccf1",
+    "createdAt": 1703364356332,
+    "text": "SELECT \n  field1, \n  field2 \nFROM \n  file \nWHERE name='freddy';",
+    "language": "sql",
+    "updatedAt": 1703547685719
+  },
+  "c09f0afc-43c7-43b3-826e-b7bed6f1b1c4": {
+    "id": "c09f0afc-43c7-43b3-826e-b7bed6f1b1c4",
+    "createdAt": 1703372417530,
+    "text": "fred:\n  bob:\n    - 1\n    - yes\n    - \"hello\"",
+    "language": "yaml",
+    "updatedAt": 1703547332377
+  },
+  "323a8077-eefb-4c30-8dde-d111e78073f4": {
+    "id": "323a8077-eefb-4c30-8dde-d111e78073f4",
+    "createdAt": 1703546326099,
+    "text": "# MIT License\nCopyright © 2023 Richard Hull\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
+    "language": "markdown",
+    "locked": true,
+    "updatedAt": 1703547419133
+  }
+}
