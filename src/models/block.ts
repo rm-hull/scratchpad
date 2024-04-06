@@ -34,3 +34,10 @@ export function focus(block: Block): void {
     element?.focus();
   }, 200);
 }
+
+export function listNamespaces(): string[] {
+  return Object.keys(window.localStorage)
+    .filter((name) => name.startsWith("scratchpad.blocks."))
+    .map((name) => name.substring(18))
+    .sort();
+}

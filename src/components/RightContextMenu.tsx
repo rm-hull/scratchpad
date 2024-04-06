@@ -12,6 +12,7 @@ import { AddNewModal } from "./AddNewModal";
 import { DecodeSelectionModal } from "./DecodeSelectionModal";
 import { SettingsModal } from "./SettingsModal";
 import { Sync } from "./Sync";
+import { GotoNamespace } from "./GotoScratchpad";
 
 const isMac = navigator.platform.toLowerCase().includes("mac");
 const commandPrefix = isMac ? "⌘" : "CTRL";
@@ -131,6 +132,9 @@ export function RightContextMenu({
             >
               Sync
             </MenuItem>
+
+            <GotoNamespace />
+
             <Divider />
             <MenuItem icon={<FiSettings />} onClick={onOpenSettings}>
               Settings
