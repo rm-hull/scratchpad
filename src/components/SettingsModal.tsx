@@ -42,7 +42,7 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps): JSX.Elem
   };
 
   const handleToggle = (key: BooleanSettingsKeys) => () => {
-    updateSettings({ ...settings, [key]: !settings[key] as boolean });
+    updateSettings({ ...settings, [key]: !settings[key] });
   };
 
   const handleFormattingPrintWidth = (_: string, printWidth: number): void => {

@@ -10,6 +10,5 @@ function safeNamespace(namespace?: string): string | undefined {
 
 export function useNamespace(): string | undefined {
   const { "*": namespace } = useParams();
-
   return safeNamespace(namespace);
 }
