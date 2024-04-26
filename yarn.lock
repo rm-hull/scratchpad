@@ -3713,13 +3713,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^18.2.78":
+"@types/react@npm:*":
   version: 18.2.78
   resolution: "@types/react@npm:18.2.78"
   dependencies:
     "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
   checksum: 10/a4bf8104c580fab40535cc6058425ac6a47c19b8dad45b566cdb38aaafa3ffa1f24e7b65ec95e391a6c18ccf4a33738a591c1f723c00300f13d61fc456a1eb8d
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^18.3.0":
+  version: 18.3.0
+  resolution: "@types/react@npm:18.3.0"
+  dependencies:
+    "@types/prop-types": "npm:*"
+    csstype: "npm:^3.0.2"
+  checksum: 10/2444294740016d61721df9adeb8635658c660c13b0782df9f067260ac6b0a4b71e68245089814ab53264843eb75f81d90f770253b94a13955cc1ddccf3593301
   languageName: node
   linkType: hard
 
@@ -8298,12 +8308,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^18.2.0":
-  version: 18.2.0
-  resolution: "react@npm:18.2.0"
+"react@npm:^18.3.0":
+  version: 18.3.0
+  resolution: "react@npm:18.3.0"
   dependencies:
     loose-envify: "npm:^1.1.0"
-  checksum: 10/b9214a9bd79e99d08de55f8bef2b7fc8c39630be97c4e29d7be173d14a9a10670b5325e94485f74cd8bff4966ef3c78ee53c79a7b0b9b70cba20aa8973acc694
+  checksum: 10/17112377dad4e5c868b608be57c8e970a3f6ee6eb6269a5c4c23b11b8b4f393c42a8a046be0c9ddbc5f182b909330ddbecab905bcdea5051b05ec3914491fd79
   languageName: node
   linkType: hard
 
@@ -8638,7 +8648,7 @@ __metadata:
     "@types/pluralize": "npm:^0.0.33"
     "@types/prismjs": "npm:^1.26.3"
     "@types/ramda": "npm:^0.29.12"
-    "@types/react": "npm:^18.2.78"
+    "@types/react": "npm:^18.3.0"
     "@types/react-dom": "npm:^18.2.25"
     "@types/xml2js": "npm:^0.4.14"
     "@typescript-eslint/eslint-plugin": "npm:^7.6.0"
@@ -8672,7 +8682,7 @@ __metadata:
     prettier: "npm:^3.2.5"
     prismjs: "npm:^1.29.0"
     ramda: "npm:^0.29.1"
-    react: "npm:^18.2.0"
+    react: "npm:^18.3.0"
     react-dom: "npm:^18.2.0"
     react-dropzone: "npm:^14.2.3"
     react-error-boundary: "npm:^4.0.13"
