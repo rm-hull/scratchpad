@@ -7,7 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { App } from "./App";
 import { ErrorFallback } from "./components/ErrorFallback";
 import "./main.css";
-import reportWebVitals from "./reportWebVitals";
+import { reportWebVitals } from "./reportWebVitals";
 
 if (import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID !== undefined) {
   ReactGA.initialize(import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID as string);
