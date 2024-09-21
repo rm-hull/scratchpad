@@ -2,7 +2,6 @@ import {
   Button,
   Code,
   Divider,
-  Heading,
   Link,
   Modal,
   ModalBody,
