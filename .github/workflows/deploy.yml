@@ -4,6 +4,8 @@ on:
     - cron: "30 17 * * 1"
   push:
     branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
   workflow_dispatch:
 
@@ -17,10 +19,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -36,6 +35,9 @@ jobs:
         run: |
           yarn install
 
+      # - name: Lint
+      #   run: yarn lint
+
       - name: Test
         run: yarn test:ci
 
@@ -50,16 +52,32 @@ jobs:
           VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID: ${{ secrets.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID }}
         run: yarn build && cp ./dist/index.html ./dist/404.html
 
-      - name: Lint
-        run: yarn lint || exit 0
+      - name: Store dist files
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-files
+          path: ./dist/
 
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
+    steps:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-files
+          path: ./dist/
+
+      - name: Upload to Github Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./dist"
+          path: ./dist
 
       - name: Deploy to GitHub Pages
         id: deployment
