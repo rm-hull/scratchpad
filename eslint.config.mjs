@@ -13,6 +13,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
 import { FlatCompat } from "@eslint/eslintrc";
+import reactCompiler from "eslint-plugin-react-compiler";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -40,6 +41,7 @@ export default [{
     "plugin:prettier/recommended",
 )), {
     plugins: {
+        "react-compiler": reactCompiler,
         "@typescript-eslint": fixupPluginRules(typescriptEslint),
         react: fixupPluginRules(react),
         promise: fixupPluginRules(promise),
@@ -82,5 +84,7 @@ export default [{
         }],
     },
 
-    rules: {},
+    rules: {
+        "react-compiler/react-compiler": "error",
+    },
 }];
