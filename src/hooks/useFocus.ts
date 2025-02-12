@@ -8,5 +8,5 @@ export function useFocus<T extends HTMLElement>(): [RefObject<T>, () => void] {
     }
   }, [htmlElRef]);
 
-  return [htmlElRef, setFocus];
+  return [htmlElRef as RefObject<T>, setFocus];
 }
