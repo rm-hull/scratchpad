@@ -14,10 +14,6 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -65,6 +61,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request'
+    concurrency:
+      group: "pages"
+      cancel-in-progress: true
     steps:
       - name: Setup Pages
         uses: actions/configure-pages@v5
