@@ -3457,12 +3457,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-react-compiler@npm:19.0.0-beta-30d8a17-20250209":
-  version: 19.0.0-beta-30d8a17-20250209
-  resolution: "babel-plugin-react-compiler@npm:19.0.0-beta-30d8a17-20250209"
+"babel-plugin-react-compiler@npm:19.0.0-beta-714736e-20250131":
+  version: 19.0.0-beta-714736e-20250131
+  resolution: "babel-plugin-react-compiler@npm:19.0.0-beta-714736e-20250131"
   dependencies:
     "@babel/types": "npm:^7.19.0"
-  checksum: 10/74cd0804cb53226543521c21bcb5436986fb4de8bc30f30eed34a04e0f5ee43dcb02671a7f2ad03b0cd860aa020ac4324d2ca8dd5627989355141c739f8a8ca1
+  checksum: 10/1a91429393a196e3ece4ea657c8b4b0409c797ce27f5b2bcd7f7a869f5010a44094ab557be59bd3e52626b266fe727bd893c00820f6761b40df57b70ccdca812
   languageName: node
   linkType: hard
 
@@ -7396,7 +7396,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:^4.3.4"
     "@vitest/coverage-v8": "npm:^3.0.5"
     axios: "npm:^1.7.9"
-    babel-plugin-react-compiler: "npm:19.0.0-beta-30d8a17-20250209"
+    babel-plugin-react-compiler: "npm:19.0.0-beta-714736e-20250131"
     chakra-ui-contextmenu: "npm:^1.0.5"
     chalk: "npm:^5.4.1"
     clsx: "npm:^2.1.1"
