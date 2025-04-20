@@ -1402,12 +1402,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.25.7, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.8.4":
   version: 7.26.10
   resolution: "@babel/runtime@npm:7.26.10"
   dependencies:
     regenerator-runtime: "npm:^0.14.0"
   checksum: 10/9d7ff8e96abe3791047c1138789c742411e3ef19c4d7ca18ce916f83cec92c06ec5dc64401759f6dd1e377cf8a01bbd2c62e033eb7550f435cf6579768d0d4a5
+  languageName: node
+  linkType: hard
+
+"@babel/runtime@npm:^7.26.10":
+  version: 7.27.0
+  resolution: "@babel/runtime@npm:7.27.0"
+  dependencies:
+    regenerator-runtime: "npm:^0.14.0"
+  checksum: 10/e6966e03b695feb4c0ac0856a4355231c2580bf9ebd0298f47739f85c0ea658679dd84409daf26378d42c86c1cbe7e33feab709b14e784254b6c441d91606465
   languageName: node
   linkType: hard
 
@@ -6542,11 +6551,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mathjs@npm:^14.2.1":
-  version: 14.2.1
-  resolution: "mathjs@npm:14.2.1"
+"mathjs@npm:^14.4.0":
+  version: 14.4.0
+  resolution: "mathjs@npm:14.4.0"
   dependencies:
-    "@babel/runtime": "npm:^7.25.7"
+    "@babel/runtime": "npm:^7.26.10"
     complex.js: "npm:^2.2.5"
     decimal.js: "npm:^10.4.3"
     escape-latex: "npm:^1.2.0"
@@ -6557,7 +6566,7 @@ __metadata:
     typed-function: "npm:^4.2.1"
   bin:
     mathjs: bin/cli.js
-  checksum: 10/ee0cd0cf7670195182380978e55db1ed4146308446a8724878311d694f39c94982340d1e2fefc7d1cc92e435bb0c4063af48bd56441167358ecdc219ebcea690
+  checksum: 10/4d51f9b6ee0d0647d2a6d1e9bb2b41335b84e23dafe0c0a7cc643a9ccde63c24f398eb85e04b37a93bab33c04c8bf40a82aa83855dfa1d2e104c85dce1c11ba0
   languageName: node
   linkType: hard
 
@@ -7851,7 +7860,7 @@ __metadata:
     hexy: "npm:^0.3.5"
     jotai: "npm:^2.12.1"
     js-base64: "npm:^3.7.7"
-    mathjs: "npm:^14.2.1"
+    mathjs: "npm:^14.4.0"
     pluralize: "npm:^8.0.0"
     prettier: "npm:^3.5.1"
     prismjs: "npm:^1.30.0"
