@@ -65,7 +65,7 @@
     "babel-plugin-react-compiler": "19.0.0-beta-30d8a17-20250209",
     "chalk": "^5.4.1",
     "eslint": "9.20.1",
-    "eslint-config-prettier": "^10.1.1",
+    "eslint-config-prettier": "^10.1.2",
     "eslint-config-react-app": "^7.0.1",
     "eslint-config-standard-with-typescript": "^43.0.1",
     "eslint-plugin-import": "^2.31.0",
