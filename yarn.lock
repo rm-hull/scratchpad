@@ -5665,12 +5665,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^12.6.2":
-  version: 12.6.2
-  resolution: "framer-motion@npm:12.6.2"
+"framer-motion@npm:^12.9.4":
+  version: 12.9.4
+  resolution: "framer-motion@npm:12.9.4"
   dependencies:
-    motion-dom: "npm:^12.6.1"
-    motion-utils: "npm:^12.5.0"
+    motion-dom: "npm:^12.9.4"
+    motion-utils: "npm:^12.9.4"
     tslib: "npm:^2.4.0"
   peerDependencies:
     "@emotion/is-prop-valid": "*"
@@ -5683,7 +5683,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10/913b966bca9d9a33fb251ab51da787b13b80a2336e7e572cd780488fd14af4ad78fb1d36893364dea8818f5903fb027e760abf281370e37352f1c5ee625adbb5
+  checksum: 10/c5037b4c61875f63a07b0da32011074540e333dce027ed80102a1777d6ab640222e12112d160ecb228118900a8d93e17da2b2eaa80b6f7c524d48a96df8e74d3
   languageName: node
   linkType: hard
 
@@ -6955,19 +6955,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"motion-dom@npm:^12.6.1":
-  version: 12.6.1
-  resolution: "motion-dom@npm:12.6.1"
+"motion-dom@npm:^12.9.4":
+  version: 12.9.4
+  resolution: "motion-dom@npm:12.9.4"
   dependencies:
-    motion-utils: "npm:^12.5.0"
-  checksum: 10/f39bc272f5d36b974ae1f99f802f3f2b503846cf955d15ae32a5177023b99f86180ba0be2d74e4a3ec5612c4c9fb086cc62d81262be9e29b2d28247713e498a7
+    motion-utils: "npm:^12.9.4"
+  checksum: 10/8e7cbf2ba0559a5c7ac96320d7ccf9409ca816357ea749e59b4dd55678b5badb3bebf511e279e4648d53412e43c2cc1ac79c3fd1cad833f432c1e6be626e82ad
   languageName: node
   linkType: hard
 
-"motion-utils@npm:^12.5.0":
-  version: 12.5.0
-  resolution: "motion-utils@npm:12.5.0"
-  checksum: 10/f2d754a9e1c4cd829f0703ce47bbeb3e9967994a9cb35e759f34de16af6c520a4959b04ff6998211ca67dc7bfe0002d9b2465858167b1971b0403f63289f97fc
+"motion-utils@npm:^12.9.4":
+  version: 12.9.4
+  resolution: "motion-utils@npm:12.9.4"
+  checksum: 10/528276c3515a66365a8bae2073f9615b57d58e1b57284a4b6e92ba3f27e86974e0a37b410ea528a4c2961646a6bf398db4ca411e28db930ec4623620e05e059a
   languageName: node
   linkType: hard
 
@@ -8154,7 +8154,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^5.2.0"
     eslint-plugin-react-refresh: "npm:^0.4.20"
     eslint-plugin-testing-library: "npm:^7.1.1"
-    framer-motion: "npm:^12.6.2"
+    framer-motion: "npm:^12.9.4"
     globals: "npm:^15.15.0"
     hexy: "npm:^0.3.5"
     jotai: "npm:^2.12.1"
