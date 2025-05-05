@@ -6467,9 +6467,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:^2.12.1":
-  version: 2.12.1
-  resolution: "jotai@npm:2.12.1"
+"jotai@npm:^2.12.3":
+  version: 2.12.3
+  resolution: "jotai@npm:2.12.3"
   peerDependencies:
     "@types/react": ">=17.0.0"
     react: ">=17.0.0"
@@ -6478,7 +6478,7 @@ __metadata:
       optional: true
     react:
       optional: true
-  checksum: 10/14a16ee56ef0e6496ffb08b48a8ba4cb6d2f9865d51b88cad2d91f72d261175a10a14d8a41efc3145408865f2505cac0c186c1662e31c49ff44dcccb905a0a8a
+  checksum: 10/a8974b4aba22df5ad41e9acc1f8a5024bc01fd9ba2874668b553ac920c55e45daf53100f8bc4f9e281443bafa6868ff0c365ca3fb5adf86c3f117e5c087d878c
   languageName: node
   linkType: hard
 
@@ -8157,7 +8157,7 @@ __metadata:
     framer-motion: "npm:^12.9.4"
     globals: "npm:^15.15.0"
     hexy: "npm:^0.3.5"
-    jotai: "npm:^2.12.1"
+    jotai: "npm:^2.12.3"
     js-base64: "npm:^3.7.7"
     mathjs: "npm:^14.4.0"
     pluralize: "npm:^8.0.0"
