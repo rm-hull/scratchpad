@@ -64,7 +64,7 @@
     "@vitest/coverage-v8": "^3.1.3",
     "babel-plugin-react-compiler": "19.0.0-beta-30d8a17-20250209",
     "chalk": "^5.4.1",
-    "eslint": "9.25.1",
+    "eslint": "9.26.0",
     "eslint-config-prettier": "^10.1.2",
     "eslint-config-react-app": "^7.0.1",
     "eslint-config-standard-with-typescript": "^43.0.1",
