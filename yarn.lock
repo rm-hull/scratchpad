@@ -2514,13 +2514,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-oauth/google@npm:^0.12.1":
-  version: 0.12.1
-  resolution: "@react-oauth/google@npm:0.12.1"
+"@react-oauth/google@npm:^0.12.2":
+  version: 0.12.2
+  resolution: "@react-oauth/google@npm:0.12.2"
   peerDependencies:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: 10/89d9c2db5be484b9fdbc45e4ce534cb44b62d76b3a29da6f8f09f42b8fb154ab1e4e7c2a281a121b94a2b34a4c2857464e944e58fccc83804e1c2816a494f1eb
+  checksum: 10/233b4485516f1bc222bb7574fd0f590677efbdc4efb9aafc4b01971508990119ac3797ab6238e518f26325a2d2c51832c275cf06b755c4c95bc62446d8966760
   languageName: node
   linkType: hard
 
@@ -8536,7 +8536,7 @@ __metadata:
     "@eslint/compat": "npm:^1.2.9"
     "@eslint/eslintrc": "npm:^3.3.1"
     "@eslint/js": "npm:^9.25.1"
-    "@react-oauth/google": "npm:^0.12.1"
+    "@react-oauth/google": "npm:^0.12.2"
     "@stylistic/eslint-plugin": "npm:^4.2.0"
     "@stylistic/eslint-plugin-ts": "npm:^4.2.0"
     "@testing-library/dom": "npm:^10.4.0"
