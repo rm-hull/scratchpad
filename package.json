@@ -15,7 +15,7 @@
   "dependencies": {
     "@babel/parser": "^7.27.2",
     "@chakra-ui/react": "^2.10.5",
-    "@chakra-ui/styled-system": "^2.12.2",
+    "@chakra-ui/styled-system": "^2.12.3",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@eslint/compat": "^1.2.9",
