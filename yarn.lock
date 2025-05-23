@@ -1635,13 +1635,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chakra-ui/styled-system@npm:^2.12.3":
-  version: 2.12.3
-  resolution: "@chakra-ui/styled-system@npm:2.12.3"
+"@chakra-ui/styled-system@npm:^2.12.4":
+  version: 2.12.4
+  resolution: "@chakra-ui/styled-system@npm:2.12.4"
   dependencies:
     "@chakra-ui/utils": "npm:2.2.5"
     csstype: "npm:^3.1.2"
-  checksum: 10/4cb9fb03925bf5700032bc8401ed945346a85d88c22b298a8869f7fa09632e38b6e70e467032c212b523427ac9a5e3b43ac390d9ed4eb7cdab173e9619062747
+  checksum: 10/4a25686e394f3aee9a3cf390280cb677585ecf70f199d713d9627ad5330a253a8946b5cfb333a4a9da43a8b0f11174a25b5993c8c064282bc33164cce1a113f5
   languageName: node
   linkType: hard
 
@@ -8170,7 +8170,7 @@ __metadata:
   dependencies:
     "@babel/parser": "npm:^7.27.2"
     "@chakra-ui/react": "npm:^2.10.5"
-    "@chakra-ui/styled-system": "npm:^2.12.3"
+    "@chakra-ui/styled-system": "npm:^2.12.4"
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.0"
     "@eslint/compat": "npm:^1.2.9"
