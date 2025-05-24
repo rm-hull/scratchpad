@@ -44,7 +44,7 @@
     "react-router-dom": "^7.6.0",
     "react-simple-code-editor": "^0.14.1",
     "react-use": "^17.6.0",
-    "web-vitals": "^4.2.4"
+    "web-vitals": "^5.0.1"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin-ts": "^4.2.0",
