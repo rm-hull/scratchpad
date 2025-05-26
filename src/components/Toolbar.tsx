@@ -34,7 +34,7 @@ export function Toolbar({
   canFormat,
 }: ToolbarProps): JSX.Element | null {
   const [visible, { on: showToolbar, off: hideToolbar }] = useBoolean(false);
-  const { isOpen: isDeleteModalOpen, onOpen: onOpenDeleteModal, onClose: onCloseDeleteModal } = useDisclosure();
+  const { open: isDeleteModalOpen, onOpen: onOpenDeleteModal, onClose: onCloseDeleteModal } = useDisclosure();
   const [settings] = useGeneralSettings();
 
   if (!isActive) {
@@ -52,14 +52,14 @@ export function Toolbar({
 
   if (settings.minimiseEditorToolbar && !visible) {
     return (
-      <HStack m={1} spacing={1} onMouseEnter={showToolbar}>
+      <HStack m={1} gap={1} onMouseEnter={showToolbar}>
         <FiChevronsLeft />
       </HStack>
     );
   }
 
   return (
-    <HStack mr="2px" mt="1px" spacing={1} onMouseLeave={hideToolbar}>
+    <HStack mr="2px" mt="1px" gap={1} onMouseLeave={hideToolbar}>
       <Select name="language" isDisabled={locked ?? false} size="xs" onChange={handleChangeLanguage} value={language}>
         {supportedTypes.map((fileType) => (
           <option key={fileType.language} value={fileType.language}>
@@ -90,7 +90,7 @@ export function Toolbar({
       </Tooltip>
       <Tooltip label="Format">
         <IconButton
-          isDisabled={!canFormat || locked}
+          disabled={!canFormat || locked}
           size="xs"
           variant="ghost"
           aria-label="Format"
@@ -101,7 +101,7 @@ export function Toolbar({
       </Tooltip>
       <Tooltip label="Delete">
         <IconButton
-          isDisabled={locked}
+          disabled={locked}
           size="xs"
           variant="ghost"
           aria-label="Delete"
