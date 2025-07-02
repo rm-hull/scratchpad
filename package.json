@@ -22,7 +22,7 @@
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.30.0",
     "@react-oauth/google": "^0.12.2",
-    "@stylistic/eslint-plugin": "^5.0.0",
+    "@stylistic/eslint-plugin": "^5.1.0",
     "axios": "^1.10.0",
     "chakra-ui-contextmenu": "^1.0.5",
     "clsx": "^2.1.1",
