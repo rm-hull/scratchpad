@@ -2650,19 +2650,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stylistic/eslint-plugin@npm:^5.2.0":
-  version: 5.2.0
-  resolution: "@stylistic/eslint-plugin@npm:5.2.0"
+"@stylistic/eslint-plugin@npm:^5.3.1":
+  version: 5.3.1
+  resolution: "@stylistic/eslint-plugin@npm:5.3.1"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.7.0"
-    "@typescript-eslint/types": "npm:^8.37.0"
+    "@typescript-eslint/types": "npm:^8.41.0"
     eslint-visitor-keys: "npm:^4.2.1"
     espree: "npm:^10.4.0"
     estraverse: "npm:^5.3.0"
     picomatch: "npm:^4.0.3"
   peerDependencies:
     eslint: ">=9.0.0"
-  checksum: 10/624632d2973736ec9ca3234e60784ddbb60ef93b579079c103cae61184ca39b8a3dc10566e1ac548d1d6069b24805f766d494b27cfd4a5a96f67da120d55add2
+  checksum: 10/1b7522fce6ce8208f94e574d7d0fa61d621ffce4403223e6cd6ee57061b4f6075242ef8cfc73b3489be730d46d5afa888aadce62a6b0c13e97f1c75c914661e9
   languageName: node
   linkType: hard
 
@@ -3159,6 +3159,13 @@ __metadata:
   version: 8.37.0
   resolution: "@typescript-eslint/types@npm:8.37.0"
   checksum: 10/ac09dee069ed011dc90ec6ece4756f763da44b2275dbb2832984f4ce41e020348a658c4beb1d9f5daa755f2ebb641908e7046ebeaa767dab0e9e38bcec192b70
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/types@npm:^8.41.0":
+  version: 8.41.0
+  resolution: "@typescript-eslint/types@npm:8.41.0"
+  checksum: 10/e2fe5d9125264a1b1310fff7ac65e827da9885219d7f910dba090dcf7d4242830cb96695c7257634b22e1947943a2e890f9740536d95612452e5752385ab6a5b
   languageName: node
   linkType: hard
 
@@ -8130,7 +8137,7 @@ __metadata:
     "@eslint/eslintrc": "npm:^3.3.1"
     "@eslint/js": "npm:^9.31.0"
     "@react-oauth/google": "npm:^0.12.2"
-    "@stylistic/eslint-plugin": "npm:^5.2.0"
+    "@stylistic/eslint-plugin": "npm:^5.3.1"
     "@stylistic/eslint-plugin-ts": "npm:^4.4.1"
     "@testing-library/dom": "npm:^10.4.0"
     "@testing-library/react": "npm:^16.3.0"
