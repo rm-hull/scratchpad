@@ -54,7 +54,7 @@
     "@types/node": "^24.3.1",
     "@types/pluralize": "^0.0.33",
     "@types/prismjs": "^1.26.5",
-    "@types/ramda": "^0.30.2",
+    "@types/ramda": "^0.31.1",
     "@types/react": "^19.1.12",
     "@types/react-dom": "^19.1.9",
     "@types/xml2js": "^0.4.14",
