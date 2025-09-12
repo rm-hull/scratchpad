@@ -7870,21 +7870,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:^7.7.0":
-  version: 7.7.0
-  resolution: "react-router-dom@npm:7.7.0"
+"react-router-dom@npm:^7.9.0":
+  version: 7.9.0
+  resolution: "react-router-dom@npm:7.9.0"
   dependencies:
-    react-router: "npm:7.7.0"
+    react-router: "npm:7.9.0"
   peerDependencies:
     react: ">=18"
     react-dom: ">=18"
-  checksum: 10/1728d5a915719642ef2d0534fc06e9f0f154ce68641142d3e2356c98d1e1c7084aee5e798419da52eb55e3b03b549b1a220ef4a96adbd12aec09914373d18280
+  checksum: 10/f990b7ca62ea3218f4de28b4ff0ba346e27c0d5fbd9c8905b51bdb4ddff59a0780c89b8c6d9f0934c6c3e0b36729a9ecad064c3ae382f0a811ca8cb4a2d38284
   languageName: node
   linkType: hard
 
-"react-router@npm:7.7.0":
-  version: 7.7.0
-  resolution: "react-router@npm:7.7.0"
+"react-router@npm:7.9.0":
+  version: 7.9.0
+  resolution: "react-router@npm:7.9.0"
   dependencies:
     cookie: "npm:^1.0.1"
     set-cookie-parser: "npm:^2.6.0"
@@ -7894,7 +7894,7 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: 10/8c005209e4e3c3857d8f528b0bbee36028ad67b2eeb540ef9c996c62f131651636ffd504a486eb420808e5544696eea53f88a2c3f6a45c6000fb1803a8615d1b
+  checksum: 10/8a787cfde6f754bcf604df01d750081376821b671b0702152f52fb6887f89d3603e0c6ffa32ddeef0b8c50d77e37dbe8fdcdd7a118f25f436d0c756a85c78187
   languageName: node
   linkType: hard
 
@@ -8456,7 +8456,7 @@ __metadata:
     react-error-boundary: "npm:^6.0.0"
     react-ga4: "npm:^2.1.0"
     react-icons: "npm:^5.5.0"
-    react-router-dom: "npm:^7.7.0"
+    react-router-dom: "npm:^7.9.0"
     react-simple-code-editor: "npm:^0.14.1"
     react-use: "npm:^17.6.0"
     typescript: "npm:^5.8.3"
