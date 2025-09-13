@@ -1,10 +1,11 @@
-import { HStack, IconButton, Select, Tooltip, useBoolean, useDisclosure } from "@chakra-ui/react";
-import { type ChangeEvent, type JSX } from "react";
+import { HStack, IconButton, NativeSelect, useDisclosure } from "@chakra-ui/react";
+import { useState, type ChangeEvent, type JSX } from "react";
 import { FiAlignLeft, FiChevronsLeft, FiLock, FiLogOut, FiTrash2, FiUnlock } from "react-icons/fi";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { supportedTypes } from "../models/fileTypes";
 import { CopyToClipboardButton } from "./CopyToClipboardButton";
 import { DeleteModal } from "./DeleteModal";
+import { Tooltip } from "@/components/ui/tooltip";
 
 interface ToolbarProps {
   isActive: boolean;
@@ -33,7 +34,7 @@ export function Toolbar({
   locked = false,
   canFormat,
 }: ToolbarProps): JSX.Element | null {
-  const [visible, { on: showToolbar, off: hideToolbar }] = useBoolean(false);
+  const [toolbarVisible, setToolbarVisible] = useState(false);
   const { open: isDeleteModalOpen, onOpen: onOpenDeleteModal, onClose: onCloseDeleteModal } = useDisclosure();
   const [settings] = useGeneralSettings();
 
@@ -50,65 +51,45 @@ export function Toolbar({
     onDelete(archive);
   };
 
-  if (settings.minimiseEditorToolbar && !visible) {
+  if (settings.minimiseEditorToolbar && !toolbarVisible) {
     return (
-      <HStack m={1} gap={1} onMouseEnter={showToolbar}>
+      <HStack m={1} gap={1} onMouseEnter={() => setToolbarVisible(true)}>
         <FiChevronsLeft />
       </HStack>
     );
   }
 
   return (
-    <HStack mr="2px" mt="1px" gap={1} onMouseLeave={hideToolbar}>
-      <Select name="language" isDisabled={locked ?? false} size="xs" onChange={handleChangeLanguage} value={language}>
-        {supportedTypes.map((fileType) => (
-          <option key={fileType.language} value={fileType.language}>
-            {fileType.descr}
-          </option>
-        ))}
-      </Select>
-      <Tooltip label="Export">
-        <IconButton
-          size="xs"
-          variant="ghost"
-          icon={<FiLogOut />}
-          aria-label="Export"
-          textColor="purple.400"
-          onClick={onExport}
-        />
+    <HStack mr="2px" mt="1px" gap={1} onMouseLeave={() => setToolbarVisible(false)}>
+      <NativeSelect.Root disabled={locked ?? false} size="xs">
+        <NativeSelect.Field name="language" value={language} onChange={handleChangeLanguage}>
+          {supportedTypes.map((fileType) => (
+            <option key={fileType.language} value={fileType.language}>
+              {fileType.descr}
+            </option>
+          ))}
+        </NativeSelect.Field>
+      </NativeSelect.Root>
+      <Tooltip content="Export">
+        <IconButton size="xs" variant="ghost" aria-label="Export" onClick={onExport}>
+          <FiLogOut color="purple.400" />
+        </IconButton>
       </Tooltip>
       <CopyToClipboardButton hasCopied={hasCopied} onCopy={onCopy} size="xs" variant="ghost" showTooltip />
-      <Tooltip label={locked ? "Unlock" : "Make read-only"}>
-        <IconButton
-          size="xs"
-          variant="ghost"
-          aria-label="Unlock"
-          icon={locked ? <FiUnlock /> : <FiLock />}
-          textColor={locked ? "green.400" : "blue.400"}
-          onClick={onToggleLock}
-        />
+      <Tooltip content={locked ? "Unlock" : "Make read-only"}>
+        <IconButton size="xs" variant="ghost" aria-label="Unlock" onClick={onToggleLock}>
+          {locked ? <FiUnlock color="green.400" /> : <FiLock color="blue.400" />}
+        </IconButton>
       </Tooltip>
-      <Tooltip label="Format">
-        <IconButton
-          disabled={!canFormat || locked}
-          size="xs"
-          variant="ghost"
-          aria-label="Format"
-          icon={<FiAlignLeft />}
-          textColor="blue.400"
-          onClick={onFormat}
-        />
+      <Tooltip content="Format">
+        <IconButton disabled={!canFormat || locked} size="xs" variant="ghost" aria-label="Format" onClick={onFormat}>
+          <FiAlignLeft color="blue.400" />
+        </IconButton>
       </Tooltip>
-      <Tooltip label="Delete">
-        <IconButton
-          disabled={locked}
-          size="xs"
-          variant="ghost"
-          aria-label="Delete"
-          icon={<FiTrash2 />}
-          textColor="red.400"
-          onClick={onOpenDeleteModal}
-        />
+      <Tooltip content="Delete">
+        <IconButton disabled={locked} size="xs" variant="ghost" aria-label="Delete" onClick={onOpenDeleteModal}>
+          <FiTrash2 color="red.400" />
+        </IconButton>
       </Tooltip>
 
       {isDeleteModalOpen && (

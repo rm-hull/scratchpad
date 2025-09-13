@@ -1,7 +1,7 @@
-import { useToast } from "@chakra-ui/react";
 import { useCallback, useEffect, type JSX, type PropsWithChildren } from "react";
 import { useDropzone, type Accept } from "react-dropzone";
 import { supportedTypes, type FileType } from "../models/fileTypes";
+import { toaster } from "./ui/toaster";
 
 const accept: Accept = supportedTypes.reduce((accum: Accept, fileType: FileType) => {
   if (fileType.extensions === undefined || fileType.mimeType === undefined) {
@@ -18,7 +18,6 @@ interface DropzoneProps {
 }
 
 export function Dropzone({ children, onFileDropped }: PropsWithChildren<DropzoneProps>): JSX.Element {
-  const toast = useToast();
   const onDrop = useCallback(
     (acceptedFiles: Blob[]) => {
       acceptedFiles.forEach((file) => {
@@ -48,15 +47,15 @@ export function Dropzone({ children, onFileDropped }: PropsWithChildren<Dropzone
 
   useEffect(() => {
     if (isDragActive) {
-      toast.closeAll();
-      toast({
+      toaster.dismiss();
+      toaster.create({
         description: "Drop the file anywhere to add as a new block",
-        status: "info",
+        type: "info",
         duration: 9000,
-        isClosable: true,
+        closable: true,
       });
     }
-  }, [toast, isDragActive]);
+  }, [isDragActive]);
 
   return (
     <div {...getRootProps()}>

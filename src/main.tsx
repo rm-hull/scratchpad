@@ -1,4 +1,4 @@
-import { createSystem, defaultConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig } from "@chakra-ui/react";
 import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -10,6 +10,7 @@ import { ErrorFallback } from "./components/ErrorFallback";
 import "./main.css";
 import { reportWebVitals } from "./reportWebVitals";
 import { ColorModeProvider } from "./components/ui/color-mode";
+import { Toaster } from "./components/ui/toaster";
 
 if (import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID !== undefined) {
   ReactGA.initialize(import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID as string);
@@ -22,17 +23,18 @@ if (element === null) {
 const root = ReactDOM.createRoot(element);
 // const manager = createLocalStorageManager("scratchpad.color-mode");
 
-
-export const system = createSystem(defaultConfig, {  
+export const system = createSystem(defaultConfig, {
   theme: {
     tokens: {
       fonts: {
-        heading: { value: `JetBrainsMono,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace` },
+        heading: {
+          value: `JetBrainsMono,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace`,
+        },
         body: { value: `JetBrainsMono,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace` },
       },
     },
   },
-})
+});
 
 root.render(
   <React.StrictMode>
@@ -41,6 +43,7 @@ root.render(
       <ColorModeProvider />
       <Router basename="/scratchpad">
         <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <Toaster />
           <App />
         </ErrorBoundary>
       </Router>

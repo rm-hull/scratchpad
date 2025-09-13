@@ -1,16 +1,4 @@
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  Button,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-} from "@chakra-ui/react";
-import { type JSX } from "react";
+import { Alert, Button, Dialog } from "@chakra-ui/react";
 
 interface DeleteModalProps {
   isOpen: boolean;
@@ -19,37 +7,43 @@ interface DeleteModalProps {
   onCancel: () => void;
 }
 
-export function DeleteModal({ isOpen, onDelete, onArchive, onCancel }: DeleteModalProps): JSX.Element {
+export function DeleteModal({ isOpen, onDelete, onArchive, onCancel }: DeleteModalProps) {
   return (
-    <Modal isOpen={isOpen} onClose={onCancel} size="2xl">
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Confirm delete?</ModalHeader>
-
-        <ModalBody>
-          <Alert status="warning">
-            <AlertIcon />
-
-            <AlertDescription>
-              Note that this operation will remove the block from local storage entirely, and once deleted, cannot be
-              reverted or recovered.
-            </AlertDescription>
-          </Alert>
-          Alternatively, you can archive the block instead, which will retain the data in local storage but hides it
-          from the main view.
-        </ModalBody>
-        <ModalFooter>
-          <Button type="submit" onClick={onDelete} colorScheme="red" mr={3}>
-            Delete
-          </Button>
-          <Button type="submit" onClick={onArchive} mr={3}>
-            Archive
-          </Button>
-          <Button variant="ghost" onClick={onCancel}>
-            Cancel
-          </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+    <Dialog.Root open={isOpen} onOpenChange={onCancel} size="xl">
+      <Dialog.Trigger />
+      <Dialog.Backdrop />
+      <Dialog.Positioner>
+        <Dialog.Content>
+          <Dialog.CloseTrigger />
+          <Dialog.Header>
+            <Dialog.Title>Confirm delete?</Dialog.Title>
+          </Dialog.Header>
+          <Dialog.Body>
+            <Alert.Root status="warning">
+              <Alert.Indicator />
+              <Alert.Content>
+                <Alert.Description>
+                  Note that this operation will remove the block from local storage entirely, and once deleted, cannot
+                  be reverted or recovered.
+                </Alert.Description>
+              </Alert.Content>
+            </Alert.Root>
+            Alternatively, you can archive the block instead, which will retain the data in local storage but hides it
+            from the main view.
+          </Dialog.Body>
+          <Dialog.Footer>
+            <Button type="submit" onClick={onDelete} colorScheme="red" mr={3}>
+              Delete
+            </Button>
+            <Button type="submit" onClick={onArchive} mr={3}>
+              Archive
+            </Button>
+            <Button variant="ghost" onClick={onCancel}>
+              Cancel
+            </Button>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </Dialog.Positioner>
+    </Dialog.Root>
   );
 }

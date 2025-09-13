@@ -1,4 +1,4 @@
-import { Divider, MenuOptionGroup, MenuItemOption } from "@chakra-ui/react";
+import { Separator, MenuOptionGroup, MenuItemOption } from "@chakra-ui/react";
 import { type JSX } from "react";
 import { useNamespace } from "../hooks/useNamespace";
 import { listNamespaces } from "../models/block";
@@ -14,7 +14,7 @@ export function GotoNamespace(): JSX.Element | null {
 
   return (
     <>
-      <Divider />
+      <Separator />
       <MenuOptionGroup defaultValue={namespace ?? "root"} title="Goto scratchpad" type="radio">
         <MenuItemOption value="root" as={Link} to="/">
           «root»

@@ -1,8 +1,8 @@
-import { Box, useBoolean, useClipboard, useDisclosure, useToast } from "@chakra-ui/react";
+import { Box, useClipboard, useDisclosure } from "@chakra-ui/react";
 import clsx from "clsx";
 import { highlight, type Grammar } from "prismjs";
 import "prismjs/themes/prism.css";
-import { useCallback, useMemo, type JSX } from "react";
+import { useCallback, useMemo, useState, type JSX } from "react";
 import Editor from "react-simple-code-editor";
 import { useDebounce } from "react-use";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
@@ -14,6 +14,7 @@ import { ExportModal } from "./ExportModal";
 import { MathResult } from "./MathResult";
 import "./TextEditor.styles.css";
 import { Toolbar } from "./Toolbar";
+import { toaster } from "./ui/toaster";
 
 interface TextEditorProps {
   block: Block;
@@ -73,12 +74,11 @@ export function TextEditor({
   highlight,
   backgroundColor,
 }: TextEditorProps): JSX.Element {
-  const toast = useToast();
-  const [isToolbarActive, { on: activateToolbar, off: deactivateToolbar }] = useBoolean(false);
+  const [toolbarActive, setToolbarActive] = useState(false);
   const [settings] = useGeneralSettings();
   const fileType = useMemo(() => fromLanguage(block.language), [block.language]);
   const { onCopy, hasCopied, value, setValue } = useClipboard(block.text);
-  const { isOpen: isExportModalOpen, onOpen: onExportOpen, onClose: onExportClose } = useDisclosure();
+  const { open: isExportModalOpen, onOpen: onExportOpen, onClose: onExportClose } = useDisclosure();
 
   useDebounce(
     () => {
@@ -90,26 +90,23 @@ export function TextEditor({
     [value]
   );
 
-  const handleError = useCallback(
-    (error: Error) => {
-      console.log({ error });
-      toast.closeAll();
-      toast({
-        title: "Unable to format block",
-        description: error.message,
-        // <>
-        //   <Text>{error.cause.message}</Text>
-        //   <Code>
-        //     <pre>{error.codeFrame}</pre>
-        //   </Code>
-        // </>
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
-    },
-    [toast]
-  );
+  const handleError = useCallback((error: Error) => {
+    console.log({ error });
+    toaster.dismiss();
+    toaster.create({
+      title: "Unable to format block",
+      description: error.message,
+      // <>
+      //   <Text>{error.cause.message}</Text>
+      //   <Code>
+      //     <pre>{error.codeFrame}</pre>
+      //   </Code>
+      // </>
+      type: "error",
+      duration: 9000,
+      closable: true,
+    });
+  }, []);
 
   const handleLanguageChange = (language: string): void => {
     onBlockChange({ ...block, language, updatedAt: Date.now() });
@@ -142,10 +139,14 @@ export function TextEditor({
   );
 
   return (
-    <Box backgroundColor={backgroundColor} onMouseEnter={activateToolbar} onMouseLeave={deactivateToolbar}>
+    <Box
+      backgroundColor={backgroundColor}
+      onMouseEnter={() => setToolbarActive(true)}
+      onMouseLeave={() => setToolbarActive(false)}
+    >
       <Box position="absolute" right={0} zIndex={99} borderRadius={2} backgroundColor={backgroundColor}>
         <Toolbar
-          isActive={isToolbarActive || settings?.showToolbarForEveryBlock}
+          isActive={toolbarActive || settings?.showToolbarForEveryBlock}
           language={block.language}
           onChangeLanguage={handleLanguageChange}
           onDelete={(archive: boolean) => {

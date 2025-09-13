@@ -1,4 +1,4 @@
-import { Container, Divider, useColorModeValue, useDisclosure } from "@chakra-ui/react";
+import { Container, Separator, useColorModeValue, useDisclosure } from "@chakra-ui/react";
 import * as R from "ramda";
 import { useEffect, useState, type JSX } from "react";
 import { Dropzone } from "../components/DropZone";
@@ -12,9 +12,9 @@ import { newBlock, sortBy, type Block } from "../models/block";
 import { fromFilename } from "../models/fileTypes";
 
 export function Scratch(): JSX.Element {
-  const { isOpen: isSearchOpen, onOpen: onOpenSearch, onClose: onCloseSearch } = useDisclosure();
+  const { open: isSearchOpen, onOpen: onOpenSearch, onClose: onCloseSearch } = useDisclosure();
   const {
-    isOpen: isGettingStartedOpen,
+    open: isGettingStartedOpen,
     onOpen: onOpenGettingStarted,
     onClose: onCloseGettingStarted,
   } = useDisclosure();
@@ -95,7 +95,7 @@ export function Scratch(): JSX.Element {
               onBlockDelete={handleBlockDelete}
               highlight={searchTerm}
             />
-            <Divider />
+            <Separator />
           </Container>
         ))}
       </RightContextMenu>
