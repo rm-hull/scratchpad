@@ -1,7 +1,6 @@
-import { Box, Divider, MenuItem, MenuList, useBoolean, useDisclosure, useToast, useToken } from "@chakra-ui/react";
+import { Box, Menu, Portal, useDisclosure, useToken } from "@chakra-ui/react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { ContextMenu } from "chakra-ui-contextmenu";
-import { useCallback, type JSX, type LegacyRef, type PropsWithChildren } from "react";
+import { useCallback, useState, type PropsWithChildren } from "react";
 import { FiClipboard, FiMessageSquare, FiPlus, FiRefreshCw, FiSearch, FiSettings } from "react-icons/fi";
 import { VscDebugConsole } from "react-icons/vsc";
 import { useKey } from "react-use";
@@ -13,6 +12,7 @@ import { DecodeSelectionModal } from "./DecodeSelectionModal";
 import { SettingsModal } from "./SettingsModal";
 import { Sync } from "./Sync";
 import { GotoNamespace } from "./GotoScratchpad";
+import { toaster } from "./ui/toaster";
 
 const isMac = navigator.platform.toLowerCase().includes("mac");
 const commandPrefix = isMac ? "⌘" : "CTRL";
@@ -26,23 +26,18 @@ interface RightContextMenuProps {
   onSearch: () => void;
 }
 
-export function RightContextMenu({
-  children,
-  onBlockAdd,
-  onSearch,
-}: PropsWithChildren<RightContextMenuProps>): JSX.Element {
-  const toast = useToast();
+export function RightContextMenu({ children, onBlockAdd, onSearch }: PropsWithChildren<RightContextMenuProps>) {
   const [settings] = useGeneralSettings();
   const [green400, blue400, purple400] = useToken("colors", ["green.400", "blue.400", "purple.400"]);
-  const { isOpen: isAddNewOpen, onOpen: onOpenAddNew, onClose: onCloseAddNew } = useDisclosure();
-  const { isOpen: isAboutOpen, onOpen: onOpenAbout, onClose: onCloseAbout } = useDisclosure();
-  const { isOpen: isSettingsOpen, onOpen: onOpenSettings, onClose: onCloseSettings } = useDisclosure();
+  const { open: isAddNewOpen, onOpen: onOpenAddNew, onClose: onCloseAddNew } = useDisclosure();
+  const { open: isAboutOpen, onOpen: onOpenAbout, onClose: onCloseAbout } = useDisclosure();
+  const { open: isSettingsOpen, onOpen: onOpenSettings, onClose: onCloseSettings } = useDisclosure();
   const {
-    isOpen: isDecodeSelectionOpen,
+    open: isDecodeSelectionOpen,
     onOpen: onOpenDecodeSelection,
     onClose: onCloseDecodeSelection,
   } = useDisclosure();
-  const [isSyncing, { on: startSync, off: stopSync }] = useBoolean();
+  const [isSyncing, setIsSyncing] = useState(false);
 
   const handleCreate = useCallback(
     (language: string, text: string = "") => {
@@ -69,10 +64,10 @@ export function RightContextMenu({
   };
 
   const handleClipboardError = (err: Error): void => {
-    toast({
+    toaster.create({
       title: "Could not paste clipboard contents",
       description: err.message,
-      status: "error",
+      type: "error",
     });
   };
 
@@ -99,54 +94,66 @@ export function RightContextMenu({
 
   return (
     <>
-      <ContextMenu
-        renderMenu={() => (
-          <MenuList zIndex={1000}>
-            <MenuItem command={commandPrefix + "↵"} icon={<FiPlus color={green400} />} onClick={handleAddNew}>
-              Add new...
-            </MenuItem>
-            <MenuItem
-              icon={<FiClipboard color={blue400} />}
-              onClick={() => {
-                handleFromClipboard().catch(handleClipboardError);
-              }}
-            >
-              Add from clipboard
-            </MenuItem>
-            <Divider />
-            <MenuItem command={commandPrefix + "/"} icon={<FiSearch color={purple400} />} onClick={onSearch}>
-              Search
-            </MenuItem>
-            <MenuItem
-              command={commandPrefix + "."}
-              isDisabled={nothingSelected()}
-              icon={<VscDebugConsole color={purple400} />}
-              onClick={onOpenDecodeSelection}
-            >
-              Decode selection
-            </MenuItem>
-            <MenuItem
-              isDisabled={import.meta.env.VITE_GOOGLE_API_CLIENT_ID === undefined || isSyncing}
-              icon={<FiRefreshCw color={purple400} />}
-              onClick={startSync}
-            >
-              Sync
-            </MenuItem>
+      <Menu.Root>
+        <Menu.ContextTrigger width="full">{children}</Menu.ContextTrigger>
 
-            <GotoNamespace />
+        <Portal>
+          <Menu.Positioner>
+            <Menu.Content>
+              <Menu.ItemGroup>
+                <Menu.Item value="add-new" onClick={handleAddNew}>
+                  <FiPlus color={green400} />
+                  <Box flex="1">Add new...</Box>
+                  <Menu.ItemCommand>{commandPrefix + "↵"}</Menu.ItemCommand>
+                </Menu.Item>
 
-            <Divider />
-            <MenuItem icon={<FiSettings />} onClick={onOpenSettings}>
-              Settings
-            </MenuItem>
-            <MenuItem icon={<FiMessageSquare />} onClick={onOpenAbout}>
-              About
-            </MenuItem>
-          </MenuList>
-        )}
-      >
-        {(ref: LegacyRef<HTMLDivElement>) => <Box ref={ref}>{children}</Box>}
-      </ContextMenu>
+                <Menu.Item value="add-from-clipboard" onClick={() => handleFromClipboard().catch(handleClipboardError)}>
+                  <FiClipboard color={blue400} />
+                  <Box flex="1">Add from clipboard</Box>
+                  <Menu.ItemCommand>{commandPrefix + "↵"}</Menu.ItemCommand>
+                </Menu.Item>
+              </Menu.ItemGroup>
+
+              <Menu.ItemGroup>
+                <Menu.Item value="search" onClick={handleAddNew}>
+                  <FiSearch color={purple400} />
+                  <Box flex="1">Search</Box>
+                  <Menu.ItemCommand>{commandPrefix + "/"}</Menu.ItemCommand>
+                </Menu.Item>
+
+                <Menu.Item value="decode-selection" onClick={onOpenDecodeSelection} disabled={nothingSelected()}>
+                  <VscDebugConsole color={purple400} />
+                  <Box flex="1">Decode selection</Box>
+                  <Menu.ItemCommand>{commandPrefix + "."}</Menu.ItemCommand>
+                </Menu.Item>
+
+                <Menu.Item
+                  value="sync-to-google"
+                  onClick={onOpenDecodeSelection}
+                  disabled={import.meta.env.VITE_GOOGLE_API_CLIENT_ID === undefined || isSyncing}
+                >
+                  <FiRefreshCw color={purple400} />
+                  <Box flex="1">Sync</Box>
+                </Menu.Item>
+
+                <GotoNamespace />
+              </Menu.ItemGroup>
+
+              <Menu.ItemGroup>
+                <Menu.Item value="settings" onClick={onOpenSettings}>
+                  <FiSettings />
+                  <Box flex="1">Settings</Box>
+                </Menu.Item>
+                <Menu.Item value="about" onClick={onOpenAbout}>
+                  <FiMessageSquare />
+                  <Box flex="1">About</Box>
+                </Menu.Item>
+              </Menu.ItemGroup>
+            </Menu.Content>
+          </Menu.Positioner>
+        </Portal>
+      </Menu.Root>
+
       {isAddNewOpen && <AddNewModal isOpen={isAddNewOpen} onCreate={handleCreate} onCancel={onCloseAddNew} />}
       {isSettingsOpen && <SettingsModal isOpen={isSettingsOpen} onClose={onCloseSettings} />}
       {isAboutOpen && <AboutModal isOpen={isAboutOpen} onClose={onCloseAbout} />}
@@ -160,7 +167,7 @@ export function RightContextMenu({
       )}
       {import.meta.env.VITE_GOOGLE_API_CLIENT_ID !== undefined && isSyncing && (
         <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_API_CLIENT_ID as string}>
-          <Sync onError={stopSync} onFinished={stopSync} />
+          <Sync onError={() => setIsSyncing(false)} onFinished={() => setIsSyncing(false)} />
         </GoogleOAuthProvider>
       )}
     </>

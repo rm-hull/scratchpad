@@ -2,7 +2,7 @@ import { Box, useClipboard, useDisclosure } from "@chakra-ui/react";
 import clsx from "clsx";
 import { highlight, type Grammar } from "prismjs";
 import "prismjs/themes/prism.css";
-import { useCallback, useMemo, useState, type JSX } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Editor from "react-simple-code-editor";
 import { useDebounce } from "react-use";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
@@ -40,7 +40,7 @@ function hightlightWithLineNumbers(
   input: string,
   grammar: Grammar,
   language: string
-): JSX.Element[] {
+) {
   const xOffset = getMaxLineLength(input);
   return mark(regexp, input, grammar, language)
     .split("\n")
@@ -67,17 +67,11 @@ function getMaxLineLength(input: string): number {
   return maxLineLength;
 }
 
-export function TextEditor({
-  block,
-  onBlockChange,
-  onBlockDelete,
-  highlight,
-  backgroundColor,
-}: TextEditorProps): JSX.Element {
+export function TextEditor({ block, onBlockChange, onBlockDelete, highlight, backgroundColor }: TextEditorProps) {
   const [toolbarActive, setToolbarActive] = useState(false);
   const [settings] = useGeneralSettings();
   const fileType = useMemo(() => fromLanguage(block.language), [block.language]);
-  const { onCopy, hasCopied, value, setValue } = useClipboard(block.text);
+  const { /*onCopy, hasCopied,*/ value, setValue } = useClipboard({ defaultValue: block.text });
   const { open: isExportModalOpen, onOpen: onExportOpen, onClose: onExportClose } = useDisclosure();
 
   useDebounce(
@@ -152,8 +146,8 @@ export function TextEditor({
           onDelete={(archive: boolean) => {
             onBlockDelete(block.id, archive);
           }}
-          hasCopied={hasCopied}
-          onCopy={onCopy}
+          hasCopied={false}
+          onCopy={() => {}}
           onExport={onExportOpen}
           onToggleLock={handleToggleLock}
           locked={block.locked}

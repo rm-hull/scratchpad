@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   ButtonGroup,
+  Clipboard,
   Code,
   Dialog,
   Field,
@@ -19,7 +20,7 @@ import { useEffect, useMemo, useState, type ChangeEvent, type JSX } from "react"
 import { FiAlignLeft, FiCpu, FiFileText } from "react-icons/fi";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { fromLanguage, supportedTypes } from "../models/fileTypes";
-import { CopyToClipboardButton } from "./CopyToClipboardButton";
+// import { CopyToClipboardButton } from "./CopyToClipboardButton";
 import { Tooltip } from "./ui/tooltip";
 
 function base64Decode(text: string): string | undefined {
@@ -53,7 +54,7 @@ export function DecodeSelectionModal({
   const [language, setLanguage] = useState<string>("text");
   const decoded = useMemo(() => base64Decode(selectedText) ?? "", [selectedText]);
   const fileType = useMemo(() => fromLanguage(language), [language]);
-  const { onCopy, hasCopied, value, setValue } = useClipboard(decoded ?? "");
+  const { value, setValue } = useClipboard({ defaultValue: decoded ?? "" });
   const [settings] = useGeneralSettings();
 
   useEffect(() => {
@@ -149,7 +150,10 @@ export function DecodeSelectionModal({
                 </Field.ErrorText>
               </Field.Root>
               <VStack mt={0} position="sticky" top={0}>
-                <CopyToClipboardButton hasCopied={hasCopied} onCopy={onCopy} showTooltip />
+                <Clipboard.Root value={decoded}>
+                  <Clipboard.Trigger />
+                </Clipboard.Root>
+                {/* <CopyToClipboardButton hasCopied={hasCopied} onCopy={onCopy} showTooltip /> */}
                 <Tooltip content="Format">
                   <IconButton
                     disabled={!fileType.canFormat}

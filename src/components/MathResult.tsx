@@ -1,6 +1,5 @@
-import { Box, useBoolean, useClipboard } from "@chakra-ui/react";
-import { type JSX } from "react";
-import { CopyToClipboardButton } from "./CopyToClipboardButton";
+import { Box, Clipboard, IconButton } from "@chakra-ui/react";
+import { useState, type JSX } from "react";
 
 interface MathResultProps {
   result: string;
@@ -10,8 +9,7 @@ interface MathResultProps {
 }
 
 export function MathResult({ result, xOffset, isError, lineNumbers }: MathResultProps): JSX.Element | null {
-  const [isActive, { on, off }] = useBoolean();
-  const { hasCopied, onCopy } = useClipboard(result);
+  const [isActive, setIsActive] = useState(false);
   const left = (lineNumbers ? 80 : 45) + xOffset * 7.8;
 
   return (
@@ -22,12 +20,18 @@ export function MathResult({ result, xOffset, isError, lineNumbers }: MathResult
       className="mathResult"
       left={left}
       color={isError ? "red.400" : undefined}
-      onMouseEnter={on}
-      onMouseLeave={off}
+      onMouseEnter={() => setIsActive(true)}
+      onMouseLeave={() => setIsActive(false)}
     >
       # {result}
       {isActive && !isError && (
-        <CopyToClipboardButton hasCopied={hasCopied} onCopy={onCopy} size="4" variant="none" ml={1} />
+        <Clipboard.Root value={result}>
+          <Clipboard.Trigger asChild>
+            <IconButton variant="surface" size="xs">
+              <Clipboard.Indicator />
+            </IconButton>
+          </Clipboard.Trigger>
+        </Clipboard.Root>
       )}
     </Box>
   );
