@@ -1,19 +1,21 @@
-import { Button, Dialog, Heading, Image, Kbd, Link, List, Text, VStack } from "@chakra-ui/react";
+import { Button, CloseButton, Dialog, Heading, Image, Kbd, Link, List, Text, VStack } from "@chakra-ui/react";
 import { type JSX } from "react";
 import screenshot from "../../doc/screenshots/main.webp";
 
-interface GettinngStartedModalProps {
+interface GettinngStartedDialogProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export function GettingStartedModal({ isOpen, onClose }: GettinngStartedModalProps): JSX.Element | null {
+export function GettingStartedDialog({ isOpen, onClose }: GettinngStartedDialogProps): JSX.Element | null {
   return (
     <Dialog.Root open={isOpen} onOpenChange={onClose} size="xl" scrollBehavior="inside">
       <Dialog.Backdrop />
       <Dialog.Positioner>
         <Dialog.Content>
-          <Dialog.CloseTrigger />
+          <Dialog.CloseTrigger asChild>
+            <CloseButton size="sm" />
+          </Dialog.CloseTrigger>
           <Dialog.Header>
             <Dialog.Title>Getting Started</Dialog.Title>
           </Dialog.Header>
@@ -152,9 +154,9 @@ export function GettingStartedModal({ isOpen, onClose }: GettinngStartedModalPro
           </Dialog.Body>
 
           <Dialog.Footer>
-            <Button variant="ghost" onClick={onClose}>
-              Close
-            </Button>
+            <Dialog.ActionTrigger asChild>
+              <Button variant="subtle">Close</Button>
+            </Dialog.ActionTrigger>
           </Dialog.Footer>
         </Dialog.Content>
       </Dialog.Positioner>

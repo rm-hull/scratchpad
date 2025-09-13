@@ -1,13 +1,13 @@
-import { Button, Dialog } from "@chakra-ui/react";
+import { Button, ButtonGroup, CloseButton, Dialog } from "@chakra-ui/react";
 import { useNamespace } from "../hooks/useNamespace";
 
-interface ResetDataModalProps {
+interface ResetDataDialogProps {
   isOpen: boolean;
   onResetData: () => void;
   onCancel: () => void;
 }
 
-export function ResetDataModal({ isOpen, onResetData, onCancel }: ResetDataModalProps) {
+export function ResetDataDialog({ isOpen, onResetData, onCancel }: ResetDataDialogProps) {
   const namespace = useNamespace();
   return (
     <Dialog.Root open={isOpen} onOpenChange={onCancel}>
@@ -15,7 +15,9 @@ export function ResetDataModal({ isOpen, onResetData, onCancel }: ResetDataModal
       <Dialog.Backdrop />
       <Dialog.Positioner>
         <Dialog.Content>
-          <Dialog.CloseTrigger />
+          <Dialog.CloseTrigger asChild>
+            <CloseButton size="sm" />
+          </Dialog.CloseTrigger>
           <Dialog.Header>
             <Dialog.Title>Confirm remove all data?</Dialog.Title>
           </Dialog.Header>
@@ -25,12 +27,14 @@ export function ResetDataModal({ isOpen, onResetData, onCancel }: ResetDataModal
             operation completes.
           </Dialog.Body>
           <Dialog.Footer>
-            <Button type="submit" onClick={onResetData} colorScheme="red" mr={3}>
-              Reset Data
-            </Button>
-            <Button variant="ghost" onClick={onCancel}>
-              Cancel
-            </Button>
+            <ButtonGroup>
+              <Dialog.ActionTrigger asChild>
+                <Button variant="subtle">Cancel</Button>
+              </Dialog.ActionTrigger>
+              <Button type="submit" onClick={onResetData} colorPalette="red">
+                Reset Data
+              </Button>
+            </ButtonGroup>
           </Dialog.Footer>
         </Dialog.Content>
       </Dialog.Positioner>

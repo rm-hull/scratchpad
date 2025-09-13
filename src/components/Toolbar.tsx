@@ -4,7 +4,7 @@ import { FiAlignLeft, FiChevronsLeft, FiLock, FiLogOut, FiTrash2, FiUnlock } fro
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { supportedTypes } from "../models/fileTypes";
 import { CopyToClipboardButton } from "./CopyToClipboardButton";
-import { DeleteModal } from "./DeleteModal";
+import { DeleteDialog } from "./DeleteDialog";
 import { Tooltip } from "@/components/ui/tooltip";
 
 interface ToolbarProps {
@@ -69,31 +69,52 @@ export function Toolbar({
             </option>
           ))}
         </NativeSelect.Field>
+        <NativeSelect.Indicator />
       </NativeSelect.Root>
       <Tooltip content="Export">
-        <IconButton size="xs" variant="ghost" aria-label="Export" onClick={onExport}>
-          <FiLogOut color="purple.400" />
+        <IconButton size="2xs" variant="ghost" aria-label="Export" onClick={onExport} color="purple.400">
+          <FiLogOut />
         </IconButton>
       </Tooltip>
-      <CopyToClipboardButton hasCopied={hasCopied} onCopy={onCopy} size="xs" variant="ghost" showTooltip />
+      <CopyToClipboardButton hasCopied={hasCopied} onCopy={onCopy} size="2xs" variant="ghost" showTooltip />
       <Tooltip content={locked ? "Unlock" : "Make read-only"}>
-        <IconButton size="xs" variant="ghost" aria-label="Unlock" onClick={onToggleLock}>
-          {locked ? <FiUnlock color="green.400" /> : <FiLock color="blue.400" />}
+        <IconButton
+          size="2xs"
+          variant="ghost"
+          aria-label="Unlock"
+          onClick={onToggleLock}
+          color={locked ? "green.400" : "blue.400"}
+        >
+          {locked ? <FiUnlock /> : <FiLock />}
         </IconButton>
       </Tooltip>
       <Tooltip content="Format">
-        <IconButton disabled={!canFormat || locked} size="xs" variant="ghost" aria-label="Format" onClick={onFormat}>
-          <FiAlignLeft color="blue.400" />
+        <IconButton
+          disabled={!canFormat || locked}
+          size="2xs"
+          variant="ghost"
+          aria-label="Format"
+          onClick={onFormat}
+          color="blue.400"
+        >
+          <FiAlignLeft />
         </IconButton>
       </Tooltip>
       <Tooltip content="Delete">
-        <IconButton disabled={locked} size="xs" variant="ghost" aria-label="Delete" onClick={onOpenDeleteModal}>
-          <FiTrash2 color="red.400" />
+        <IconButton
+          disabled={locked}
+          size="2xs"
+          variant="ghost"
+          aria-label="Delete"
+          onClick={onOpenDeleteModal}
+          color="red.400"
+        >
+          <FiTrash2 />
         </IconButton>
       </Tooltip>
 
       {isDeleteModalOpen && (
-        <DeleteModal
+        <DeleteDialog
           isOpen={isDeleteModalOpen}
           onDelete={handleDelete(false)}
           onArchive={handleDelete(true)}

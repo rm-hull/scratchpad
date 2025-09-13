@@ -23,23 +23,10 @@ if (element === null) {
 const root = ReactDOM.createRoot(element);
 // const manager = createLocalStorageManager("scratchpad.color-mode");
 
-export const system = createSystem(defaultConfig, {
-  theme: {
-    tokens: {
-      fonts: {
-        heading: {
-          value: `JetBrainsMono,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace`,
-        },
-        body: { value: `JetBrainsMono,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace` },
-      },
-    },
-  },
-});
-
 root.render(
   <React.StrictMode>
     {/* <ColorModeScript initialColorMode="dark" storageKey="scratchpad.color-mode" /> */}
-    <ChakraProvider value={system}>
+    <ChakraProvider value={createSystem(defaultConfig)}>
       <ColorModeProvider />
       <Router basename="/scratchpad">
         <ErrorBoundary FallbackComponent={ErrorFallback}>

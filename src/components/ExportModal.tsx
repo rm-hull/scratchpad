@@ -1,9 +1,8 @@
-import { Button, Clipboard, Code, Dialog, HStack, VStack } from "@chakra-ui/react";
+import { Button, CloseButton, Code, Dialog, HStack, useClipboard, VStack } from "@chakra-ui/react";
 import { Base64 } from "js-base64";
-import { type JSX } from "react";
 import { type Block } from "../models/block";
-// import { CopyToClipboardButton } from "./CopyToClipboardButton";
 import { useNamespace } from "../hooks/useNamespace";
+import { CopyToClipboardButton } from "./CopyToClipboardButton";
 
 interface ExportModalProps {
   isOpen: boolean;
@@ -11,11 +10,11 @@ interface ExportModalProps {
   onClose: () => void;
 }
 
-export function ExportModal({ isOpen, block, onClose }: ExportModalProps): JSX.Element {
+export function ExportModal({ isOpen, block, onClose }: ExportModalProps) {
   const namespace = useNamespace();
   const href = window.location.href.replace(namespace ?? "", "");
   const url = `${href.replace(/\/+$/, "")}/import/${block.id}/${block.language}/${Base64.encode(block.text)}`;
-  // const { hasCopied, onCopy } = useClipboard(url);
+  const { copied, copy } = useClipboard({ defaultValue: url });
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={onClose} size="xl" scrollBehavior="inside">
@@ -23,7 +22,9 @@ export function ExportModal({ isOpen, block, onClose }: ExportModalProps): JSX.E
       <Dialog.Backdrop />
       <Dialog.Positioner>
         <Dialog.Content>
-          <Dialog.CloseTrigger />
+          <Dialog.CloseTrigger asChild>
+            <CloseButton size="sm" />
+          </Dialog.CloseTrigger>
           <Dialog.Header>
             <Dialog.Title>Export block</Dialog.Title>
           </Dialog.Header>
@@ -34,10 +35,7 @@ export function ExportModal({ isOpen, block, onClose }: ExportModalProps): JSX.E
                 {url}
               </Code>
               <VStack position="sticky" top={0}>
-                <Clipboard.Root value={url}>
-                  <Clipboard.Trigger />
-                </Clipboard.Root>
-                {/* <CopyToClipboardButton hasCopied={hasCopied} onCopy={onCopy} showTooltip /> */}
+                <CopyToClipboardButton hasCopied={copied} onCopy={copy} showTooltip />
               </VStack>
             </HStack>
           </Dialog.Body>

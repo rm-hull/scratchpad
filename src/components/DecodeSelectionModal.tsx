@@ -3,7 +3,7 @@ import {
   Box,
   Button,
   ButtonGroup,
-  Clipboard,
+  CloseButton,
   Code,
   Dialog,
   Field,
@@ -16,11 +16,11 @@ import {
 import { hexy } from "hexy";
 import { Base64 } from "js-base64";
 import { highlight } from "prismjs";
-import { useEffect, useMemo, useState, type ChangeEvent, type JSX } from "react";
+import { useEffect, useMemo, useState, type ChangeEvent } from "react";
 import { FiAlignLeft, FiCpu, FiFileText } from "react-icons/fi";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { fromLanguage, supportedTypes } from "../models/fileTypes";
-// import { CopyToClipboardButton } from "./CopyToClipboardButton";
+import { CopyToClipboardButton } from "./CopyToClipboardButton";
 import { Tooltip } from "./ui/tooltip";
 
 function base64Decode(text: string): string | undefined {
@@ -36,25 +36,20 @@ function base64Decode(text: string): string | undefined {
   return undefined;
 }
 
-interface DecodeSelectionModalProps {
+interface DecodeSelectionDialogProps {
   isOpen: boolean;
   selectedText?: string;
   onClose: () => void;
   onBlockAdd: (language: string, text: string) => void;
 }
 
-export function DecodeSelectionModal({
-  isOpen,
-  selectedText = "",
-  onClose,
-  onBlockAdd,
-}: DecodeSelectionModalProps): JSX.Element {
+export function DecodeSelectionDialog({ isOpen, selectedText = "", onClose, onBlockAdd }: DecodeSelectionDialogProps) {
   const [hexView, setHexView] = useState(false);
   const [error, setError] = useState<Error>();
   const [language, setLanguage] = useState<string>("text");
   const decoded = useMemo(() => base64Decode(selectedText) ?? "", [selectedText]);
   const fileType = useMemo(() => fromLanguage(language), [language]);
-  const { value, setValue } = useClipboard({ defaultValue: decoded ?? "" });
+  const { copy, copied, value, setValue } = useClipboard({ defaultValue: decoded });
   const [settings] = useGeneralSettings();
 
   useEffect(() => {
@@ -89,7 +84,9 @@ export function DecodeSelectionModal({
         <Dialog.Backdrop />
         <Dialog.Positioner>
           <Dialog.Content>
-            <Dialog.CloseTrigger />
+            <Dialog.CloseTrigger asChild>
+              <CloseButton size="sm" />
+            </Dialog.CloseTrigger>
             <Dialog.Header>
               <Dialog.Title>Decode selection</Dialog.Title>
             </Dialog.Header>
@@ -102,9 +99,9 @@ export function DecodeSelectionModal({
               </Alert.Root>
             </Dialog.Body>
             <Dialog.Footer>
-              <Button variant="ghost" onClick={onClose}>
-                Close
-              </Button>
+              <Dialog.ActionTrigger asChild>
+                <Button variant="subtle">Close</Button>
+              </Dialog.ActionTrigger>
             </Dialog.Footer>
           </Dialog.Content>
         </Dialog.Positioner>
@@ -118,7 +115,9 @@ export function DecodeSelectionModal({
       <Dialog.Backdrop />
       <Dialog.Positioner>
         <Dialog.Content>
-          <Dialog.CloseTrigger />
+          <Dialog.CloseTrigger asChild>
+            <CloseButton size="sm" />
+          </Dialog.CloseTrigger>
           <Dialog.Header>
             <Dialog.Title>Decode selection</Dialog.Title>
           </Dialog.Header>
@@ -150,10 +149,7 @@ export function DecodeSelectionModal({
                 </Field.ErrorText>
               </Field.Root>
               <VStack mt={0} position="sticky" top={0}>
-                <Clipboard.Root value={decoded}>
-                  <Clipboard.Trigger />
-                </Clipboard.Root>
-                {/* <CopyToClipboardButton hasCopied={hasCopied} onCopy={onCopy} showTooltip /> */}
+                <CopyToClipboardButton hasCopied={copied} onCopy={copy} showTooltip />
                 <Tooltip content="Format">
                   <IconButton
                     disabled={!fileType.canFormat}
@@ -164,8 +160,8 @@ export function DecodeSelectionModal({
                   </IconButton>
                 </Tooltip>
                 <Tooltip content={hexView ? "Switch to text view" : "Switch to hex view"}>
-                  <IconButton aria-label="View" onClick={() => setHexView((prev) => !prev)}>
-                    {hexView ? <FiFileText color="blue.400" /> : <FiCpu color="blue.400" />}
+                  <IconButton aria-label="View" onClick={() => setHexView((prev) => !prev)} color="blue.400">
+                    {hexView ? <FiFileText /> : <FiCpu />}
                   </IconButton>
                 </Tooltip>
               </VStack>
@@ -181,11 +177,12 @@ export function DecodeSelectionModal({
                     </option>
                   ))}
                 </NativeSelect.Field>
+                <NativeSelect.Indicator />
               </NativeSelect.Root>
               <Button onClick={handleAddNew}>Create block</Button>
-              <Button variant="ghost" onClick={onClose}>
-                Close
-              </Button>
+              <Dialog.ActionTrigger asChild>
+                <Button variant="subtle">Close</Button>
+              </Dialog.ActionTrigger>
             </ButtonGroup>
           </Dialog.Footer>
         </Dialog.Content>

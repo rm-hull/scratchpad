@@ -6,13 +6,13 @@ import { Tooltip } from "./ui/tooltip";
 interface CopyToClipboardButtonProps {
   hasCopied: boolean;
   onCopy: () => void;
-  size?: "xs";
-  variant?: "ghost";
+  size?: "2xs";
+  variant?: "plain" | "ghost";
   showTooltip?: boolean;
   ml?: number;
 }
 
-function wrapTooltip(showTooltip: boolean, element: JSX.Element): JSX.Element {
+function wrapTooltip(showTooltip: boolean, element: JSX.Element) {
   if (showTooltip) {
     return <Tooltip content="Copy to clipboard">{element}</Tooltip>;
   }
@@ -27,11 +27,18 @@ export function CopyToClipboardButton({
   variant,
   showTooltip = false,
   ml,
-}: CopyToClipboardButtonProps): JSX.Element {
+}: CopyToClipboardButtonProps) {
   return wrapTooltip(
     showTooltip,
-    <IconButton ml={ml} size={size} variant={variant} aria-label="Copy to clipboard" onClick={onCopy}>
-      {hasCopied ? <FiCheck color="green.400" /> : <FiClipboard color="blue.400" />}
+    <IconButton
+      ml={ml}
+      size={size}
+      variant={variant}
+      aria-label="Copy to clipboard"
+      onClick={onCopy}
+      color={hasCopied ? "green.400" : "blue.400"}
+    >
+      {hasCopied ? <FiCheck /> : <FiClipboard />}
     </IconButton>
   );
 }

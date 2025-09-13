@@ -1,21 +1,21 @@
-import { Button, Code, Dialog, Link, Separator, Text, VStack } from "@chakra-ui/react";
-import { type JSX } from "react";
+import { Button, CloseButton, Code, Dialog, Link, Separator, Text, VStack } from "@chakra-ui/react";
 import { data } from "../models/exchangeRates";
 import { License } from "./License";
 
-interface AboutModalProps {
+interface AboutDialogProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export function AboutModal({ isOpen, onClose }: AboutModalProps): JSX.Element | null {
+export function AboutDialog({ isOpen, onClose }: AboutDialogProps) {
   return (
     <Dialog.Root open={isOpen} onOpenChange={onClose} size="xl" scrollBehavior="inside">
-      <Dialog.Trigger />
       <Dialog.Backdrop />
       <Dialog.Positioner>
         <Dialog.Content>
-          <Dialog.CloseTrigger />
+          <Dialog.CloseTrigger asChild>
+            <CloseButton size="sm" />
+          </Dialog.CloseTrigger>
           <Dialog.Header>
             <Dialog.Title>About</Dialog.Title>
           </Dialog.Header>
@@ -72,9 +72,9 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps): JSX.Element | 
             </VStack>
           </Dialog.Body>
           <Dialog.Footer>
-            <Button variant="ghost" onClick={onClose}>
-              Close
-            </Button>
+            <Dialog.ActionTrigger asChild>
+              <Button variant="subtle">Close</Button>
+            </Dialog.ActionTrigger>
           </Dialog.Footer>
         </Dialog.Content>
       </Dialog.Positioner>

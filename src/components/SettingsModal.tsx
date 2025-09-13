@@ -1,5 +1,6 @@
 import {
   Button,
+  CloseButton,
   Dialog,
   Field,
   // FormLabel,
@@ -53,7 +54,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
       <Dialog.Backdrop />
       <Dialog.Positioner>
         <Dialog.Content>
-          <Dialog.CloseTrigger />
+          <Dialog.CloseTrigger asChild>
+            <CloseButton size="sm" />
+          </Dialog.CloseTrigger>
           <Dialog.Header>
             <Dialog.Title>Settings: {namespace ?? "default namespace"}</Dialog.Title>
           </Dialog.Header>
@@ -78,6 +81,7 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                       ))}
                     </optgroup>
                   </NativeSelect.Field>
+                  <NativeSelect.Indicator />
                 </NativeSelect.Root>
               </Field.Root>
               <Field.Root display="flex" alignItems="center">
@@ -249,9 +253,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
             </VStack>
           </Dialog.Body>
           <Dialog.Footer>
-            <Button variant="ghost" onClick={onClose}>
-              Close
-            </Button>
+            <Dialog.ActionTrigger asChild>
+              <Button variant="subtle">Close</Button>
+            </Dialog.ActionTrigger>
           </Dialog.Footer>
         </Dialog.Content>
       </Dialog.Positioner>

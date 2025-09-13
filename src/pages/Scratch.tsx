@@ -2,7 +2,7 @@ import { Container, Separator, useDisclosure } from "@chakra-ui/react";
 import * as R from "ramda";
 import { useEffect, useState, type JSX } from "react";
 import { Dropzone } from "../components/DropZone";
-import { GettingStartedModal } from "../components/GettingStartedModal";
+import { GettingStartedDialog } from "../components/GettingStartedDialog";
 import { RightContextMenu } from "../components/RightContextMenu";
 import { Search } from "../components/Search";
 import { TextEditor } from "../components/TextEditor";
@@ -82,7 +82,7 @@ export function Scratch(): JSX.Element {
           isOpen={isSearchOpen || settings?.permanentlyShowSearchBar}
           onClose={onCloseSearch}
         />
-        {isGettingStartedOpen && <GettingStartedModal isOpen={isGettingStartedOpen} onClose={onCloseGettingStarted} />}
+        {isGettingStartedOpen && <GettingStartedDialog isOpen={isGettingStartedOpen} onClose={onCloseGettingStarted} />}
         {sortFn(filteredBlocks).map((block, index) => (
           <Container p={0} key={block.id} maxWidth="100%">
             <TextEditor

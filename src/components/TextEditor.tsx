@@ -71,7 +71,7 @@ export function TextEditor({ block, onBlockChange, onBlockDelete, highlight, bac
   const [toolbarActive, setToolbarActive] = useState(false);
   const [settings] = useGeneralSettings();
   const fileType = useMemo(() => fromLanguage(block.language), [block.language]);
-  const { /*onCopy, hasCopied,*/ value, setValue } = useClipboard({ defaultValue: block.text });
+  const { copy, copied, value, setValue } = useClipboard({ defaultValue: block.text });
   const { open: isExportModalOpen, onOpen: onExportOpen, onClose: onExportClose } = useDisclosure();
 
   useDebounce(
@@ -146,8 +146,8 @@ export function TextEditor({ block, onBlockChange, onBlockDelete, highlight, bac
           onDelete={(archive: boolean) => {
             onBlockDelete(block.id, archive);
           }}
-          hasCopied={false}
-          onCopy={() => {}}
+          hasCopied={copied}
+          onCopy={copy}
           onExport={onExportOpen}
           onToggleLock={handleToggleLock}
           locked={block.locked}

@@ -1,22 +1,21 @@
-import { Button, Dialog, NativeSelect } from "@chakra-ui/react";
-import { useEffect, useState, type ChangeEvent, type MouseEvent } from "react";
-import { useFocus } from "../hooks/useFocus";
+import { Button, ButtonGroup, CloseButton, Dialog, NativeSelect } from "@chakra-ui/react";
+import { useRef, useState, type ChangeEvent, type MouseEvent } from "react";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { supportedTypes } from "../models/fileTypes";
 
-interface AddNewModalProps {
+interface AddNewDialogProps {
   isOpen: boolean;
   onCancel: () => void;
   onCreate: (language: string) => void;
 }
 
-export function AddNewModal({ isOpen, onCancel, onCreate }: AddNewModalProps) {
+export function AddNewDialog({ isOpen, onCancel, onCreate }: AddNewDialogProps) {
   const [settings] = useGeneralSettings();
-  const [inputRef, setInputFocus] = useFocus<HTMLSelectElement>();
   const [language, setLanguage] = useState<string>(
     settings?.defaultLanguage === undefined || settings.defaultLanguage === "none" ? "text" : settings.defaultLanguage
   );
 
+  const ref = useRef<HTMLSelectElement | null>(null);
   const handleCreate = (event: MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
     onCreate(language);
@@ -27,40 +26,39 @@ export function AddNewModal({ isOpen, onCancel, onCreate }: AddNewModalProps) {
     setLanguage(event.target.value);
   };
 
-  useEffect(() => {
-    if (isOpen) {
-      setTimeout(setInputFocus, 0);
-    }
-  }, [isOpen, setInputFocus]);
-
   return (
-    <Dialog.Root open={isOpen} onOpenChange={onCancel} scrollBehavior="inside">
+    <Dialog.Root open={isOpen} onOpenChange={onCancel} scrollBehavior="inside" initialFocusEl={() => ref.current}>
       <Dialog.Trigger />
       <Dialog.Backdrop />
       <Dialog.Positioner>
         <Dialog.Content>
-          <Dialog.CloseTrigger />
+          <Dialog.CloseTrigger asChild>
+            <CloseButton size="sm" />
+          </Dialog.CloseTrigger>
           <Dialog.Header>
             <Dialog.Title>Choose a file type:</Dialog.Title>
           </Dialog.Header>
           <Dialog.Body>
             <NativeSelect.Root>
-              <NativeSelect.Field ref={inputRef} name="language" onChange={handleChangeLanguage} value={language}>
+              <NativeSelect.Field ref={ref} name="language" onChange={handleChangeLanguage} value={language}>
                 {supportedTypes.map((fileType) => (
                   <option key={fileType.language} value={fileType.language}>
                     {fileType.descr}
                   </option>
                 ))}
               </NativeSelect.Field>
+              <NativeSelect.Indicator />
             </NativeSelect.Root>
           </Dialog.Body>
           <Dialog.Footer>
-            <Button type="submit" mr={1} onClick={handleCreate}>
-              Create
-            </Button>
-            <Button variant="ghost" onClick={onCancel}>
-              Cancel
-            </Button>
+            <ButtonGroup>
+              <Dialog.ActionTrigger asChild>
+                <Button variant="subtle">Cancel</Button>
+              </Dialog.ActionTrigger>
+              <Button type="submit" onClick={handleCreate}>
+                Create
+              </Button>
+            </ButtonGroup>
           </Dialog.Footer>
         </Dialog.Content>
       </Dialog.Positioner>
