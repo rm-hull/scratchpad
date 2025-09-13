@@ -17,8 +17,8 @@ import { useGeneralSettings, type BooleanSettingsKeys } from "../hooks/useGenera
 import { useNamespace } from "../hooks/useNamespace";
 import { type sortBy } from "../models/block";
 import { supportedTypes } from "../models/fileTypes";
-import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import { DangerZoneSettings } from "./DangerZoneSettings";
+import { ColorModeButton } from "./ui/color-mode";
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -61,7 +61,7 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
             <VStack align="left">
               <Field.Root display="flex" alignItems="baseline">
                 <Field.Label htmlFor="system-theme">Theme:</Field.Label>
-                <ColorModeSwitcher />
+                <ColorModeButton />
               </Field.Root>
               <Field.Root display="flex" alignItems="center">
                 <Field.Label htmlFor="default-language" mb={0}>

@@ -1,18 +1,10 @@
-import {
-  Box,
-  Collapse,
-  Input,
-  InputGroup,
-  InputLeftAddon,
-  InputRightAddon,
-  useColorModeValue,
-  useControllableState,
-} from "@chakra-ui/react";
+import { Box, Collapsible, Input, InputGroup, useControllableState } from "@chakra-ui/react";
 import pluralize from "pluralize";
 import { useEffect, type ChangeEvent, type JSX } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useDebounce, useKeyPressEvent } from "react-use";
 import { useFocus } from "../hooks/useFocus";
+import { useColorModeValue } from "./ui/color-mode";
 
 interface SearchProps {
   matches?: number;
@@ -54,21 +46,23 @@ export function Search({ onChange, isOpen, onClose, matches }: SearchProps): JSX
 
   return (
     <Box position="sticky" top={0} zIndex={100} backgroundColor={bgColor}>
-      <Collapse in={isOpen} animateOpacity>
-        <Box p={2} pb={1}>
-          <InputGroup size="sm">
-            <InputLeftAddon pointerEvents="none">
-              <FiSearch />
-            </InputLeftAddon>
-            <Input ref={inputRef} placeholder="Search" name="search" value={value} onChange={handleSearch} />
-            {matches !== undefined && (
-              <InputRightAddon color={matches === 0 ? "red.400" : undefined}>
-                {pluralize("matching block", matches, true)}
-              </InputRightAddon>
-            )}
-          </InputGroup>
-        </Box>
-      </Collapse>
+      <Collapsible.Root open={isOpen}>
+        <Collapsible.Content>
+          <Box p={2} pb={1}>
+            <InputGroup
+              // size="sm"
+              startElement={<FiSearch pointerEvents="none" />}
+              endElement={
+                matches !== undefined && (
+                  <Box color={matches === 0 ? "red.400" : undefined}>{pluralize("matching block", matches, true)}</Box>
+                )
+              }
+            >
+              <Input ref={inputRef} placeholder="Search" name="search" value={value} onChange={handleSearch} />
+            </InputGroup>
+          </Box>
+        </Collapsible.Content>
+      </Collapsible.Root>
     </Box>
   );
 }

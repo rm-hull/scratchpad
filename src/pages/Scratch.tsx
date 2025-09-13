@@ -1,4 +1,4 @@
-import { Container, Separator, useColorModeValue, useDisclosure } from "@chakra-ui/react";
+import { Container, Separator, useDisclosure } from "@chakra-ui/react";
 import * as R from "ramda";
 import { useEffect, useState, type JSX } from "react";
 import { Dropzone } from "../components/DropZone";
@@ -10,14 +10,11 @@ import { useBlocks } from "../hooks/useBlocks";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { newBlock, sortBy, type Block } from "../models/block";
 import { fromFilename } from "../models/fileTypes";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
 export function Scratch(): JSX.Element {
   const { open: isSearchOpen, onOpen: onOpenSearch, onClose: onCloseSearch } = useDisclosure();
-  const {
-    open: isGettingStartedOpen,
-    onOpen: onOpenGettingStarted,
-    onClose: onCloseGettingStarted,
-  } = useDisclosure();
+  const { open: isGettingStartedOpen, onOpen: onOpenGettingStarted, onClose: onCloseGettingStarted } = useDisclosure();
   const [searchTerm, setSearchTerm] = useState<RegExp>();
   const [blocks, updateBlocks] = useBlocks();
   const [settings] = useGeneralSettings();

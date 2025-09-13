@@ -1,15 +1,5 @@
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Select,
-} from "@chakra-ui/react";
-import { useEffect, useState, type ChangeEvent, type FormEvent, type JSX } from "react";
+import { Button, Dialog, NativeSelect } from "@chakra-ui/react";
+import { useEffect, useState, type ChangeEvent, type MouseEvent } from "react";
 import { useFocus } from "../hooks/useFocus";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { supportedTypes } from "../models/fileTypes";
@@ -20,14 +10,14 @@ interface AddNewModalProps {
   onCreate: (language: string) => void;
 }
 
-export function AddNewModal({ isOpen, onCancel, onCreate }: AddNewModalProps): JSX.Element | null {
+export function AddNewModal({ isOpen, onCancel, onCreate }: AddNewModalProps) {
   const [settings] = useGeneralSettings();
   const [inputRef, setInputFocus] = useFocus<HTMLSelectElement>();
   const [language, setLanguage] = useState<string>(
     settings?.defaultLanguage === undefined || settings.defaultLanguage === "none" ? "text" : settings.defaultLanguage
   );
 
-  const handleCreate = (event: FormEvent<HTMLFormElement>): void => {
+  const handleCreate = (event: MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault();
     onCreate(language);
     onCancel();
@@ -44,32 +34,36 @@ export function AddNewModal({ isOpen, onCancel, onCreate }: AddNewModalProps): J
   }, [isOpen, setInputFocus]);
 
   return (
-    <Modal isOpen={isOpen} onClose={onCancel} scrollBehavior="inside">
-      <ModalOverlay />
-      <ModalContent>
-        <form onSubmit={handleCreate}>
-          <ModalHeader>Choose a file type:</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Select ref={inputRef} name="language" onChange={handleChangeLanguage} value={language}>
-              {supportedTypes.map((fileType) => (
-                <option key={fileType.language} value={fileType.language}>
-                  {fileType.descr}
-                </option>
-              ))}
-            </Select>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button type="submit" mr={1}>
+    <Dialog.Root open={isOpen} onOpenChange={onCancel} scrollBehavior="inside">
+      <Dialog.Trigger />
+      <Dialog.Backdrop />
+      <Dialog.Positioner>
+        <Dialog.Content>
+          <Dialog.CloseTrigger />
+          <Dialog.Header>
+            <Dialog.Title>Choose a file type:</Dialog.Title>
+          </Dialog.Header>
+          <Dialog.Body>
+            <NativeSelect.Root>
+              <NativeSelect.Field ref={inputRef} name="language" onChange={handleChangeLanguage} value={language}>
+                {supportedTypes.map((fileType) => (
+                  <option key={fileType.language} value={fileType.language}>
+                    {fileType.descr}
+                  </option>
+                ))}
+              </NativeSelect.Field>
+            </NativeSelect.Root>
+          </Dialog.Body>
+          <Dialog.Footer>
+            <Button type="submit" mr={1} onClick={handleCreate}>
               Create
             </Button>
             <Button variant="ghost" onClick={onCancel}>
               Cancel
             </Button>
-          </ModalFooter>
-        </form>
-      </ModalContent>
-    </Modal>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </Dialog.Positioner>
+    </Dialog.Root>
   );
 }

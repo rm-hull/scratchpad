@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertTitle } from "@chakra-ui/react";
+import { Alert } from "@chakra-ui/react";
 import { type JSX } from "react";
 import { useBlocks } from "../hooks/useBlocks";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
