@@ -9,7 +9,7 @@ interface CopyToClipboardButtonProps {
   size?: "2xs";
   variant?: "plain" | "ghost";
   showTooltip?: boolean;
-  ml?: number;
+  height?: string;
 }
 
 function wrapTooltip(showTooltip: boolean, element: JSX.Element) {
@@ -26,17 +26,17 @@ export function CopyToClipboardButton({
   size,
   variant,
   showTooltip = false,
-  ml,
+  height,
 }: CopyToClipboardButtonProps) {
   return wrapTooltip(
     showTooltip,
     <IconButton
-      ml={ml}
       size={size}
       variant={variant}
       aria-label="Copy to clipboard"
       onClick={onCopy}
       color={hasCopied ? "green.400" : "blue.400"}
+      height={height}
     >
       {hasCopied ? <FiCheck /> : <FiClipboard />}
     </IconButton>

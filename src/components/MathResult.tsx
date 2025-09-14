@@ -1,4 +1,4 @@
-import { Box, Clipboard, IconButton, useClipboard } from "@chakra-ui/react";
+import { Box, useClipboard } from "@chakra-ui/react";
 import { useState, type JSX } from "react";
 import { CopyToClipboardButton } from "./CopyToClipboardButton";
 
@@ -24,10 +24,11 @@ export function MathResult({ result, xOffset, isError, lineNumbers }: MathResult
       color={isError ? "red.400" : undefined}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
+      gap={1}
     >
       # {result}
       {isActive && !isError && (
-        <CopyToClipboardButton hasCopied={copied} onCopy={copy} size="2xs" variant="plain" ml={1} />
+        <CopyToClipboardButton hasCopied={copied} onCopy={copy} size="2xs" variant="plain" height="20px" />
       )}
     </Box>
   );

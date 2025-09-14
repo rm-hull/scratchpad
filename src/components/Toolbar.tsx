@@ -62,7 +62,7 @@ export function Toolbar({
   return (
     <HStack mr="2px" mt="1px" gap={1} onMouseLeave={() => setToolbarVisible(false)}>
       <NativeSelect.Root disabled={locked ?? false} size="xs">
-        <NativeSelect.Field name="language" value={language} onChange={handleChangeLanguage}>
+        <NativeSelect.Field name="language" value={language} onChange={handleChangeLanguage} height="20px">
           {supportedTypes.map((fileType) => (
             <option key={fileType.language} value={fileType.language}>
               {fileType.descr}
