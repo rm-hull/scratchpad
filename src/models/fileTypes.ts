@@ -6,8 +6,11 @@ import "prismjs/components/prism-csv";
 import "prismjs/components/prism-http";
 import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-json";
+import "prismjs/components/prism-json5";
+import "prismjs/components/prism-go";
 import "prismjs/components/prism-log";
 import "prismjs/components/prism-markdown";
+import "prismjs/components/prism-markup";
 import "prismjs/components/prism-properties";
 import "prismjs/components/prism-python";
 import "prismjs/components/prism-regex";
@@ -61,6 +64,7 @@ export const supportedTypes: readonly FileType[] = [
     extensions: [".html"],
   },
   { language: "http", descr: "HTTP", grammar: languages.http, canFormat: false },
+  { language: "go", descr: "Go", grammar: languages.go, canFormat: false },
   {
     language: "javascript",
     descr: "Javascript",
@@ -72,7 +76,7 @@ export const supportedTypes: readonly FileType[] = [
   {
     language: "json",
     descr: "JSON",
-    grammar: languages.json,
+    grammar: languages.json5,
     canFormat: true,
     mimeType: "application/json",
     extensions: [".json"],
@@ -159,7 +163,7 @@ export const supportedTypes: readonly FileType[] = [
     language: "xml",
     descr: "XML",
     grammar: languages.xml,
-    canFormat: true,
+    canFormat: false,
     mimeType: "application/xml",
     extensions: [".xml"],
   },

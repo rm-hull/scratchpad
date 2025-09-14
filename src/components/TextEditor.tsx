@@ -1,4 +1,4 @@
-import { Box, useClipboard, useDisclosure } from "@chakra-ui/react";
+import { Box, Code, Text, useClipboard, useDisclosure } from "@chakra-ui/react";
 import clsx from "clsx";
 import { highlight, type Grammar } from "prismjs";
 import "prismjs/themes/prism.css";
@@ -85,17 +85,18 @@ export function TextEditor({ block, onBlockChange, onBlockDelete, highlight, bac
   );
 
   const handleError = useCallback((error: Error) => {
-    console.log({ error });
+    const syntaxError = error as unknown as any;
     toaster.dismiss();
     toaster.create({
       title: "Unable to format block",
-      description: error.message,
-      // <>
-      //   <Text>{error.cause.message}</Text>
-      //   <Code>
-      //     <pre>{error.codeFrame}</pre>
-      //   </Code>
-      // </>
+      description: (
+        <>
+          <Text>{syntaxError.cause.message}</Text>
+          <Code colorScheme="red" minWidth={300}>
+            <pre>{syntaxError.codeFrame}</pre>
+          </Code>
+        </>
+      ),
       type: "error",
       duration: 9000,
       closable: true,
