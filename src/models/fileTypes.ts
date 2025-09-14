@@ -155,6 +155,14 @@ export const supportedTypes: readonly FileType[] = [
     mimeType: "application/yaml",
     extensions: [".yml", ".yaml"],
   },
+  {
+    language: "xml",
+    descr: "XML",
+    grammar: languages.xml,
+    canFormat: true,
+    mimeType: "application/xml",
+    extensions: [".xml"],
+  },
 ];
 
 export function fromLanguage(language: string = "text"): FileType {
