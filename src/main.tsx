@@ -9,8 +9,9 @@ import { App } from "./App";
 import { ErrorFallback } from "./components/ErrorFallback";
 import "./main.css";
 import { reportWebVitals } from "./reportWebVitals";
-import { ColorModeProvider } from "./components/ui/color-mode";
+// import { ColorModeProvider } from "./components/ui/color-mode";
 import { Toaster } from "./components/ui/toaster";
+import { Provider } from "./components/ui/provider";
 
 if (import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID !== undefined) {
   ReactGA.initialize(import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID as string);
@@ -26,15 +27,15 @@ const root = ReactDOM.createRoot(element);
 root.render(
   <React.StrictMode>
     {/* <ColorModeScript initialColorMode="dark" storageKey="scratchpad.color-mode" /> */}
-    <ChakraProvider value={createSystem(defaultConfig)}>
-      <ColorModeProvider />
+    <Provider /* value={createSystem(defaultConfig)}*/>
+
       <Router basename="/scratchpad">
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <Toaster />
           <App />
         </ErrorBoundary>
       </Router>
-    </ChakraProvider>
+    </Provider>
   </React.StrictMode>
 );
 

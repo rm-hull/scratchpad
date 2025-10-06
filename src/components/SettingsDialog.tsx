@@ -1,9 +1,7 @@
 import {
   Button,
-  CloseButton,
   Dialog,
   Field,
-  // FormLabel,
   HStack,
   NativeSelect,
   NumberInput,
@@ -26,7 +24,7 @@ interface SettingsModalProps {
   onClose: () => void;
 }
 
-export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
+export function SettingsDialog({ isOpen, onClose }: SettingsModalProps) {
   const [settings, updateSettings] = useGeneralSettings();
   const namespace = useNamespace();
   const handleUpdateSortOrder = (details: RadioGroupValueChangeDetails): void => {
@@ -50,23 +48,18 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
   };
 
   return (
-    <Dialog.Root open={isOpen} onOpenChange={onClose} size="xl" scrollBehavior="inside">
+    <Dialog.Root open={isOpen} onOpenChange={onClose} size="lg" scrollBehavior="inside">
       <Dialog.Backdrop />
       <Dialog.Positioner>
         <Dialog.Content>
-          <Dialog.CloseTrigger asChild>
-            <CloseButton size="sm" />
-          </Dialog.CloseTrigger>
-          <Dialog.Header>
+          <Dialog.Header justifyContent="space-between">
             <Dialog.Title>Settings: {namespace ?? "default namespace"}</Dialog.Title>
+            <ColorModeButton />
           </Dialog.Header>
           <Dialog.Body>
-            <VStack align="left">
-              <Field.Root display="flex" alignItems="baseline">
-                <Field.Label htmlFor="system-theme">Theme:</Field.Label>
-                <ColorModeButton />
-              </Field.Root>
-              <Field.Root display="flex" alignItems="center">
+            <VStack>
+              
+              <Field.Root display="flex" flexDirection="row" alignItems="center">
                 <Field.Label htmlFor="default-language" mb={0}>
                   Default language:
                 </Field.Label>
@@ -84,7 +77,8 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   <NativeSelect.Indicator />
                 </NativeSelect.Root>
               </Field.Root>
-              <Field.Root display="flex" alignItems="center">
+
+              <Field.Root display="flex" flexDirection="row" alignItems="center">
                 <Field.Label htmlFor="sort-order" mb={0}>
                   Sort blocks by:
                 </Field.Label>
@@ -113,7 +107,8 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   </HStack>
                 </RadioGroup.Root>
               </Field.Root>
-              <Field.Root display="flex" alignItems="center">
+
+              <Field.Root display="flex" flexDirection="row"  alignItems="center">
                 <Switch.Root
                   id="show-zebra-stripes"
                   checked={settings?.showZebraStripes}
@@ -125,11 +120,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   </Switch.Control>
                   <Switch.Label>Show zebra stripes</Switch.Label>
                 </Switch.Root>
-                {/* <FormLabel htmlFor="show-zebra-stripes" mb={0} ml={2}>
-                  Show zebra stripes
-                </FormLabel> */}
               </Field.Root>
-              <Field.Root display="flex" alignItems="center">
+
+              <Field.Root display="flex" flexDirection="row" alignItems="center">
                 <Switch.Root
                   id="show-line-numbers"
                   checked={settings?.showLineNumbers}
@@ -141,11 +134,8 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   </Switch.Control>
                   <Switch.Label>Show line numbers</Switch.Label>
                 </Switch.Root>
-                {/* <FormLabel htmlFor="show-line-numbers" mb={0} ml={2}>
-                  Show line numbers
-                </FormLabel> */}
               </Field.Root>
-              <Field.Root display="flex" alignItems="center">
+              <Field.Root display="flex" flexDirection="row"  alignItems="center">
                 <Switch.Root
                   id="permanently-show-search-bar"
                   checked={settings?.permanentlyShowSearchBar}
@@ -157,11 +147,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   </Switch.Control>
                   <Switch.Label>Permanently show search bar</Switch.Label>
                 </Switch.Root>
-                {/* <FormLabel htmlFor="permanently-show-search-bar" mb={0} ml={2}>
-                  Permanently show search bar
-                </FormLabel> */}
               </Field.Root>
-              <Field.Root display="flex" alignItems="center">
+
+              <Field.Root display="flex" flexDirection="row" alignItems="center">
                 <Switch.Root
                   id="show-toolbar-for-every-block"
                   checked={settings?.showToolbarForEveryBlock}
@@ -173,11 +161,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   </Switch.Control>
                   <Switch.Label>Show toolbar for every block</Switch.Label>
                 </Switch.Root>
-                {/* <FormLabel htmlFor="show-toolbar-for-every-block" mb={0} ml={2}>
-                  Show toolbar for every block
-                </FormLabel> */}
               </Field.Root>
-              <Field.Root display="flex" alignItems="center">
+
+              <Field.Root display="flex" flexDirection="row" alignItems="center">
                 <Switch.Root
                   id="minimise-editor-toolbar"
                   checked={settings?.minimiseEditorToolbar}
@@ -189,36 +175,18 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   </Switch.Control>
                   <Switch.Label>Minimise editor toolbar</Switch.Label>
                 </Switch.Root>
-                {/* <FormLabel htmlFor="minimise-editor-toolbar" mb={0} ml={2}>
-                  Minimise editor toolbar
-                </FormLabel> */}
               </Field.Root>
-              <Field.Root display="flex" alignItems="center">
+
+              <Field.Root display="flex" flexDirection="row" alignItems="center">
                 <Field.Label htmlFor="print-width" mb={0}>
                   Formatting: print width
                 </Field.Label>
-                {/* <NumberInput
-                  value={settings?.formatting?.printWidth}
-                  defaultValue={80}
-                  min={0}
-                  max={200}
-                  onChange={handleFormattingPrintWidth}
-                  size="sm"
-                  width={20}
-                >
-                  <NumberInputField />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput> */}
-
                 <NumberInput.Root
                   id="print-width"
                   defaultValue="80"
                   min={0}
                   max={200}
-                  size="sm"
+                  size="xs"
                   width={20}
                   value={settings?.formatting?.printWidth?.toString()}
                   onValueChange={handleFormattingPrintWidth}
@@ -239,7 +207,7 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   max={8}
                   step={2}
                   onValueChange={handleFormattingTabWidth}
-                  size="sm"
+                  size="xs"
                   width={20}
                 >
                   <NumberInput.Input />

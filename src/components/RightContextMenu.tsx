@@ -9,7 +9,7 @@ import { focus, newBlock, type Block } from "../models/block";
 import { AboutDialog } from "./AboutDialog";
 import { AddNewDialog } from "./AddNewDialog";
 import { DecodeSelectionDialog } from "./DecodeSelectionModal";
-import { SettingsModal } from "./SettingsModal";
+import { SettingsDialog } from "./SettingsDialog";
 import { Sync } from "./Sync";
 import { GotoNamespace } from "./GotoScratchpad";
 import { toaster } from "./ui/toaster";
@@ -157,7 +157,7 @@ export function RightContextMenu({ children, onBlockAdd, onSearch }: PropsWithCh
       </Menu.Root>
 
       {isAddNewOpen && <AddNewDialog isOpen={isAddNewOpen} onCreate={handleCreate} onCancel={onCloseAddNew} />}
-      {isSettingsOpen && <SettingsModal isOpen={isSettingsOpen} onClose={onCloseSettings} />}
+      {isSettingsOpen && <SettingsDialog isOpen={isSettingsOpen} onClose={onCloseSettings} />}
       {isAboutOpen && <AboutDialog isOpen={isAboutOpen} onClose={onCloseAbout} />}
       {isDecodeSelectionOpen && (
         <DecodeSelectionDialog
