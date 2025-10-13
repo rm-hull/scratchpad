@@ -34,7 +34,7 @@
     "pluralize": "^8.0.0",
     "prettier": "^3.6.2",
     "prismjs": "^1.30.0",
-    "ramda": "^0.31.3",
+    "ramda": "^0.32.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-dropzone": "^14.3.8",
