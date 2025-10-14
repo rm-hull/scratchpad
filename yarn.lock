@@ -7126,9 +7126,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mathjs@npm:^14.8.2":
-  version: 14.8.2
-  resolution: "mathjs@npm:14.8.2"
+"mathjs@npm:^15.0.0":
+  version: 15.0.0
+  resolution: "mathjs@npm:15.0.0"
   dependencies:
     "@babel/runtime": "npm:^7.26.10"
     complex.js: "npm:^2.2.5"
@@ -7141,7 +7141,7 @@ __metadata:
     typed-function: "npm:^4.2.1"
   bin:
     mathjs: bin/cli.js
-  checksum: 10/a9621c1c3988ae8346d27206791b5b9716badbfb7d83ddd157aa36e0c8cf73986d372c4b29ee4432476a9104666ba31b87d8324c5ae46364c7835870345ef7bf
+  checksum: 10/e82a0b68cb462ffe6605640e1049c1c5999231bf122d3cc0c3ad8208e3fa2aa6216c6fba6843006ca3bd443fa3c9ab9888fb7c2806ece135fdc44fe04febb627
   languageName: node
   linkType: hard
 
@@ -8521,7 +8521,7 @@ __metadata:
     hexy: "npm:^0.3.5"
     jotai: "npm:^2.15.0"
     js-base64: "npm:^3.7.8"
-    mathjs: "npm:^14.8.2"
+    mathjs: "npm:^15.0.0"
     pluralize: "npm:^8.0.0"
     prettier: "npm:^3.6.2"
     prismjs: "npm:^1.30.0"
