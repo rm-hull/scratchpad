@@ -81,7 +81,7 @@
     "eslint-plugin-testing-library": "^7.13.3",
     "globals": "^16.4.0",
     "typescript": "^5.9.3",
-    "vite": "^7.1.10",
+    "vite": "^7.1.11",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4",
     "xml2js": "^0.6.2"
