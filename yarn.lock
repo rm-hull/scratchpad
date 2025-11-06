@@ -8194,7 +8194,7 @@ __metadata:
     react-simple-code-editor: "npm:^0.14.1"
     react-use: "npm:^17.6.0"
     typescript: "npm:^5.9.3"
-    vite: "npm:^7.2.0"
+    vite: "npm:^7.2.1"
     vite-tsconfig-paths: "npm:^5.1.4"
     vitest: "npm:^4.0.7"
     web-vitals: "npm:^5.1.0"
@@ -9173,9 +9173,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^7.2.0":
-  version: 7.2.0
-  resolution: "vite@npm:7.2.0"
+"vite@npm:^7.2.1":
+  version: 7.2.1
+  resolution: "vite@npm:7.2.1"
   dependencies:
     esbuild: "npm:^0.25.0"
     fdir: "npm:^6.5.0"
@@ -9224,7 +9224,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/d2ad129f87502d98b4cf46d3352b4fab6b1a7674327dda75241c3f20d93a66765b41565edd6e1a62bbd61610678d6536f1e2080af496e7d79ef62d037339af26
+  checksum: 10/2edae60e38f937c3dc41f51fcff1d8cee4fcec0d0df700e7cef0da4697f24de18475815ffd03678ddabb3490fa5794d6534464543b69bb3a1938f13fbe3092d6
   languageName: node
   linkType: hard
 
