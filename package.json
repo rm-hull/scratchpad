@@ -78,7 +78,7 @@
     "eslint-plugin-react-compiler": "19.1.0-rc.2",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.25",
-    "eslint-plugin-testing-library": "^7.14.0",
+    "eslint-plugin-testing-library": "^7.15.1",
     "globals": "^16.5.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.0",
