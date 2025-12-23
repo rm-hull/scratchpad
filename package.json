@@ -21,7 +21,7 @@
     "@eslint/compat": "^2.0.0",
     "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.2",
-    "@react-oauth/google": "^0.13.0",
+    "@react-oauth/google": "^0.13.4",
     "@stylistic/eslint-plugin": "^5.6.1",
     "axios": "^1.13.2",
     "chakra-ui-contextmenu": "^1.0.5",
