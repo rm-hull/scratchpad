@@ -23,7 +23,7 @@
     "@eslint/js": "^9.39.2",
     "@react-oauth/google": "^0.13.4",
     "@stylistic/eslint-plugin": "^5.7.1",
-    "axios": "^1.13.2",
+    "axios": "^1.13.3",
     "chakra-ui-contextmenu": "^1.0.5",
     "clsx": "^2.1.1",
     "framer-motion": "^12.29.0",
