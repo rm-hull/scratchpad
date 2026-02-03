@@ -5,10 +5,34 @@
 
 version: 2
 updates:
-  - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: npm
+    directory: /
     schedule:
-      interval: "daily"
+      interval: daily
+    versioning-strategy: increase
+    groups:
+      eslint:
+        patterns:
+          - "*eslint*"
+      vite:
+        patterns:
+          - "*vite*"
+      testing-library:
+        patterns:
+          - "@testing-library*"
+      chakra-ui:
+        patterns:
+          - "@chakra-ui/*"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      jsdom:
+        patterns:
+          - "jsdom"
+          - "@types/jsdom"
   - package-ecosystem: github-actions
     directory: /
     schedule:
