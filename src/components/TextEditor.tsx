@@ -1,8 +1,8 @@
-import { Box, useBoolean, useClipboard, useDisclosure, useToast, Text, Code } from "@chakra-ui/react";
+import { Box, Code, Text, useClipboard, useDisclosure } from "@chakra-ui/react";
 import clsx from "clsx";
 import { highlight, type Grammar } from "prismjs";
 import "prismjs/themes/prism.css";
-import { useCallback, useMemo, type JSX } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Editor from "react-simple-code-editor";
 import { useDebounce } from "react-use";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
@@ -14,6 +14,7 @@ import { ExportModal } from "./ExportModal";
 import { MathResult } from "./MathResult";
 import "./TextEditor.styles.css";
 import { Toolbar } from "./Toolbar";
+import { toaster } from "./ui/toaster";
 
 interface TextEditorProps {
   block: Block;
@@ -39,7 +40,7 @@ function hightlightWithLineNumbers(
   input: string,
   grammar: Grammar,
   language: string
-): JSX.Element[] {
+) {
   const xOffset = getMaxLineLength(input);
   return mark(regexp, input, grammar, language)
     .split("\n")
@@ -66,19 +67,12 @@ function getMaxLineLength(input: string): number {
   return maxLineLength;
 }
 
-export function TextEditor({
-  block,
-  onBlockChange,
-  onBlockDelete,
-  highlight,
-  backgroundColor,
-}: TextEditorProps): JSX.Element {
-  const toast = useToast();
-  const [isToolbarActive, { on: activateToolbar, off: deactivateToolbar }] = useBoolean(false);
+export function TextEditor({ block, onBlockChange, onBlockDelete, highlight, backgroundColor }: TextEditorProps) {
+  const [toolbarActive, setToolbarActive] = useState(false);
   const [settings] = useGeneralSettings();
   const fileType = useMemo(() => fromLanguage(block.language), [block.language]);
-  const { onCopy, hasCopied, value, setValue } = useClipboard(block.text);
-  const { isOpen: isExportModalOpen, onOpen: onExportOpen, onClose: onExportClose } = useDisclosure();
+  const { copy, copied, value, setValue } = useClipboard({ defaultValue: block.text });
+  const { open: isExportModalOpen, onOpen: onExportOpen, onClose: onExportClose } = useDisclosure();
 
   useDebounce(
     () => {
@@ -90,28 +84,24 @@ export function TextEditor({
     [value]
   );
 
-  const handleError = useCallback(
-    (error: Error) => {
-      console.log({ error });
-      const syntaxError = error as unknown as any;
-      toast.closeAll();
-      toast({
-        title: "Unable to format block",
-        description: (
-          <>
-            <Text>{syntaxError.cause.message}</Text>
-            <Code colorScheme="red" minWidth={500}>
-              <pre>{syntaxError.codeFrame}</pre>
-            </Code>
-          </>
-        ),
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
-    },
-    [toast]
-  );
+  const handleError = useCallback((error: Error) => {
+    const syntaxError = error as unknown as any;
+    toaster.dismiss();
+    toaster.create({
+      title: "Unable to format block",
+      description: (
+        <>
+          <Text>{syntaxError.cause.message}</Text>
+          <Code colorScheme="red" minWidth={300}>
+            <pre>{syntaxError.codeFrame}</pre>
+          </Code>
+        </>
+      ),
+      type: "error",
+      duration: 9000,
+      closable: true,
+    });
+  }, []);
 
   const handleLanguageChange = (language: string): void => {
     onBlockChange({ ...block, language, updatedAt: Date.now() });
@@ -144,17 +134,21 @@ export function TextEditor({
   );
 
   return (
-    <Box backgroundColor={backgroundColor} onMouseEnter={activateToolbar} onMouseLeave={deactivateToolbar}>
+    <Box
+      backgroundColor={backgroundColor}
+      onMouseEnter={() => setToolbarActive(true)}
+      onMouseLeave={() => setToolbarActive(false)}
+    >
       <Box position="absolute" right={0} zIndex={99} borderRadius={2} backgroundColor={backgroundColor}>
         <Toolbar
-          isActive={isToolbarActive || settings?.showToolbarForEveryBlock}
+          isActive={toolbarActive || settings?.showToolbarForEveryBlock}
           language={block.language}
           onChangeLanguage={handleLanguageChange}
           onDelete={(archive: boolean) => {
             onBlockDelete(block.id, archive);
           }}
-          hasCopied={hasCopied}
-          onCopy={onCopy}
+          hasCopied={copied}
+          onCopy={copy}
           onExport={onExportOpen}
           onToggleLock={handleToggleLock}
           locked={block.locked}

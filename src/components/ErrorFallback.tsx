@@ -1,21 +1,22 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Code, Container, Heading } from "@chakra-ui/react";
-import { type JSX } from "react";
+import { Alert, Code, Container, Heading } from "@chakra-ui/react";
 
 interface ErrorFallbackProps {
   error: unknown;
 }
 
-export function ErrorFallback({ error }: ErrorFallbackProps): JSX.Element {
+export function ErrorFallback({ error }: ErrorFallbackProps) {
 
   const err = error instanceof Error ? error : new Error(String(error));
 
   return (
     <Container maxWidth="container.lg">
-      <Alert status="error">
-        <AlertIcon />
-        <AlertTitle>Something went wrong:</AlertTitle>
-        <AlertDescription>{err.message}</AlertDescription>
-      </Alert>
+      <Alert.Root status="error">
+        <Alert.Indicator />
+        <Alert.Content>
+          <Alert.Title>Something went wrong:</Alert.Title>
+          <Alert.Description>{err.message}</Alert.Description>
+        </Alert.Content>
+      </Alert.Root>
 
       <Container m={5}>
         <Heading size="sm">Stack trace</Heading>

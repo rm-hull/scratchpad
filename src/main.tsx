@@ -1,4 +1,3 @@
-import { ChakraProvider, ColorModeScript, createLocalStorageManager, extendTheme } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ErrorBoundary } from "react-error-boundary";
@@ -8,6 +7,9 @@ import { App } from "./App";
 import { ErrorFallback } from "./components/ErrorFallback";
 import "./main.css";
 import { reportWebVitals } from "./reportWebVitals";
+// import { ColorModeProvider } from "./components/ui/color-mode";
+import { Toaster } from "./components/ui/toaster";
+import { Provider } from "./components/ui/provider";
 
 if (import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID !== undefined) {
   ReactGA.initialize(import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID as string);
@@ -18,24 +20,20 @@ if (element === null) {
   throw Error("root element not found");
 }
 const root = ReactDOM.createRoot(element);
-const manager = createLocalStorageManager("scratchpad.color-mode");
-
-const theme = extendTheme({
-  fonts: {
-    mono: `JetBrainsMono,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace`,
-  },
-});
+// const manager = createLocalStorageManager("scratchpad.color-mode");
 
 root.render(
   <React.StrictMode>
-    <ColorModeScript initialColorMode="dark" storageKey="scratchpad.color-mode" />
-    <ChakraProvider theme={theme} colorModeManager={manager}>
+    {/* <ColorModeScript initialColorMode="dark" storageKey="scratchpad.color-mode" /> */}
+    <Provider /* value={createSystem(defaultConfig)}*/>
+
       <Router basename="/scratchpad">
         <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <Toaster />
           <App />
         </ErrorBoundary>
       </Router>
-    </ChakraProvider>
+    </Provider>
   </React.StrictMode>
 );
 
