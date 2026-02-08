@@ -3066,12 +3066,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^25.2.1":
-  version: 25.2.1
-  resolution: "@types/node@npm:25.2.1"
+"@types/node@npm:^25.2.2":
+  version: 25.2.2
+  resolution: "@types/node@npm:25.2.2"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10/aab73de56dbb674a173a49618b9f9b4aff3ed5815c47104a8fcaa8ca0728effced8d6ed941aa342b7d1f9dfcd641513250a178f4a656067f461dd793ab422911
+  checksum: 10/a5d689d69168065da0ef2972c711b0382664fa52ad99e9988d174028444c71ecb6c5b641178c404acb6b526f27cd791341aa3998a66e71b9a9ee193d853db61e
   languageName: node
   linkType: hard
 
@@ -4089,14 +4089,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.13.4":
-  version: 1.13.4
-  resolution: "axios@npm:1.13.4"
+"axios@npm:^1.13.5":
+  version: 1.13.5
+  resolution: "axios@npm:1.13.5"
   dependencies:
-    follow-redirects: "npm:^1.15.6"
-    form-data: "npm:^4.0.4"
+    follow-redirects: "npm:^1.15.11"
+    form-data: "npm:^4.0.5"
     proxy-from-env: "npm:^1.1.0"
-  checksum: 10/54b7ef71c64837f9d52475832337f520cf6fa85c94612e03a3a2aad7082804a2544741267122696662147e90e6d2746601346984cf531ae715ecdb56d586a04c
+  checksum: 10/db726d09902565ef9a0632893530028310e2ec2b95b727114eca1b101450b00014133dfc3871cffc87983fb922bca7e4874d7e2826d1550a377a157cdf3f05b6
   languageName: node
   linkType: hard
 
@@ -5962,13 +5962,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.15.6":
-  version: 1.15.9
-  resolution: "follow-redirects@npm:1.15.9"
+"follow-redirects@npm:^1.15.11":
+  version: 1.15.11
+  resolution: "follow-redirects@npm:1.15.11"
   peerDependenciesMeta:
     debug:
       optional: true
-  checksum: 10/e3ab42d1097e90d28b913903841e6779eb969b62a64706a3eb983e894a5db000fbd89296f45f08885a0e54cd558ef62e81be1165da9be25a6c44920da10f424c
+  checksum: 10/07372fd74b98c78cf4d417d68d41fdaa0be4dcacafffb9e67b1e3cf090bc4771515e65020651528faab238f10f9b9c0d9707d6c1574a6c0387c5de1042cde9ba
   languageName: node
   linkType: hard
 
@@ -5991,16 +5991,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"form-data@npm:^4.0.4":
-  version: 4.0.4
-  resolution: "form-data@npm:4.0.4"
+"form-data@npm:^4.0.5":
+  version: 4.0.5
+  resolution: "form-data@npm:4.0.5"
   dependencies:
     asynckit: "npm:^0.4.0"
     combined-stream: "npm:^1.0.8"
     es-set-tostringtag: "npm:^2.1.0"
     hasown: "npm:^2.0.2"
     mime-types: "npm:^2.1.12"
-  checksum: 10/a4b62e21932f48702bc468cc26fb276d186e6b07b557e3dd7cc455872bdbb82db7db066844a64ad3cf40eaf3a753c830538183570462d3649fdfd705601cbcfb
+  checksum: 10/52ecd6e927c8c4e215e68a7ad5e0f7c1031397439672fd9741654b4a94722c4182e74cc815b225dcb5be3f4180f36428f67c6dd39eaa98af0dcfdd26c00c19cd
   languageName: node
   linkType: hard
 
@@ -6365,12 +6365,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hexy@npm:^0.3.5":
-  version: 0.3.5
-  resolution: "hexy@npm:0.3.5"
+"hexy@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "hexy@npm:0.4.0"
   bin:
     hexy: bin/hexy_cmd.js
-  checksum: 10/cc82027589140f106efbe319cf69c82798d676ac475bfa0cb451304ae2e6c368aabebb4e43112c8694c37dcebfbad4fcb81e6849773102122d43e28a00860317
+  checksum: 10/c0a8c0fe810ad1b5c759d46b83e817341f1c1fa61bcfa731b22fe05237ac024ed627f5c59b104d35adb078158d48d7ae4be0987f786b0ce9f43a81c5258c9675
   languageName: node
   linkType: hard
 
@@ -8409,7 +8409,7 @@ __metadata:
     "@testing-library/dom": "npm:^10.4.1"
     "@testing-library/react": "npm:^16.3.2"
     "@testing-library/user-event": "npm:^14.6.1"
-    "@types/node": "npm:^25.2.1"
+    "@types/node": "npm:^25.2.2"
     "@types/pluralize": "npm:^0.0.33"
     "@types/prismjs": "npm:^1.26.5"
     "@types/ramda": "npm:^0.31.1"
@@ -8420,7 +8420,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^8.54.0"
     "@vitejs/plugin-react": "npm:^5.1.3"
     "@vitest/coverage-v8": "npm:^4.0.18"
-    axios: "npm:^1.13.4"
+    axios: "npm:^1.13.5"
     babel-plugin-react-compiler: "npm:1.0.0"
     chakra-ui-contextmenu: "npm:^1.0.5"
     chalk: "npm:^5.6.2"
@@ -8442,7 +8442,7 @@ __metadata:
     eslint-plugin-testing-library: "npm:^7.15.4"
     framer-motion: "npm:^12.33.0"
     globals: "npm:^17.3.0"
-    hexy: "npm:^0.3.5"
+    hexy: "npm:^0.4.0"
     jotai: "npm:^2.17.1"
     js-base64: "npm:^3.7.8"
     mathjs: "npm:^15.1.0"
@@ -8461,7 +8461,7 @@ __metadata:
     react-use: "npm:^17.6.0"
     typescript: "npm:^5.9.3"
     vite: "npm:^7.3.1"
-    vite-tsconfig-paths: "npm:^6.0.5"
+    vite-tsconfig-paths: "npm:^6.1.0"
     vitest: "npm:^4.0.18"
     web-vitals: "npm:^5.1.0"
     xml2js: "npm:^0.6.2"
@@ -9385,16 +9385,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-tsconfig-paths@npm:^6.0.5":
-  version: 6.0.5
-  resolution: "vite-tsconfig-paths@npm:6.0.5"
+"vite-tsconfig-paths@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "vite-tsconfig-paths@npm:6.1.0"
   dependencies:
     debug: "npm:^4.1.1"
     globrex: "npm:^0.1.2"
     tsconfck: "npm:^3.0.3"
   peerDependencies:
     vite: "*"
-  checksum: 10/1c3d38102ed34d057fc602c332bfd059bfedd0b378ee87b1a73eac89e20f6d81ee4bd9639557287e275cae2230f1d9225d2d7d83a2fa355a380cf77568f2cd31
+  checksum: 10/410104d95aca47679718ae5602d6a05c149e1a85b1777ebd670c53e7cd8c55b0f9f6d2d7740a04f33ecb73c0983e3f6897bfa4ee9d5fc5e719385f203ad27ab5
   languageName: node
   linkType: hard
 
