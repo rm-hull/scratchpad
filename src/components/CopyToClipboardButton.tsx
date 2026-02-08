@@ -1,19 +1,20 @@
-import { IconButton, type ResponsiveValue, Tooltip } from "@chakra-ui/react";
+import { IconButton } from "@chakra-ui/react";
 import { type JSX } from "react";
 import { FiCheck, FiClipboard } from "react-icons/fi";
+import { Tooltip } from "./ui/tooltip";
 
 interface CopyToClipboardButtonProps {
   hasCopied: boolean;
   onCopy: () => void;
-  size?: ResponsiveValue<string>;
-  variant?: string;
+  size?: "2xs";
+  variant?: "plain" | "ghost";
   showTooltip?: boolean;
-  ml?: number;
+  height?: string;
 }
 
-function wrapTooltip(showTooltip: boolean, element: JSX.Element): JSX.Element {
+function wrapTooltip(showTooltip: boolean, element: JSX.Element) {
   if (showTooltip) {
-    return <Tooltip label="Copy to clipboard">{element}</Tooltip>;
+    return <Tooltip content="Copy to clipboard">{element}</Tooltip>;
   }
 
   return element;
@@ -25,18 +26,19 @@ export function CopyToClipboardButton({
   size,
   variant,
   showTooltip = false,
-  ml,
-}: CopyToClipboardButtonProps): JSX.Element {
+  height,
+}: CopyToClipboardButtonProps) {
   return wrapTooltip(
     showTooltip,
     <IconButton
-      ml={ml}
       size={size}
       variant={variant}
       aria-label="Copy to clipboard"
-      icon={hasCopied ? <FiCheck /> : <FiClipboard />}
-      textColor={hasCopied ? "green.400" : "blue.400"}
       onClick={onCopy}
-    />
+      color={hasCopied ? "green.400" : "blue.400"}
+      height={height}
+    >
+      {hasCopied ? <FiCheck /> : <FiClipboard />}
+    </IconButton>
   );
 }
