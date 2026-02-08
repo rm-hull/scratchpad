@@ -110,7 +110,7 @@ export function DecodeSelectionDialog({ isOpen, selectedText = "", onClose, onBl
   }
 
   return (
-    <Dialog.Root open={isOpen} onOpenChange={onClose} size="xl" scrollBehavior="inside">
+    <Dialog.Root open={isOpen} onOpenChange={onClose} size="lg" scrollBehavior="inside">
       <Dialog.Trigger />
       <Dialog.Backdrop />
       <Dialog.Positioner>
@@ -125,18 +125,18 @@ export function DecodeSelectionDialog({ isOpen, selectedText = "", onClose, onBl
             The selected text was Base64-decoded into the following:
             <HStack alignItems="flex-start">
               <Field.Root invalid={error !== undefined}>
-                <Box as="pre">
+                <Box as="pre" display="flex">
                   {hexView ? (
-                    <Code borderRadius={5} p={2} flex={1} minHeight={200} width={672}>
+                    <Code borderRadius={5} p={2} alignItems="flex-start" minHeight={200} width={576}>
                       {value}
                     </Code>
                   ) : (
                     <Code
                       borderRadius={5}
                       p={2}
-                      flex={1}
+                      alignItems="flex-start"
                       minHeight={200}
-                      width={672}
+                      width={576}
                       wordBreak="break-all"
                       textWrap="wrap"
                       dangerouslySetInnerHTML={{ __html: highlight(value, fileType.grammar, language) }}
