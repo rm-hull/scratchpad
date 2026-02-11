@@ -3091,10 +3091,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prismjs@npm:^1.26.5":
-  version: 1.26.5
-  resolution: "@types/prismjs@npm:1.26.5"
-  checksum: 10/617099479db9550119d0f84272dc79d64b2cf3e0d7a17167fe740d55fdf0f155697d935409464392d164e62080c2c88d649cf4bc4fdd30a87127337536657277
+"@types/prismjs@npm:^1.26.6":
+  version: 1.26.6
+  resolution: "@types/prismjs@npm:1.26.6"
+  checksum: 10/37c056eb7a9130ef6548d7655af78ea575c8eaa9167ea2dd64d8719384b1af4a385ffe928aa4939da607ce276703a6787bdac8ecc79a373e2a73ddf6d75bc161
   languageName: node
   linkType: hard
 
@@ -8421,7 +8421,7 @@ __metadata:
     "@testing-library/user-event": "npm:^14.6.1"
     "@types/node": "npm:^25.2.3"
     "@types/pluralize": "npm:^0.0.33"
-    "@types/prismjs": "npm:^1.26.5"
+    "@types/prismjs": "npm:^1.26.6"
     "@types/ramda": "npm:^0.31.1"
     "@types/react": "npm:^19.2.13"
     "@types/react-dom": "npm:^19.2.3"
