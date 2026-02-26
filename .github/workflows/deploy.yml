@@ -24,21 +24,23 @@ jobs:
       - name: Setup Yarn
         uses: actions/setup-node@v6
         with:
-          node-version: "20"
+          node-version: "24"
           cache: "yarn"
 
       - name: Install dependencies
         run: |
           yarn install
 
-      # - name: Lint
-      #   run: yarn lint
+      - name: Lint
+        run: yarn lint
+        continue-on-error: true
 
       - name: Test
         run: yarn test:ci
 
       - name: Coveralls
         uses: coverallsapp/github-action@v2
+        continue-on-error: true
         with:
           file: coverage/clover.xml
 
