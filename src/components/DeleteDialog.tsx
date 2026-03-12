@@ -32,8 +32,8 @@ export function DeleteDialog({ isOpen, onDelete, onArchive, onCancel }: DeleteDi
                 </Alert.Content>
               </Alert.Root>
               <Text>
-                Alternatively, you can archive the block instead, which will retain the data in local storage but hides it
-                from the main view.
+                Alternatively, you can archive the block instead, which will retain the data in local storage but hides
+                it from the main view.
               </Text>
             </Box>
           </Dialog.Body>

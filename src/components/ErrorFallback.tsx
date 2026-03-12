@@ -5,7 +5,6 @@ interface ErrorFallbackProps {
 }
 
 export function ErrorFallback({ error }: ErrorFallbackProps) {
-
   const err = error instanceof Error ? error : new Error(String(error));
 
   return (

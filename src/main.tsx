@@ -26,7 +26,6 @@ root.render(
   <React.StrictMode>
     {/* <ColorModeScript initialColorMode="dark" storageKey="scratchpad.color-mode" /> */}
     <Provider /* value={createSystem(defaultConfig)}*/>
-
       <Router basename="/scratchpad">
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <Toaster />

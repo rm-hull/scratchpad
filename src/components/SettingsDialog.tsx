@@ -58,7 +58,6 @@ export function SettingsDialog({ isOpen, onClose }: SettingsModalProps) {
           </Dialog.Header>
           <Dialog.Body>
             <VStack>
-              
               <Field.Root display="flex" flexDirection="row" alignItems="center">
                 <Field.Label htmlFor="default-language" mb={0}>
                   Default language:
@@ -108,7 +107,7 @@ export function SettingsDialog({ isOpen, onClose }: SettingsModalProps) {
                 </RadioGroup.Root>
               </Field.Root>
 
-              <Field.Root display="flex" flexDirection="row"  alignItems="center">
+              <Field.Root display="flex" flexDirection="row" alignItems="center">
                 <Switch.Root
                   id="show-zebra-stripes"
                   checked={settings?.showZebraStripes}
@@ -135,7 +134,7 @@ export function SettingsDialog({ isOpen, onClose }: SettingsModalProps) {
                   <Switch.Label>Show line numbers</Switch.Label>
                 </Switch.Root>
               </Field.Root>
-              <Field.Root display="flex" flexDirection="row"  alignItems="center">
+              <Field.Root display="flex" flexDirection="row" alignItems="center">
                 <Switch.Root
                   id="permanently-show-search-bar"
                   checked={settings?.permanentlyShowSearchBar}
