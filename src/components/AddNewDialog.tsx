@@ -55,7 +55,7 @@ export function AddNewDialog({ isOpen, onCancel, onCreate }: AddNewDialogProps) 
               <Dialog.ActionTrigger asChild>
                 <Button variant="subtle">Cancel</Button>
               </Dialog.ActionTrigger>
-              <Button type="submit" onClick={handleCreate}>
+              <Button type="submit" onClick={handleCreate} variant="subtle">
                 Create
               </Button>
             </ButtonGroup>

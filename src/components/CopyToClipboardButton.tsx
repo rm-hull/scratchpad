@@ -7,7 +7,7 @@ interface CopyToClipboardButtonProps {
   hasCopied: boolean;
   onCopy: () => void;
   size?: "2xs";
-  variant?: "plain" | "ghost";
+  variant?: "plain" | "ghost" | "subtle";
   showTooltip?: boolean;
   height?: string;
 }
@@ -24,7 +24,7 @@ export function CopyToClipboardButton({
   hasCopied,
   onCopy,
   size,
-  variant,
+  variant = "subtle",
   showTooltip = false,
   height,
 }: CopyToClipboardButtonProps) {

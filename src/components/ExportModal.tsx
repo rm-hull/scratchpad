@@ -40,7 +40,7 @@ export function ExportModal({ isOpen, block, onClose }: ExportModalProps) {
             </HStack>
           </Dialog.Body>
           <Dialog.Footer>
-            <Button type="submit" onClick={onClose}>
+            <Button type="submit" onClick={onClose} variant="subtle">
               Close
             </Button>
           </Dialog.Footer>

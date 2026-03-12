@@ -1,4 +1,4 @@
-import { Alert, Box, Button, ButtonGroup, CloseButton, Dialog } from "@chakra-ui/react";
+import { Alert, Box, Button, ButtonGroup, CloseButton, Dialog, Text } from "@chakra-ui/react";
 
 interface DeleteDialogProps {
   isOpen: boolean;
@@ -31,8 +31,10 @@ export function DeleteDialog({ isOpen, onDelete, onArchive, onCancel }: DeleteDi
                   </Alert.Description>
                 </Alert.Content>
               </Alert.Root>
-              Alternatively, you can archive the block instead, which will retain the data in local storage but hides it
-              from the main view.
+              <Text>
+                Alternatively, you can archive the block instead, which will retain the data in local storage but hides it
+                from the main view.
+              </Text>
             </Box>
           </Dialog.Body>
           <Dialog.Footer>
@@ -40,10 +42,10 @@ export function DeleteDialog({ isOpen, onDelete, onArchive, onCancel }: DeleteDi
               <Dialog.ActionTrigger asChild>
                 <Button variant="subtle">Cancel</Button>
               </Dialog.ActionTrigger>
-              <Button type="submit" onClick={onArchive}>
+              <Button type="submit" onClick={onArchive} variant="subtle">
                 Archive
               </Button>
-              <Button type="submit" onClick={onDelete} colorPalette="red">
+              <Button type="submit" onClick={onDelete} variant="subtle" colorPalette="red">
                 Delete
               </Button>
             </ButtonGroup>
