@@ -1,10 +1,10 @@
-import { useToast } from "@chakra-ui/react";
 import { useCallback, useEffect } from "react";
 import { useBlocks } from "../hooks/useBlocks";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { useGoogleDrive } from "../hooks/useGoogleDrive";
 import { type Block } from "../models/block";
 import { useNamespace } from "../hooks/useNamespace";
+import { toaster } from "./ui/toaster";
 
 interface SyncProps {
   onFinished: () => void;
@@ -43,8 +43,7 @@ function removeEmpty(blocks: Record<string, Block>): Record<string, Block> {
   }, {});
 }
 
-export function Sync({ onFinished, onError }: SyncProps): null {
-  const toast = useToast();
+export function Sync({ onFinished, onError }: SyncProps) {
   const namespace = useNamespace();
   const syncFilename =
     namespace === undefined ? "scratchpad_sync.json" : `scratchpad_sync_${namespace.replace("-", "_")}.json`;
@@ -55,17 +54,17 @@ export function Sync({ onFinished, onError }: SyncProps): null {
   const handleError = useCallback(
     (error: Error) => {
       console.log({ error });
-      toast.closeAll();
-      toast({
+      toaster.dismiss();
+      toaster.create({
         title: "Unable to sync with Google Drive",
         description: error.message,
-        status: "error",
+        type: "error",
         duration: 9000,
-        isClosable: true,
+        closable: true,
       });
       onError(error);
     },
-    [onError, toast]
+    [onError]
   );
 
   const sync = useCallback(async (): Promise<void> => {
@@ -78,12 +77,12 @@ export function Sync({ onFinished, onError }: SyncProps): null {
       return;
     }
 
-    toast({
+    toaster.create({
       title: "Syncing with Google Drive",
       description: "Please wait while data is being synced...",
-      status: "info",
+      type: "info",
       duration: 9000,
-      isClosable: true,
+      closable: true,
     });
 
     const downloaded = await drive.download();
@@ -104,15 +103,15 @@ export function Sync({ onFinished, onError }: SyncProps): null {
     updateSettings(newSettings);
     onFinished();
 
-    toast.closeAll();
-    toast({
+    toaster.dismiss();
+    toaster.create({
       title: "Syncing with Google Drive",
       description: "Sync was successful",
-      status: "success",
+      type: "success",
       duration: 9000,
-      isClosable: true,
+      closable: true,
     });
-  }, [blocks, drive, error, login, onFinished, settings, toast, updateBlocks, updateSettings]);
+  }, [blocks, drive, error, login, onFinished, settings, updateBlocks, updateSettings]);
 
   useEffect(() => {
     sync().catch(handleError);
