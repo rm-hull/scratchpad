@@ -4,12 +4,12 @@ import { ErrorBoundary } from "react-error-boundary";
 import ReactGA from "react-ga4";
 import { BrowserRouter as Router } from "react-router-dom";
 import { App } from "./App";
-import { ErrorFallback } from "./components/ErrorFallback";
 import "./main.css";
 import { reportWebVitals } from "./reportWebVitals";
 // import { ColorModeProvider } from "./components/ui/color-mode";
 import { Toaster } from "./components/ui/toaster";
 import { Provider } from "./components/ui/provider";
+import { ErrorFallback } from "@rm-hull/chakra-error-fallback";
 
 if (import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID !== undefined) {
   ReactGA.initialize(import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID as string);
