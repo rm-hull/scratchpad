@@ -1,8 +1,8 @@
 /// <reference types="vitest" />
 import { defineConfig } from "vitest/config";
 import { execSync } from "child_process";
-import react from "@vitejs/plugin-react";
-import tsconfigPaths from "vite-tsconfig-paths";
+import react, { reactCompilerPreset } from "@vitejs/plugin-react";
+import babel from "@rolldown/plugin-babel";
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
@@ -10,10 +10,13 @@ export default defineConfig(() => {
   process.env.VITE_GIT_COMMIT_HASH = execSync("git describe --always --dirty").toString().trimEnd();
 
   return {
-    plugins: [react({babel: {plugins: ["babel-plugin-react-compiler"]}}), tsconfigPaths()],
+      plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
     base: "/scratchpad",
     build: {
       sourcemap: true,
+    },
+    resolve: {
+      tsconfigPaths: true,
     }
   };
 });

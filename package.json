@@ -66,7 +66,7 @@
     "@types/xml2js": "^0.4.14",
     "@typescript-eslint/eslint-plugin": "^8.58.0",
     "@typescript-eslint/parser": "^8.58.0",
-    "@vitejs/plugin-react": "^5.2.0",
+    "@vitejs/plugin-react": "^6.0.1",
     "@vitest/coverage-v8": "^4.1.2",
     "babel-plugin-react-compiler": "^1.0.0",
     "chalk": "^5.6.2",
@@ -87,8 +87,7 @@
     "eslint-plugin-testing-library": "^7.16.2",
     "globals": "^17.4.0",
     "typescript": "^6.0.2",
-    "vite": "^7.3.1",
-    "vite-tsconfig-paths": "^6.1.1",
+    "vite": "^8.0.3",
     "vitest": "^4.1.2",
     "xml2js": "^0.6.2"
   },
