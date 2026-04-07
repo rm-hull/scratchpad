@@ -10,7 +10,7 @@ export default defineConfig(() => {
   process.env.VITE_GIT_COMMIT_HASH = execSync("git describe --always --dirty").toString().trimEnd();
 
   return {
-      plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
+    plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
     base: "/scratchpad",
     build: {
       sourcemap: true,

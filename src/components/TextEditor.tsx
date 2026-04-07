@@ -3,7 +3,9 @@ import clsx from "clsx";
 import { highlight, type Grammar } from "prismjs";
 import "prismjs/themes/prism.css";
 import { useCallback, useMemo, useState } from "react";
-import Editor from "react-simple-code-editor";
+import _Editor from "react-simple-code-editor";
+
+const Editor = (_Editor as any).default || _Editor;
 import { useDebounce } from "react-use";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { type Block } from "../models/block";
