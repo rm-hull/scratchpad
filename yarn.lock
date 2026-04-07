@@ -6245,9 +6245,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:^2.19.0":
-  version: 2.19.0
-  resolution: "jotai@npm:2.19.0"
+"jotai@npm:^2.19.1":
+  version: 2.19.1
+  resolution: "jotai@npm:2.19.1"
   peerDependencies:
     "@babel/core": ">=7.0.0"
     "@babel/template": ">=7.0.0"
@@ -6262,7 +6262,7 @@ __metadata:
       optional: true
     react:
       optional: true
-  checksum: 10/faa363d1041eca4f79519b6a9acbb4895b72af4d0726b1dcc8908748e7aef4808ccb312590d2c7cb52d6f9303a153617b9e07e268c9c4465fd7eb7c03e260ed7
+  checksum: 10/bb599ccd305820d9e6c25a23d34d66c4a47caea041065d553ea522c3299562f84fff1724a1a17da3401a3af60cc0500a80c6294bca61e3b8708daf5bebb3b8a2
   languageName: node
   linkType: hard
 
@@ -6673,9 +6673,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mathjs@npm:^15.1.1":
-  version: 15.1.1
-  resolution: "mathjs@npm:15.1.1"
+"mathjs@npm:^15.2.0":
+  version: 15.2.0
+  resolution: "mathjs@npm:15.2.0"
   dependencies:
     "@babel/runtime": "npm:^7.26.10"
     complex.js: "npm:^2.2.5"
@@ -6688,7 +6688,7 @@ __metadata:
     typed-function: "npm:^4.2.1"
   bin:
     mathjs: bin/cli.js
-  checksum: 10/253a0e16344fc4b08c764a4fd2a3703802d6d9ce10e2144f37b3e079b4c14c8e8bb1de18afb34e84db49979c49551df8db1e59083114ed3340c2194f8ab58465
+  checksum: 10/2a6ab1326a38e2048939a515ab797319685cd127354854235bdf4095d0fdcf292f31e794a064dc31121f027b670fb3248783ac5cda117fbd68f168115b50b50f
   languageName: node
   linkType: hard
 
@@ -8027,9 +8027,9 @@ __metadata:
     framer-motion: "npm:^12.38.0"
     globals: "npm:^17.4.0"
     hexy: "npm:^0.4.0"
-    jotai: "npm:^2.19.0"
+    jotai: "npm:^2.19.1"
     js-base64: "npm:^3.7.8"
-    mathjs: "npm:^15.1.1"
+    mathjs: "npm:^15.2.0"
     pluralize: "npm:^8.0.0"
     prettier: "npm:^3.8.1"
     prismjs: "npm:^1.30.0"
