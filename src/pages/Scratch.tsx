@@ -1,8 +1,8 @@
-import { Container, Divider, useColorModeValue, useDisclosure } from "@chakra-ui/react";
+import { Container, Separator, useDisclosure } from "@chakra-ui/react";
 import * as R from "ramda";
 import { useEffect, useState, type JSX } from "react";
 import { Dropzone } from "../components/DropZone";
-import { GettingStartedModal } from "../components/GettingStartedModal";
+import { GettingStartedDialog } from "../components/GettingStartedDialog";
 import { RightContextMenu } from "../components/RightContextMenu";
 import { Search } from "../components/Search";
 import { TextEditor } from "../components/TextEditor";
@@ -10,14 +10,11 @@ import { useBlocks } from "../hooks/useBlocks";
 import { useGeneralSettings } from "../hooks/useGeneralSettings";
 import { newBlock, sortBy, type Block } from "../models/block";
 import { fromFilename } from "../models/fileTypes";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
 export function Scratch(): JSX.Element {
-  const { isOpen: isSearchOpen, onOpen: onOpenSearch, onClose: onCloseSearch } = useDisclosure();
-  const {
-    isOpen: isGettingStartedOpen,
-    onOpen: onOpenGettingStarted,
-    onClose: onCloseGettingStarted,
-  } = useDisclosure();
+  const { open: isSearchOpen, onOpen: onOpenSearch, onClose: onCloseSearch } = useDisclosure();
+  const { open: isGettingStartedOpen, onOpen: onOpenGettingStarted, onClose: onCloseGettingStarted } = useDisclosure();
   const [searchTerm, setSearchTerm] = useState<RegExp>();
   const [blocks, updateBlocks] = useBlocks();
   const [settings] = useGeneralSettings();
@@ -85,7 +82,7 @@ export function Scratch(): JSX.Element {
           isOpen={isSearchOpen || settings?.permanentlyShowSearchBar}
           onClose={onCloseSearch}
         />
-        {isGettingStartedOpen && <GettingStartedModal isOpen={isGettingStartedOpen} onClose={onCloseGettingStarted} />}
+        {isGettingStartedOpen && <GettingStartedDialog isOpen={isGettingStartedOpen} onClose={onCloseGettingStarted} />}
         {sortFn(filteredBlocks).map((block, index) => (
           <Container p={0} key={block.id} maxWidth="100%">
             <TextEditor
@@ -95,7 +92,7 @@ export function Scratch(): JSX.Element {
               onBlockDelete={handleBlockDelete}
               highlight={searchTerm}
             />
-            <Divider />
+            <Separator />
           </Container>
         ))}
       </RightContextMenu>

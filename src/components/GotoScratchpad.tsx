@@ -1,10 +1,9 @@
-import { Divider, MenuOptionGroup, MenuItemOption } from "@chakra-ui/react";
-import { type JSX } from "react";
+import { Menu } from "@chakra-ui/react";
 import { useNamespace } from "../hooks/useNamespace";
 import { listNamespaces } from "../models/block";
 import { Link } from "react-router-dom";
 
-export function GotoNamespace(): JSX.Element | null {
+export function GotoNamespace() {
   const namespace = useNamespace();
   const customNamespaces = listNamespaces();
 
@@ -13,18 +12,15 @@ export function GotoNamespace(): JSX.Element | null {
   }
 
   return (
-    <>
-      <Divider />
-      <MenuOptionGroup defaultValue={namespace ?? "root"} title="Goto scratchpad" type="radio">
-        <MenuItemOption value="root" as={Link} to="/">
-          «root»
-        </MenuItemOption>
-        {customNamespaces.map((ns) => (
-          <MenuItemOption value={ns} key={ns} as={Link} to={`/${ns}`}>
-            {ns}
-          </MenuItemOption>
-        ))}
-      </MenuOptionGroup>
-    </>
+    <Menu.RadioItemGroup defaultValue={namespace ?? "root"} title="Goto scratchpad">
+      <Menu.Item value="root" asChild>
+        <Link to="/">«root»</Link>
+      </Menu.Item>
+      {customNamespaces.map((ns) => (
+        <Menu.Item value={ns} key={ns} asChild>
+          <Link to={`/${ns}`}>{ns}</Link>
+        </Menu.Item>
+      ))}
+    </Menu.RadioItemGroup>
   );
 }
