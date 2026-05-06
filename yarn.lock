@@ -5796,9 +5796,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:^2.19.1":
-  version: 2.19.1
-  resolution: "jotai@npm:2.19.1"
+"jotai@npm:^2.20.0":
+  version: 2.20.0
+  resolution: "jotai@npm:2.20.0"
   peerDependencies:
     "@babel/core": ">=7.0.0"
     "@babel/template": ">=7.0.0"
@@ -5813,7 +5813,7 @@ __metadata:
       optional: true
     react:
       optional: true
-  checksum: 10/bb599ccd305820d9e6c25a23d34d66c4a47caea041065d553ea522c3299562f84fff1724a1a17da3401a3af60cc0500a80c6294bca61e3b8708daf5bebb3b8a2
+  checksum: 10/674f2ed28344aa44a204b5547c59eebf60852c502bf91d15a3d62ba056d7340d4a60b49bf232fe638bad2ad73288d32b16bf718b68517da56b92645b0672c829
   languageName: node
   linkType: hard
 
@@ -7488,7 +7488,7 @@ __metadata:
     framer-motion: "npm:^12.38.0"
     globals: "npm:^17.6.0"
     hexy: "npm:^0.4.0"
-    jotai: "npm:^2.19.1"
+    jotai: "npm:^2.20.0"
     js-base64: "npm:^3.7.8"
     mathjs: "npm:^15.2.0"
     pluralize: "npm:^8.0.0"
