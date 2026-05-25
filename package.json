@@ -49,7 +49,7 @@
     "web-vitals": "^5.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.0",
+    "@babel/core": "^7.29.7",
     "@rolldown/plugin-babel": "^0.2.3",
     "@stylistic/eslint-plugin-ts": "^4.4.1",
     "@testing-library/dom": "^10.4.1",
