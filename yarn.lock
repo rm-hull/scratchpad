@@ -413,17 +413,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.29.3":
-  version: 7.29.3
-  resolution: "@babel/parser@npm:7.29.3"
-  dependencies:
-    "@babel/types": "npm:^7.29.0"
-  bin:
-    parser: ./bin/babel-parser.js
-  checksum: 10/10e8f34e0fdaa495b9db8be71f4eb29b16d8a57e0818c1bb1c4084015b0383803fd77812ed41597760cbf3d9ab3ae9f4af54f39ff5e5d8e081ba43593232f0ca
-  languageName: node
-  linkType: hard
-
 "@babel/parser@npm:^7.29.7":
   version: 7.29.7
   resolution: "@babel/parser@npm:7.29.7"
@@ -7645,7 +7634,7 @@ __metadata:
   resolution: "scratchpad@workspace:."
   dependencies:
     "@babel/core": "npm:^7.29.7"
-    "@babel/parser": "npm:^7.29.3"
+    "@babel/parser": "npm:^7.29.7"
     "@chakra-ui/react": "npm:^2.10.9"
     "@chakra-ui/styled-system": "npm:^2.12.4"
     "@emotion/is-prop-valid": "npm:^1.4.0"
