@@ -59,7 +59,7 @@
     "@types/node": "^26.0.0",
     "@types/pluralize": "^0.0.33",
     "@types/prismjs": "^1.26.6",
-    "@types/ramda": "^0.31.1",
+    "@types/ramda": "^0.32.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@types/xml2js": "^0.4.14",
