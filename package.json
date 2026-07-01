@@ -34,7 +34,7 @@
     "js-base64": "^3.8.0",
     "mathjs": "^15.2.0",
     "pluralize": "^8.0.0",
-    "prettier": "^3.9.3",
+    "prettier": "^3.9.4",
     "prismjs": "^1.30.0",
     "ramda": "^0.32.0",
     "react": "^19.2.7",
