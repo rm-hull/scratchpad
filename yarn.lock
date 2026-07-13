@@ -3659,7 +3659,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"attr-accept@npm:^2.2.4":
+"attr-accept@npm:^2.2.5":
   version: 2.2.5
   resolution: "attr-accept@npm:2.2.5"
   checksum: 10/474b1c53e62c5b881c745d1f098196f190c8b493245e95d4b0fea9298d3acb56f551868fc12806885277e55e9d8ad3c5963e92d93456f4e4081dfc5190977bfd
@@ -7140,16 +7140,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dropzone@npm:^15.0.0":
-  version: 15.0.0
-  resolution: "react-dropzone@npm:15.0.0"
+"react-dropzone@npm:^17.0.0":
+  version: 17.0.0
+  resolution: "react-dropzone@npm:17.0.0"
   dependencies:
-    attr-accept: "npm:^2.2.4"
+    attr-accept: "npm:^2.2.5"
     file-selector: "npm:^2.1.0"
-    prop-types: "npm:^15.8.1"
   peerDependencies:
-    react: ">= 16.8 || 18.0.0"
-  checksum: 10/1c465e16af658ea73002fffddd164ddc85ef745daac620c378eda8a938e2d28a558348831fdcfcf20dfed8a6c4579894adf6a5adc6165ce20cdc25f036d1c3ca
+    react: ">= 18"
+  checksum: 10/703f1aa7772ad98f529d198e9724fd022d3a66b80c8cfbf1316255201465c0fb7b5f4f2b5b8e381ab7d713a1ff3cd2162399ada22698a3cac87897a6a339d020
   languageName: node
   linkType: hard
 
@@ -7775,7 +7774,7 @@ __metadata:
     ramda: "npm:^0.32.0"
     react: "npm:^19.2.7"
     react-dom: "npm:^19.2.7"
-    react-dropzone: "npm:^15.0.0"
+    react-dropzone: "npm:^17.0.0"
     react-error-boundary: "npm:^6.1.2"
     react-ga4: "npm:^3.0.1"
     react-icons: "npm:^5.7.0"
