@@ -5151,12 +5151,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"file-selector@npm:^2.1.0":
-  version: 2.1.2
-  resolution: "file-selector@npm:2.1.2"
-  dependencies:
-    tslib: "npm:^2.7.0"
-  checksum: 10/2a6be0e1904df85f8705a5171fd3b93c1b1ff2ad0143556adb78ac4de899bfc0ba1a20083b4febd4f7000759ec9119a31af76a057e29dd9215907da69ac95e50
+"file-selector@npm:^4.0.1":
+  version: 4.0.2
+  resolution: "file-selector@npm:4.0.2"
+  checksum: 10/8e7edeae4864bc86e5cdfe6e93372065d1f14ab8bf120bfd4302eb807e6195273fa0e0ddb3cf230c18415cc85fc9eace2ec591cd2b48203f3045c2c1c709e22e
   languageName: node
   linkType: hard
 
@@ -7140,15 +7138,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dropzone@npm:^17.0.0":
-  version: 17.0.0
-  resolution: "react-dropzone@npm:17.0.0"
+"react-dropzone@npm:^19.1.1":
+  version: 19.1.1
+  resolution: "react-dropzone@npm:19.1.1"
   dependencies:
     attr-accept: "npm:^2.2.5"
-    file-selector: "npm:^2.1.0"
+    file-selector: "npm:^4.0.1"
   peerDependencies:
+    "@types/react": "*"
     react: ">= 18"
-  checksum: 10/703f1aa7772ad98f529d198e9724fd022d3a66b80c8cfbf1316255201465c0fb7b5f4f2b5b8e381ab7d713a1ff3cd2162399ada22698a3cac87897a6a339d020
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10/1f5a7ef9d5a2c61d1bb7a1e6ba17057f7e70ba27c306e09253c164f8f6c4b13dde48974591dae8629ed4a393d497a3cf0eec87fe746693ea90b210e9569b0431
   languageName: node
   linkType: hard
 
@@ -7774,7 +7776,7 @@ __metadata:
     ramda: "npm:^0.32.0"
     react: "npm:^19.2.7"
     react-dom: "npm:^19.2.7"
-    react-dropzone: "npm:^17.0.0"
+    react-dropzone: "npm:^19.1.1"
     react-error-boundary: "npm:^6.1.2"
     react-ga4: "npm:^3.0.1"
     react-icons: "npm:^5.7.0"
@@ -8365,7 +8367,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.0, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.4.0, tslib@npm:^2.7.0":
+"tslib@npm:^2.0.0, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.4.0":
   version: 2.8.1
   resolution: "tslib@npm:2.8.1"
   checksum: 10/3e2e043d5c2316461cb54e5c7fe02c30ef6dccb3384717ca22ae5c6b5bc95232a6241df19c622d9c73b809bea33b187f6dbc73030963e29950c2141bc32a79f7
