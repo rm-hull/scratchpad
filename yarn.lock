@@ -5151,10 +5151,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"file-selector@npm:^4.0.1":
-  version: 4.0.2
-  resolution: "file-selector@npm:4.0.2"
-  checksum: 10/8e7edeae4864bc86e5cdfe6e93372065d1f14ab8bf120bfd4302eb807e6195273fa0e0ddb3cf230c18415cc85fc9eace2ec591cd2b48203f3045c2c1c709e22e
+"file-selector@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "file-selector@npm:4.1.0"
+  checksum: 10/7da073ce46f8acbd477cf5a0fca7851a4c5e16cf6833b625bf4de84b86055c6e2d3f90466ab7ca1ba1a8bda15713a398716ec99a6fa32f614e69021e2a34cf2c
   languageName: node
   linkType: hard
 
@@ -7238,19 +7238,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dropzone@npm:^19.1.1":
-  version: 19.1.1
-  resolution: "react-dropzone@npm:19.1.1"
+"react-dropzone@npm:^19.2.0":
+  version: 19.2.0
+  resolution: "react-dropzone@npm:19.2.0"
   dependencies:
     attr-accept: "npm:^2.2.5"
-    file-selector: "npm:^4.0.1"
+    file-selector: "npm:^4.1.0"
   peerDependencies:
     "@types/react": "*"
     react: ">= 18"
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10/1f5a7ef9d5a2c61d1bb7a1e6ba17057f7e70ba27c306e09253c164f8f6c4b13dde48974591dae8629ed4a393d497a3cf0eec87fe746693ea90b210e9569b0431
+  checksum: 10/850cfd06dff1a06e7bec00d2f1e193e6bff187d63450d2d6be165562499c8e9e0ddb9af487985821cf609d2fb3d4576ad82ba6c87eee8c4ac12471cc5bc3cce9
   languageName: node
   linkType: hard
 
@@ -7876,7 +7876,7 @@ __metadata:
     ramda: "npm:^0.32.0"
     react: "npm:^19.2.8"
     react-dom: "npm:^19.2.8"
-    react-dropzone: "npm:^19.1.1"
+    react-dropzone: "npm:^19.2.0"
     react-error-boundary: "npm:^6.1.2"
     react-ga4: "npm:^3.0.1"
     react-icons: "npm:^5.7.0"
