@@ -3609,10 +3609,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"attr-accept@npm:^2.2.5":
-  version: 2.2.5
-  resolution: "attr-accept@npm:2.2.5"
-  checksum: 10/474b1c53e62c5b881c745d1f098196f190c8b493245e95d4b0fea9298d3acb56f551868fc12806885277e55e9d8ad3c5963e92d93456f4e4081dfc5190977bfd
+"attr-accept@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "attr-accept@npm:4.0.0"
+  checksum: 10/6604780ad997ed4d20e7a8ea46fc8ba4d2fff28006d003af94018bf9293645e6ed04307dc5dd099bc7a1345ca40fb41e7a3978e35fc23c4c10cd834199346998
   languageName: node
   linkType: hard
 
@@ -5101,10 +5101,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"file-selector@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "file-selector@npm:4.1.0"
-  checksum: 10/7da073ce46f8acbd477cf5a0fca7851a4c5e16cf6833b625bf4de84b86055c6e2d3f90466ab7ca1ba1a8bda15713a398716ec99a6fa32f614e69021e2a34cf2c
+"file-selector@npm:^5.0.0":
+  version: 5.0.1
+  resolution: "file-selector@npm:5.0.1"
+  checksum: 10/536a4d414d3b163915de9bbee342aebac00483bd15e1b973694074012cd18281b6f6092e01e4458c3b79af8e1dfff5db9b2636f7c3366b80ed2827202f7f4e6c
   languageName: node
   linkType: hard
 
@@ -7205,19 +7205,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dropzone@npm:^20.1.0":
-  version: 20.1.0
-  resolution: "react-dropzone@npm:20.1.0"
+"react-dropzone@npm:^20.1.1":
+  version: 20.1.1
+  resolution: "react-dropzone@npm:20.1.1"
   dependencies:
-    attr-accept: "npm:^2.2.5"
-    file-selector: "npm:^4.1.0"
+    attr-accept: "npm:^4.0.0"
+    file-selector: "npm:^5.0.0"
   peerDependencies:
     "@types/react": "*"
     react: ">= 18"
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10/937d3659fd7600c4332e74cc6076c4b63fa801ecc6477459c8b9c0572dfb91c2c029642c46164b1b3e64666c9ce108e0220baf96de1451367f75f1882c014922
+  checksum: 10/13dd4dd0872e7a55aedbcb087aedeb40a74b3ff568506b95757f4ab0486eb9382ea8f1b4b42730838d180aaad0c342b1c49be434aa7f21d81fca2c0bff76035f
   languageName: node
   linkType: hard
 
@@ -7847,7 +7847,7 @@ __metadata:
     ramda: "npm:^0.32.0"
     react: "npm:^19.2.8"
     react-dom: "npm:^19.2.8"
-    react-dropzone: "npm:^20.1.0"
+    react-dropzone: "npm:^20.1.1"
     react-error-boundary: "npm:^6.1.3"
     react-ga4: "npm:^3.0.1"
     react-icons: "npm:^5.7.0"
