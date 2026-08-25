@@ -28,7 +28,7 @@
     "axios": "^1.19.0",
     "chakra-ui-contextmenu": "^1.0.5",
     "clsx": "^2.1.1",
-    "framer-motion": "^13.1.0",
+    "framer-motion": "^13.1.1",
     "hexy": "^0.4.0",
     "jotai": "^2.20.2",
     "js-base64": "^3.9.3",
