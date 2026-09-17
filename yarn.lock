@@ -6920,9 +6920,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dropzone@npm:^20.1.1":
-  version: 20.1.1
-  resolution: "react-dropzone@npm:20.1.1"
+"react-dropzone@npm:^20.1.2":
+  version: 20.1.2
+  resolution: "react-dropzone@npm:20.1.2"
   dependencies:
     attr-accept: "npm:^4.0.0"
     file-selector: "npm:^5.0.0"
@@ -6932,7 +6932,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10/13dd4dd0872e7a55aedbcb087aedeb40a74b3ff568506b95757f4ab0486eb9382ea8f1b4b42730838d180aaad0c342b1c49be434aa7f21d81fca2c0bff76035f
+  checksum: 10/23db7575f3931be6d833922e814547ab1ece09dfc4bb05f349adffd6e261361c49807b526918de9c62bf41af74a5d4d035e6b58c710fcbe473550c3b265f6bdb
   languageName: node
   linkType: hard
 
@@ -7504,7 +7504,7 @@ __metadata:
     ramda: "npm:^0.32.0"
     react: "npm:^19.3.0"
     react-dom: "npm:^19.3.0"
-    react-dropzone: "npm:^20.1.1"
+    react-dropzone: "npm:^20.1.2"
     react-error-boundary: "npm:^6.1.5"
     react-ga4: "npm:^3.0.1"
     react-icons: "npm:^5.7.0"
