@@ -5916,10 +5916,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-base64@npm:^3.9.3":
-  version: 3.9.3
-  resolution: "js-base64@npm:3.9.3"
-  checksum: 10/ce8706664209a7424e504418faf84f39ff3005245b664cb1444f2cfdbd6101cfebcbfdb4acb717798692a733ebbf35cf8cb9e2b506687afcf4552f679f3bcd03
+"js-base64@npm:^3.9.4":
+  version: 3.9.4
+  resolution: "js-base64@npm:3.9.4"
+  checksum: 10/7ae007f4536a4738024f09f34cbc146090fb5e231a48e71a94268a29ba290ff93c56b591c308556dc7dabaf5c04d38483a26adbc2a833cfad17ae618b8557b8b
   languageName: node
   linkType: hard
 
@@ -7537,7 +7537,7 @@ __metadata:
     globals: "npm:^17.12.0"
     hexy: "npm:^0.4.0"
     jotai: "npm:^3.0.0"
-    js-base64: "npm:^3.9.3"
+    js-base64: "npm:^3.9.4"
     mathjs: "npm:^15.2.0"
     pluralize: "npm:^8.0.0"
     prettier: "npm:^3.9.8"
