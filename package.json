@@ -31,7 +31,7 @@
     "framer-motion": "^13.4.0",
     "hexy": "^0.4.0",
     "jotai": "^3.0.0",
-    "js-base64": "^3.9.3",
+    "js-base64": "^3.9.4",
     "mathjs": "^15.2.0",
     "pluralize": "^8.0.0",
     "prettier": "^3.9.8",
