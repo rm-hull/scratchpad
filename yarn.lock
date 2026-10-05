@@ -5138,12 +5138,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^13.4.6":
-  version: 13.4.6
-  resolution: "framer-motion@npm:13.4.6"
+"framer-motion@npm:^14.0.0":
+  version: 14.0.0
+  resolution: "framer-motion@npm:14.0.0"
   dependencies:
-    motion-dom: "npm:^13.4.5"
-    motion-utils: "npm:^13.3.0"
+    motion-dom: "npm:14.0.0"
+    motion-utils: "npm:14.0.0"
     tslib: "npm:^2.4.0"
   peerDependencies:
     react: ^18.0.0 || ^19.0.0
@@ -5153,7 +5153,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10/e683034b64aa371710c70c5131145e398619cd61d6179942ca817d4f9043c7378fe7b3385264330a30411cc047beb308418c5a4f4b1260edd7f10047dbb820a4
+  checksum: 10/6b13fb49264423a616b52231e1491bb9e8caca655ea2edcd8ec63243582588282bee0d4257eab11a4b4ac14f14fa8bd319a9060d3f56db88e065b22b15e1244f
   languageName: node
   linkType: hard
 
@@ -6483,19 +6483,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"motion-dom@npm:^13.4.5":
-  version: 13.4.5
-  resolution: "motion-dom@npm:13.4.5"
+"motion-dom@npm:14.0.0":
+  version: 14.0.0
+  resolution: "motion-dom@npm:14.0.0"
   dependencies:
-    motion-utils: "npm:^13.3.0"
-  checksum: 10/5b82165f9d44a1012d1d1d41b04aabc1b75b58b1361c832cc8b6a60dad8655f5c3116d1877f5cf22c3f4cd28ea7ebdb5399479e059eb6664686e1499a2ebaf9c
+    motion-utils: "npm:14.0.0"
+  checksum: 10/94321afd76cb928086cc329d1aa0c4d74845d43a787a75abe831e1ccfd0d0f8f08b849e157ed2dfc31945b790f920f4255a39b88225b5b85d068de64d1a66e53
   languageName: node
   linkType: hard
 
-"motion-utils@npm:^13.3.0":
-  version: 13.3.0
-  resolution: "motion-utils@npm:13.3.0"
-  checksum: 10/8cd6e39827a6714a7eb1651e4e0cc02b276b823ed8a3095d4764761cee33ad094bc9904a555882e0cddeb07fcbbd8e51a08d15355831ebf1dad96faa1be2c88a
+"motion-utils@npm:14.0.0":
+  version: 14.0.0
+  resolution: "motion-utils@npm:14.0.0"
+  checksum: 10/1252ce0e9687cdb43cbaf6d24debc2fffdf1e3d42f3876553845aacd5913aed737ffec645bd1ec48b1f095b8f298ba788216888bf4bba3e770407b7b5bd01d3e
   languageName: node
   linkType: hard
 
@@ -7555,7 +7555,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^7.1.1"
     eslint-plugin-react-refresh: "npm:^0.5.7"
     eslint-plugin-testing-library: "npm:^7.16.2"
-    framer-motion: "npm:^13.4.6"
+    framer-motion: "npm:^14.0.0"
     globals: "npm:^17.12.0"
     hexy: "npm:^0.4.0"
     jotai: "npm:^3.0.1"
