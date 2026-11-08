@@ -65,8 +65,8 @@
     "@types/xml2js": "^0.4.14",
     "@typescript-eslint/eslint-plugin": "^8.72.1",
     "@typescript-eslint/parser": "^8.72.1",
-    "@vitejs/plugin-react": "^6.1.2",
-    "@vitest/coverage-v8": "^5.0.5",
+    "@vitejs/plugin-react": "^6.2.1",
+    "@vitest/coverage-v8": "^5.1.0",
     "babel-plugin-react-compiler": "1.0.0",
     "chalk": "^6.0.1",
     "eslint": "10.14.0",
@@ -86,8 +86,8 @@
     "eslint-plugin-testing-library": "^7.16.2",
     "globals": "^17.13.0",
     "typescript": "^6.0.3",
-    "vite": "^8.3.5",
-    "vitest": "^5.0.5",
+    "vite": "^8.3.6",
+    "vitest": "^5.1.0",
     "xml2js": "^0.6.2"
   },
   "browserslist": {
